@@ -1,6 +1,8 @@
 angular.module('goodSees')
     .service('tmdbService', function($http){
+    var baseUrl = 'https://api.themoviedb.org/3/'
+    var discoverPageNum = 1
 
-        this.test = 'Service is working'
+    this.searchMovieByTitle = title => $http.get(`/searchMovieByTitle/${title}`)
 
 });
