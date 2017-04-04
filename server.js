@@ -1,108 +1,133 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var massive = require('massive');
-const session = require('express-session'),
-      passport = require('passport'),
-      Auth0Strategy = require('passport-auth0'),
-      config = require('./config.js');
+const express = require('express');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const cors = require('cors');
+const config = require('./config.js');
+const massive = require('massive');
+const passport = require('passport');
+const FacebookStrategy = require('passport-facebook').Strategy;
+const connectionString = config.connectionString;
 
-var app = module.exports = express();
+passport.serializeUser((user, done) => {
+	done(null, user);
+});
+
+passport.deserializeUser((obj, done) => {
+	done(null, obj);
+});
+
+passport.use(new FacebookStrategy({
+	clientID: config.facebookId,
+	clientSecret: config.facebookSecret,
+	callbackURL: '/auth/facebook/callback'
+}, (accessToken, refreshToken, profile, done) => {
+	db.read.user_by_facebook_id([profile.id], (err, user) => {
+		if (err) {
+			console.log(err);
+		} else if (user[0]) {
+			console.log(user[0])
+			done(null, user[0]);
+		} else {
+
+			console.log('attempting account creation');
+			db.create.new_user_from_facebook([profile.id, profile.displayName, profile._json.email, profile.username, profile._json.avatar_url],
+
+				(err) => {
+					if (err) {
+						console.log(err);
+					}	else {
+						db.read.user_by_facebook_id([profile.id], (err, newUser) => {
+							if(err) {
+								console.log(err);
+							} else {
+								done(null, newUser[0])
+							}
+						});
+					}
+				})
+		}
+
+	});
+}));
+
+
+
+
+const app = module.exports = express();
+
+
+// const massiveInstance = massive.connectSync({connectionString: connectionString});
+//
+// app.set('db', massiveInstance);
+// const db = app.get('db');
+//
+//
+// const testCtrl = require('./controllers/testCtrl');
+// const kataCtrl = require('./controllers/kataCtrl');
+
+
+app.use(express.static(__dirname + '/src'));
 app.use(bodyParser.json());
+app.use(cors());
+
 app.use(session({
-  resave: true, //Without this you get a constant warning about default values
-  saveUninitialized: true, //Without this you get a constant warning about default values
-  secret: config.sessionSecret
-}))
+	secret: config.sessionSecret,
+	saveUninitialized: false,
+	resave: false
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static('./public'));
-
-var port = 8080;
-var connectionString = "postgres://postgres:@localhost/xyz"; //we need to edit this path to go to our db
-var db = massive.connectSync({connectionString : connectionString});
-
-app.set('db', db);
-db.schema(function(err){
-    if (err) return console.log('schema.sql', err);        
-    else console.log("User Table Init");
-});
-
-passport.use(new Auth0Strategy({
-   domain:       config.auth0.domain,
-   clientID:     config.auth0.clientID,
-   clientSecret: config.auth0.clientSecret,
-   callbackURL:  '/auth/callback'
-  },
-  function(accessToken, refreshToken, extraParams, profile, done) {
-    //Find user in database
-    db.getUserByAuthId([profile.id], function(err, user) {
-      user = user[0];
-      if (!user) { //if there isn't one, we'll create one!
-        console.log('CREATING USER');
-        db.createUserByAuth([profile._json.given_name, profile.id, profile._json.family_name], function(err, user) {
-            if (err) {
-                throw new Error(err)
-            }
-        //   console.log('USER CREATED', user);
-        //   console.log('profile: ', profile)
-          return done(err, user[0]); // GOES TO SERIALIZE USER
-        })
-      } else { //when we find the user, return it
-        // console.log('FOUND USER', user);
-        user.weddingDate = true;
-        return done(err, user);
-      }
-    })
-  }
-));
-
-//THIS IS INVOKED ONE TIME TO SET THINGS UP
-passport.serializeUser(function(userA, done) {
-  console.log('serializing', userA);
-  var userB = userA;
-  //Things you might do here :
-   //Serialize just the id, get other information to add to session, 
-  done(null, userB); //PUTS 'USER' ON THE SESSION
-});
-
-//USER COMES FROM SESSION - THIS IS INVOKED FOR EVERY ENDPOINT
-passport.deserializeUser(function(user, done) {
-  //Things you might do here :
-    // Query the database with the user id, get other information to put on req.user
-  done(null, user); //PUTS 'USER' ON REQ.USER
-});
 
 
-var couplesCtrl = require('./serverCtrls/couplesCtrl.js');
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['user:email', 'user']}));
 
-//auth0 endpoints
-app.get('/auth', passport.authenticate('auth0'));
-app.get('/auth/callback',
-  passport.authenticate('auth0'), function(req, res) {
-      if (!req.user.weddingDate) {
-        res.redirect('/#/signup');
-      }else {
-          res.redirect('/#/dashboard')
-      }
-})
-app.get('/auth/me', function(req, res) {
-  if (!req.user) return res.status(200).send('null');
-  //THIS IS WHATEVER VALUE WE GOT FROM userC variable above.
-    db.getCurrentCouple([req.user.auth0id], function(err, resp){
-        if (err) return console.log(err)
-        else res.send(resp[0]);
-    })
-})
-app.get('/auth/logout', function(req, res) {
-  req.logout();
-  res.redirect('/#');
+app.get('/auth/facebook/callback',
+	passport.authenticate('facebook', {failureRedirect: '/login'}),
+	function (req, res) {
+		// Successful authentication, redirect home.
+		res.redirect('/#/feed');
+	});
+
+app.post('/dummy', (req, res, next) => {
+	console.log('hit endpoint');
+	let user = {
+		id: 1,
+		facebook_id: '22752236',
+		name: 'Joshua Baert',
+		email: 'developer@baert.io',
+		username: 'JoshuaBaert',
+		picture_url: 'https://avatars.githubusercontent.com/u/22752236?v=3',
+	};
+	req.login(user, (err) => {
+		if (err) return next(err);
+		res.sendStatus(200);
+	});
+
 })
 
-//regular endpoints
+// app.get('/api/check-auth', kataCtrl.checkAuth);
+//
+// app.get('/api/me', kataCtrl.getUser);
+// app.get('/api/kata/:kataid', kataCtrl.getKatasByKataId);
+// app.get('/api/random-kata/:userkyu', kataCtrl.getRandomKata);
+// app.get('/api/random-kata-list/:userkyu', kataCtrl.getRandomKataList);
+// app.get('/api/katas-by-kyu/:kyu', kataCtrl.getKatasByKyu);
+// app.get('/api/solutions/:kataid', kataCtrl.getKataSolutions);
+// app.get('/api/get-user-katas/:userid', kataCtrl.getUserKatas);
+// app.get('/api/kata-votes', kataCtrl.getKataVotes);
+// app.get('/api/solution-votes/', kataCtrl.getSolutionVotes);
+//
+// app.post('/api/test/suite/:kataid', testCtrl.testKata);
+// app.post('/api/test/examples', testCtrl.testExamplesKata);
+// app.post('/api/submit-answer/:kataid', kataCtrl.sumbitAnswer);
+// app.post('/api/kata-by-name', kataCtrl.searchByKatasName);
+//
+// app.put('/api/points', kataCtrl.addPointsToUser);
+// app.post('/api/kata-votes', kataCtrl.voteKata);
+// app.post('/api/solution-votes', function(req, res, next) {console.log('endpoint working'); next();}, kataCtrl.voteSolution);
 
-
-
-app.listen(port, function(){
-    console.log('listening on port ', port)
+app.listen(config.port, function () {
+	console.log(`listening on port ${this.address().port}`);
 });
