@@ -2,4 +2,71 @@
     width: 100%;
     height: 100vh;
     background: gray url('../assets/moviePoster2.jpg') repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.login-card {
+    width: 280px;
+    background-color: white;
+    border-radius: 8px;
+    position: relative;
+    padding: 30px;
+    text-align: center;
+
+    h1 {
+        font-size: 1.4em;
+        font-weight: 400;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        color: darkslategray;
+    }
+
+    p {
+        font-size: 0.7em;
+        padding: 5px 10px;
+        line-height: 1.4em;
+    }
+}
+.login-button {
+    width: 100%;
+    height: 45px;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    margin: 8px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+
+    i {
+        position: absolute;
+        left: 15px;
+        padding-right: 20px;
+    }
+
+    p {
+        font-size: 1.2em;
+        padding-left: 25px;
+    }
+
+}
+#login-fb {
+    background-color: #3b5998
+}
+#login-google {
+    background-color: #dd4b39
+}
+
+@media (min-width: 600px) {
+    .login-card{
+        width: 350px;
+        padding: 30px 40px;
+    }
+    .login-button i {
+        left: 30px;
+    }
 }
