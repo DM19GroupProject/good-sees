@@ -1,0 +1,16 @@
+<body ng-controller="searchCtrl">
+		<ul ng-repeat="movie in movies">
+			<img src='https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}'/>
+			<li>{{movie.original_title}}</li>
+			<li>{{movie.release_date}}</li>
+			
+		
+		</ul>
+		<input ng-model="searchStuff" ng-keypress="myfunc($event)" placeholder="Search by movie title">  </input>
+		<!--{{searchStuff}}-->
+<ul ng-repeat="s in search">
+		<li>{{s.title}}</li>
+			<li>{{s.release_date}}</li>
+			<img ng-src = 'https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{s.poster_path}}'/>
+</ul>
+	</body>
