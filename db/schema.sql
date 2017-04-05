@@ -11,6 +11,7 @@ CREATE TABLE users
     picture_url TEXT,
     fb_friends TEXT,
     google_id TEXT,
+    recommended_movies TEXT,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -28,50 +29,52 @@ CREATE TABLE friends
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE to_see_movies
-(
-    id SERIAL PRIMARY KEY,
-    user_id BIGINT,
-    movie_id BIGINT,
-    date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+-- CREATE TABLE to_see_movies
+-- (
+--   id SERIAL PRIMARY KEY,
+--   user_id BIGINT,
+--   movie_id BIGINT,
+--   date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+-- );
 
-CREATE TABLE seen_movies
-(
-    id SERIAL PRIMARY KEY,
-    user_id BIGINT,
-    movie_id BIGINT,
-    has_comment BOOLEAN,
+-- CREATE TABLE seen_movies
+-- (
+--   id SERIAL PRIMARY KEY,
+--   user_id BIGINT,
+--   movie_id BIGINT,
+--   has_comment BOOLEAN,
 
-    date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+--   date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+-- );
 
-CREATE TABLE fav_movies
-(
-    id SERIAL PRIMARY KEY,
-    user_id BIGINT,
-    movie_id BIGINT,
-    has_comment BOOLEAN,
-    date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
+-- CREATE TABLE fav_movies
+-- (
+--   id SERIAL PRIMARY KEY,
+--   user_id BIGINT,
+--   movie_id BIGINT,
+--   has_comment BOOLEAN,
+--   date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+-- );
 
 CREATE TABLE movie_ratings
 (
     id SERIAL PRIMARY KEY,
     movie_id BIGINT,
+    user_id BIGINT,
+    reccomends BOOLEAN,
     thumbs_up INT,
     thumbs_sideways INT,
     thumbs_down INT,
-    user_id BIGINT,
+    want_to_see BOOLEAN,
+    seen BOOLEAN,
+    fav BOOLEAN,
     comment_title TEXT,
     comment TEXT,
-    is_fav BOOLEAN,
-    is_seen BOOLEAN,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO movie_ratings
-    (movie_id, thumbs_up, thumbs_sideways, thumbs_down, user_id, comment_title, comment,is_fav,is_seen)
+    (movie_id, thumbs_up, thumbs_sideways, thumbs_down, user_id, comment_title, comment, fav, seen)
 VALUES
     (4523, 0, 0, 1, 1197287247035846, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd', false, true),
     (4523, 0, 1, 0, 1197287247035849, 'ehh', 'the songs are ok. everything else is not', false, true);
