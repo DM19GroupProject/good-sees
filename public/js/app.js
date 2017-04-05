@@ -1,28 +1,34 @@
 angular.module('goodSees', ['ui.router'])
     .config(function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/login');
+        $urlRouterProvider.when('/', '/feed');
         $stateProvider
             .state('login', {
-                url: '/',
+                url: '/login',
                 templateUrl: './views/login.html',
                 controller: 'loginCtrl'
             })
-            .state('feed', {
-                url: '/feed',
+            .state('main', {
+                url: '/',
+                templateUrl: './views/main.html',
+                controller: 'mainCtrl'
+            })
+            .state('main.feed', {
+                url: 'feed',
                 templateUrl: './views/feed.html',
                 controller: 'feedCtrl'
             })
-            .state('user-profile', {
+            .state('main.user-profile', {
                 url: '/profile/:id',
                 templateUrl: './views/profile.html',
                 controller: 'profileCtrl'
             })
-            .state('movie-profile', {
+            .state('main.movie-profile', {
                 url: '/movie/:id',
                 templateUrl: './views/movie.html',
                 controller: 'movieCtrl'
             })
-            .state('search-results', {
+            .state('main.search-results', {
                 url: '/results',
                 templateUrl: './views/searchResults.html',
                 controller: 'searchCtrl'
