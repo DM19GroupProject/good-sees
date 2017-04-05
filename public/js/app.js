@@ -29,7 +29,7 @@ angular.module('goodSees', ['ui.router'])
                 controller: 'movieCtrl'
             })
             .state('main.search-results', {
-                url: '/results',
+                url: 'results',
                 templateUrl: './views/searchResults.html',
                 controller: 'searchCtrl'
             })

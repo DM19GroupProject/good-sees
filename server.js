@@ -27,6 +27,17 @@ app.get('/searchMovieByTitle/:title', function(req, res) {
   .catch(err => next(err))
 })
 
+app.get('/searchMovieByCast/:cast', function(req, res) {
+    axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.cast}&page=1`)
+  .then(response => {
+
+  return  res.send(response.data.results)
+
+  })
+  .catch(err => next(err))
+})
+
+
 /*--------------------------------------------------------------------*
                         
 *--------------------------------------------------------------------*/ 
