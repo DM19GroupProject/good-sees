@@ -1,5 +1,10 @@
 $main-background-color: #1A1A1A; 
 $header-text: #3E3E3E;
+$main-box-shaddow: 9px 0px 95px black;
+$main-font:'Raleway', sans-serif;
+$yellow-from-logo: #F6BC2A;
+$red-from-logo:  #9B0606;
+$yellow-search-text: #CE9C29;
 
 .background{
   background-color: $main-background-color;
@@ -12,12 +17,58 @@ $header-text: #3E3E3E;
   height: 100vh;
   display: flex; 
   justify-content: center;
+  align-content: space-between;
   
 }
 
 .postData{
+  flex-direction: column;
   width: 80%;
   height: 100px;
   margin-top: 25px;
   background-color: black;
+  box-shadow: $main-box-shaddow;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 15px 0 25px 0;
+  border: 1px solid $header-text;
+
+
+  input{
+    width: 128%;
+    height: 30px;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 1pt;
+    background: transparent;
+    border: 1px solid $header-text;
+    text-decoration: none;
+    color:$yellow-search-text;
+  }
+
+  button{
+    width: 50px;
+    height: 30px;
+    background-color:transparent;
+    color: $yellow-from-logo;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 1pt;
+    margin-left: 20px;
+  }
+
+  button:hover{
+    background-color: $yellow-from-logo;
+    color: black;
+  }
+
+  .recPostSearchContainer{
+    display: flex;
+    justify-content: space-between;
+  }
 }

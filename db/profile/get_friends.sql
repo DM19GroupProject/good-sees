@@ -1,0 +1,2 @@
+-- takes in user id
+-- returns all good-sees friends basic info - ie name picture and id.
