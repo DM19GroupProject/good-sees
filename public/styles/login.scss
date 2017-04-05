@@ -19,7 +19,7 @@
         font-size: 1.4em;
         font-weight: 400;
         letter-spacing: 2px;
-        margin-bottom: 20px;
+        margin: 10px 0 20px 0;
         color: darkslategray;
     }
 
@@ -60,6 +60,11 @@
 #login-google {
     background-color: #dd4b39
 }
+.login-logo{
+    position: absolute;
+    top: -28px;
+    left: 70px
+}
 
 @media (min-width: 600px) {
     .login-card{
@@ -68,5 +73,8 @@
     }
     .login-button i {
         left: 30px;
+    }
+    .login-logo{
+        left: 105px;
     }
 }
