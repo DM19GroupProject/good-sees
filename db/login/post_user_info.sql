@@ -1,0 +1,2 @@
+-- posts all known data from first fb login
+-- takes in all fb data

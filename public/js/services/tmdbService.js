@@ -4,5 +4,10 @@ angular.module('goodSees')
     var discoverPageNum = 1
 
     this.searchMovieByTitle = title => $http.get(`/searchMovieByTitle/${title}`)
+    this.searchMovieByCast = cast => {
+     
+        return $http.get(`/searchMovieByCast/${cast}`)
+    }
+   
 
 });
