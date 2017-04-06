@@ -19,12 +19,12 @@ angular.module('goodSees', ['ui.router'])
                 controller: 'feedCtrl'
             })
             .state('main.user-profile', {
-                url: '/profile/:id',
+                url: 'profile/:id',
                 templateUrl: './views/profile.html',
                 controller: 'profileCtrl'
             })
             .state('main.movie-profile', {
-                url: '/movie/:id',
+                url: 'movie/:id',
                 templateUrl: './views/movie.html',
                 controller: 'movieCtrl'
             })
@@ -32,5 +32,10 @@ angular.module('goodSees', ['ui.router'])
                 url: 'results',
                 templateUrl: './views/searchResults.html',
                 controller: 'searchCtrl'
+            })
+            .state('main.categories', {
+                url: 'categories/:id',
+                templateUrl: './views/categories.html',
+                controller: 'categoriesCtrl'
             })
     });
