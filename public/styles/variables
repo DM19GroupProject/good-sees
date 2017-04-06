@@ -1,1 +1,7 @@
 $main-background-color: #1A1A1A; 
+$header-text: #3E3E3E;
+$main-box-shaddow: 9px 0px 95px black;
+$main-font:'Raleway', sans-serif;
+$yellow-from-logo: #F6BC2A;
+$red-from-logo:  #9B0606;
+$yellow-search-text: #CE9C29;
