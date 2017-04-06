@@ -1,2 +1,0 @@
--- takes in movie id, user id, and the lists it's being deleted from.
--- checks to see if there is any other info on movie info table before deleting. send error message?
