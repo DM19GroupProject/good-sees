@@ -10,6 +10,7 @@ $yellow: #e7bc2a;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 1px 48px;
+  position: fixed;
 }
 .logoContainer{
   width: 100px;
@@ -38,6 +39,7 @@ $yellow: #e7bc2a;
     letter-spacing: 1px;
     border-radius: 3px;
     display: none;
+    z-index: 1;
 
     h2{
         text-align: center;
@@ -79,6 +81,12 @@ $yellow: #e7bc2a;
     border-radius: 3px;
     font-size: 14px;
     padding-left: 10px;
+    background-color: black;
+    border: 1px solid gray;
+
+}
+.mobile-search-input:focus{
+    border-color: $yellow;
 }
 .mobile-search-btn{
     width: 25%;
@@ -184,7 +192,7 @@ $yellow: #e7bc2a;
     }
 }
 .desktop-search-dropdown{
-    right: 75px;
+    right: 56px;
 }
 .desktop-categories-dropdown{
     right: 175px;
@@ -203,6 +211,18 @@ $yellow: #e7bc2a;
 .selected {
     color: #F6BC2A;
     text-decoration: underline;
+}
+.yellow-triangle{
+    color: $yellow;
+    position: absolute;
+}
+#categories-triangle, #search-triangle {
+    top: -22px;
+    right: 50px;
+}
+#ham-triangle{
+    top: -22px;
+    right: 10px;
 }
 
 @media (min-width: 750px) {
