@@ -12,12 +12,24 @@ $yellow-search-text: #CE9C29;
   width: 100%;
 }
 
+.feedContainer{
+  width: 100%;
+  height: 100vh;
+  display: flex; 
+  justify-content: space-around;
+}
+
+.feedSidebarContainer{
+ display: none;
+}
+
 .postContainer{
   width: 100%;
   height: 100vh;
   display: flex; 
   justify-content: center;
   align-content: space-between;
+  background-color: $main-background-color
   
 }
 
@@ -70,5 +82,99 @@ $yellow-search-text: #CE9C29;
   .recPostSearchContainer{
     display: flex;
     justify-content: space-between;
+  }
+}
+
+@media(min-width: 650px){
+
+  .feedLeftSide{
+    width: 450px;
+    height: 100vh;
+  }
+
+  .feedSidebarContainer{
+    display: block;
+    width: 250px;
+    height: 70vh;
+    background-color: black;
+    margin-left: 30px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    box-shadow: $main-box-shaddow;
+
+  }
+
+
+  .feedProfilePicContainer{
+    height: 200px;
+    width: 150px;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .feedLinksContainer{
+    height: 272px; 
+    width: 200px;
+   border-top: 1px solid grey;
+   border-bottom: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .feedLinks{
+    list-style: none;
+    line-height: 40px;
+    color: grey;
+    font-size: 15px;
+
+    li:hover{
+      color: $yellow-search-text;
+
+    }
+  }
+
+  .feedProfilePic{
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    background-color: grey;
+  }
+
+
+    
+
+}
+
+@media(min-width: 974px){
+  
+  .postData{
+    font-size: 25px;
+    height: 150px;
+    padding: 23px 0 32px 0;
+
+    input{
+      height: 40px;
+      width: 400px;
+    }
+
+    button{
+      height: 40px;
+      width: 57px;
+      font-size: 20px;
+    }
+  }
+
+  .recPostSearchContainer{
+    align-items: center;
+    width: 480px;
   }
 }
