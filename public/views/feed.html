@@ -1,6 +1,10 @@
 
 <div class="background">
 
+
+  
+        
+        
   <div class="feedContainer">
     <div class="feedLeftSide">
 
@@ -28,12 +32,19 @@
       <div class="postData">
         <p>MAKE A MOVIE RECOMMENDATION</p>
         <div class="recPostSearchContainer">
-          <input type="text" name="recSearch"></input>
+          <input ng-model="movieTitle" ng-keypress="searchMovieByTitle($event, movieTitle)" type()="text" name="recSearch" placeholder="Movie Title" ></input>
           <button type="submit" value="Search!">FIND</button>
         </div>
-      </div>
 
+      
+</div>
     </div>
+<ul ng-repeat="movie in movieInfo">
+	<li>{{movie.title}}</li>
+	<li>{{movie.release_date}}</li>
+	<img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}"/>
+
+</ul>
   </div>
 </div>
 
