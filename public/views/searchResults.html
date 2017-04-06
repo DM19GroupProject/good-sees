@@ -1,17 +1,28 @@
 <body ng-controller="searchCtrl">
 
-	<input ng-model="searchMoviesByTitle" ng-keypress="searchMovieByTitle($event)" placeholder="Search by movie title"> </input>
-	<input ng-model="searchMoviesByCast" ng-keypress="searchMovieByCast($event)" placeholder="Search by movie cast"> </input>
-<div ng-repeat="actor in actorInfo">
-		
+	<input ng-model="movieTitle" ng-keypress="searchMovieByTitle($event, movieTitle)" placeholder="Search by movie title"> </input>
+	<input ng-model='castMember' ng-keypress="searchMovieByCast($event, castMember) " placeholder="type stuff"> </input>
 
-	<ul ng-repeat="known in actor.known_for">
-		<li>{{actor.name}}</li>
-<li>{{known.title}}</li>
-		<li>{{known.release_date}}</li>
-		<img ng-src='https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{known.poster_path}}' />
+<!--searching by movie title-->
+<ul ng-repeat="movie in movieInfo">
+	<li>{{movie.title}}</li>
+	<li>{{movie.release_date}}</li>
+	<img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}"/>
 
-	</ul>
+</ul>
+
+<!--searching by actor or actress-->
+	<div ng-repeat="actor in actorInfo">
+		<img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2{{actor.profile_path}}"onerror="this.style.display='none'" />
+		<h1>{{actor.name}}</h1>
+		<ul ng-repeat="known in actor.known_for">
+			
+			
+			<li>{{known.title}}</li>
+			<li>{{known.release_date}}</li>
+			<img ng-src='https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{known.poster_path}}' />
+
+		</ul>
 
 	</div>
 </body>
