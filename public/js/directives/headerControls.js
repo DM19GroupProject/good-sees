@@ -16,6 +16,10 @@ angular.module('goodSees')
                 $('.list-link').click(function(){
                     $('.lists-links').toggleClass('display-flex');
                 })
+
+                /*--------------------------------------------------------------------*
+                              Desktop Dropdown Controls
+                *--------------------------------------------------------------------*/ 
                 $('#wide-menu-ham').click(function(){
                     $('.dropdown-link-container').toggleClass('display-flex')
                     $('.desktop-profile-dropdown').toggleClass('display-block');
@@ -27,6 +31,30 @@ angular.module('goodSees')
                     $('.desktop-categories-dropdown').toggleClass('display-flex');
                 })
                 
+                /*--------------------------------------------------------------------*
+                              Search By Toggle
+                *--------------------------------------------------------------------*/
+
+                let byName = $('.search-by-name');
+                let byTitle = $('.search-by-title');
+                let byFriend = $('.search-by-friend');
+
+                byName.click(function(){
+                    byName.addClass('selected');
+                    byTitle.removeClass('selected');
+                    byFriend.removeClass('selected');
+                })
+                byTitle.click(function(){
+                    byTitle.addClass('selected');
+                    byName.removeClass('selected');
+                    byFriend.removeClass('selected');
+                })
+                byFriend.click(function(){
+                    byFriend.addClass('selected');
+                    byName.removeClass('selected');
+                    byTitle.removeClass('selected');
+                })
+
             });
         }
     }
