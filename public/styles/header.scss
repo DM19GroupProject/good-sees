@@ -9,6 +9,7 @@ $header-text: #858585;
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 1px 48px;
+  position: fixed;
 }
 .logoContainer{
   width: 100px;
@@ -31,6 +32,7 @@ $header-text: #858585;
     letter-spacing: 1px;
     border-radius: 3px;
     display: none;
+    z-index: 1;
 
     h2{
         text-align: center;

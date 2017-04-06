@@ -17,6 +17,7 @@ $yellow-search-text: #CE9C29;
   height: 100vh;
   display: flex; 
   justify-content: space-around;
+  padding-top: 100px;
 }
 
 .feedSidebarContainer{
@@ -90,6 +91,7 @@ $yellow-search-text: #CE9C29;
   .feedLeftSide{
     width: 450px;
     height: 100vh;
+    background-color: $main-background-color;
   }
 
   .feedSidebarContainer{
