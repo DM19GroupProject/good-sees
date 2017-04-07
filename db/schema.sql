@@ -26,9 +26,9 @@ CREATE TABLE movie_rating
     movie_id BIGINT,
     user_id BIGINT,
     recommends BOOLEAN,
-    thumbs_up INT,
-    thumbs_sideways INT,
-    thumbs_down INT,
+    thumbs_up BOOLEAN,
+    thumbs_sideways BOOLEAN,
+    thumbs_down BOOLEAN,
     to_see BOOLEAN,
     seen BOOLEAN,
     fav BOOLEAN,
@@ -61,10 +61,10 @@ VALUES(1197287247035846, 2197287247035846, 1),
 INSERT INTO movie_rating
     (movie_id, user_id, recommends, thumbs_up, thumbs_sideways, thumbs_down, to_see, seen, fav, comment_title, comment)
 VALUES
-    (4523, 1197287247035846, false, 0, 0, 1, false, true, false, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd'),
-    (4523, 4197287247035846, true, 1, 0, 0, true, true, true, 'changed my life', 'I literally cannot express how much this movie changed my life. Incredible. It is like I''m suddenly a princess!!'),
-    (4523, 3197287247035846, false, 0, 0, 1, false, false, false, 'I don''t have time for titles', 'I was told this movie sucked. So I came here to tell everyone. Trollalala  -lallalala-lala-la.'),
-    (4523, 2197287247035846, true, 0, 1, 0, false, true, false, 'ehh', 'the songs are ok. everything else is not');
+    (4523, 1197287247035846, false, false, false, true, false, true, false, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd'),
+    (4523, 4197287247035846, true, true, false, false, true, true, true, 'changed my life', 'I literally cannot express how much this movie changed my life. Incredible. It is like I''m suddenly a princess!!'),
+    (4523, 3197287247035846, false, false, false, true, false, false, false, 'I don''t have time for titles', 'I was told this movie sucked. So I came here to tell everyone. Trollalala  -lallalala-lala-la.'),
+    (4523, 2197287247035846, true, false, true, false, false, true, false, 'ehh', 'the songs are ok. everything else is not');
 
 
 select users.first_name,
