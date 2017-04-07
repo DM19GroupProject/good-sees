@@ -7,10 +7,13 @@ angular.module('goodSees')
     
     
     this.searchMovieByCastMember = castMember => {
-        console.log(2)
-        console.log(castMember)
+        
         return $http.get(`/searchMovieByCastMember/${castMember}`)
     }
    
+   this.getMovieById = movieId => {
+       console.log(movieId)
+       return $http.get(`/getMovieById/${movieId}`)
+   }
 
 });
