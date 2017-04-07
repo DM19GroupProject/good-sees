@@ -11,6 +11,20 @@ angular.module('goodSees')
         console.log(castMember)
         return $http.get(`/searchMovieByCastMember/${castMember}`)
     }
+
+
+
+
+
+
+
+
+
+
+
+    this.getMoviesByGenre = id => {
+        return $http.get(`/getMoviesByGenre/${id}`)
+    }
    
 
 });
