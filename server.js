@@ -50,9 +50,34 @@ app.get('/getMovieById/:id', function(req, res, next) {
 })
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/getMoviesByGenre/:id', function(req, res, next) {
+  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
+  .then(response => {
+    return res.send(response.data)
+  })
+  .catch(err => next(err))
+})
+
+
+
 /*--------------------------------------------------------------------*
                         
 *--------------------------------------------------------------------*/ 
+
 
 app.listen(8080, function(){
     console.log(`listening on port ${this.address().port}`)
