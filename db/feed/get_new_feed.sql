@@ -18,17 +18,3 @@ FROM users
   ON movie_rating.user_id = friends.friend_id
 WHERE friends.user_id = $1
 ORDER BY movie_rating.date_created;
-
-
-
--- select 
-
--- user id from friend
-
--- right join on friend id an rating from movire ratings
-
--- movie ratings by friend id = better idea
-
--- easiest below
--- group by user id
--- group by movie ratings

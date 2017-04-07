@@ -1,1 +1,0 @@
--- takes in review, user id and movie id.
