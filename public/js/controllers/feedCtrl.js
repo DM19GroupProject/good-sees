@@ -15,6 +15,8 @@ angular.module('goodSees')
             }
         }
 
+        $scope.newRecommendation;
+
         //cast search
         $scope.searchMovieByCast = function (keyEvent, castMember) {
             if (keyEvent.which === 13) {

@@ -1,50 +1,50 @@
-
 <div class="background">
 
 
-  
-        
-        
+
+
+
   <div class="feedContainer">
     <div class="feedLeftSide">
 
-    <div class="feedSidebarContainer">
-      <div class="feedProfilePicContainer">
-        <div class="feedProfilePic" style = 'background-image: url("https://scontent.fmkc1-1.fna.fbcdn.net/v/t31.0-8/1274894_10201993562983447_510944764_o.jpg?oh=71073628d807814859fff0f84e58f240&oe=59930A4B")'></div>
-      </div>
+      <div class="feedSidebarContainer">
+        <div class="feedProfilePicContainer">
+          <div class="feedProfilePic" style='background-image: url("https://scontent.fmkc1-1.fna.fbcdn.net/v/t31.0-8/1274894_10201993562983447_510944764_o.jpg?oh=71073628d807814859fff0f84e58f240&oe=59930A4B")'></div>
+        </div>
 
-      <div class="feedLinksContainer">
-        <ul class="feedLinks">
-          <li id="feedListLink">PROFILE</li>
-          <li id="feedListLink">FRIENDS</li>
-          <li id="feedListLink">MOVIES YOU'VE SEEN</li>
-          <li id="feedListLink">MOVIES YOU WANT TO SEE</li>
-          <li id="feedListLink">YOUR FAVORITE MOVIES</li>
-          
-        </ul>
-      </div>
+        <div class="feedLinksContainer">
+          <ul class="feedLinks">
+            <li id="feedListLink">PROFILE</li>
+            <li id="feedListLink">FRIENDS</li>
+            <li id="feedListLink">MOVIES YOU'VE SEEN</li>
+            <li id="feedListLink">MOVIES YOU WANT TO SEE</li>
+            <li id="feedListLink">YOUR FAVORITE MOVIES</li>
 
-      <div class="feedSignOut">SIGN OUT</div>
-    </div>
+          </ul>
+        </div>
+
+        <div class="feedSignOut">SIGN OUT</div>
+      </div>
     </div>
 
     <div class="postContainer">
       <div class="postData">
         <p>MAKE A MOVIE RECOMMENDATION</p>
         <div class="recPostSearchContainer">
-          <input ng-model="movieTitle" ng-keypress="searchMovieByTitle($event, movieTitle)" type()="text" name="recSearch" placeholder="Movie Title" ></input>
+          <input ng-model="movieTitle" ng-keypress="searchMovieByTitle($event, movieTitle)" type()="text" name="recSearch" placeholder="Movie Title"></input>
           <button type="submit" value="Search!">FIND</button>
         </div>
-
-      
-</div>
+      </div>
+        <div class="feedSearchResults">
+          <div ng-repeat="movie in movieInfo">
+            <div class="feedSearchResultsMovie">
+              <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}" />
+              <p>{{movie.title}}</p>
+              <p>{{movie.release_date}}</p>
+            </div>
+          </div>
+        </div>
     </div>
-<ul ng-repeat="movie in movieInfo">
-	<li>{{movie.title}}</li>
-	<li>{{movie.release_date}}</li>
-	<img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}"/>
-
-</ul>
   </div>
 </div>
 

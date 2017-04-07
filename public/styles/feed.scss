@@ -16,7 +16,7 @@ $yellow-search-text: #CE9C29;
   width: 100%;
   height: 100vh;
   display: flex; 
-  justify-content: space-around;
+  justify-content: space-between;
   padding-top: 100px;
 }
 
@@ -28,15 +28,15 @@ $yellow-search-text: #CE9C29;
   width: 100%;
   height: 100vh;
   display: flex; 
-  justify-content: center;
   align-content: space-between;
-  background-color: $main-background-color
-  
+  flex-direction: column;
+  background-color: $main-background-color;
+  align-items: center;
 }
 
 .postData{
   flex-direction: column;
-  width: 80%;
+  width: 60%;
   height: 100px;
   margin-top: 25px;
   background-color: black;
@@ -47,6 +47,7 @@ $yellow-search-text: #CE9C29;
   color: white;
   padding: 15px 0 25px 0;
   border: 1px solid $header-text;
+  position: fixed;
 
 
   input{
@@ -86,6 +87,48 @@ $yellow-search-text: #CE9C29;
   }
 }
 
+.feedSearchResults{
+  width: 80%;
+  background-color: lightgray;
+  color: black;
+  overflow: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 146px 0;
+  box-shadow: $main-box-shaddow;
+}
+
+
+.feedSearchResultsMovie{
+  width: 160px;
+  height: 185px;
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px 5px 5px 5px;
+  font-size: 12px;
+  
+  
+
+  img{
+    width: 90px;
+    height: 120px;
+    
+    box-shadow: $main-box-shaddow;
+   }
+  
+  p{
+    padding-top: 5px;
+    margin: 2px;
+  }
+ }
+
+.feedSearchResultsMovie:hover{
+  background-color: $yellow-from-logo;
+}
+
 @media(min-width: 650px){
 
   .feedLeftSide{
@@ -114,7 +157,6 @@ $yellow-search-text: #CE9C29;
   .feedProfilePicContainer{
     height: 200px;
     width: 150px;
-   
     display: flex;
     justify-content: center;
     align-items: center;
