@@ -13,7 +13,7 @@ angular.module('goodSees')
                     })
             }
         }
-console.log($scope.navSearchMovieByTitle)
+
         //cast search
         $scope.searchMovieByCast = function (keyEvent, castMember) {
             if (keyEvent.which === 13) {
