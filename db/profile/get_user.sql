@@ -1,2 +1,0 @@
--- takes in user id
--- returns picture url/thumb sum/top friends/seen/want to see/favs/recommendations/date account creation

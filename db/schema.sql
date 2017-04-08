@@ -1,4 +1,6 @@
 DROP TABLE IF EXISTS users, friends, movie_rating;
+DROP INDEX IF EXISTS users_index, friends_index,movie_index;
+
 
 CREATE TABLE users
 (
@@ -10,6 +12,7 @@ CREATE TABLE users
     google_id TEXT,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX users_index ON users(fb_id);
 
 CREATE TABLE friends
 (
@@ -19,23 +22,26 @@ CREATE TABLE friends
     rank INT,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX friends_index ON friends(user_id, friend_id);
 
 CREATE TABLE movie_rating
 (
     id SERIAL PRIMARY KEY,
     movie_id BIGINT,
     user_id BIGINT,
+    thumb_up BOOLEAN,
+    thumb_sideways BOOLEAN,
+    thumb_down BOOLEAN,
     recommends BOOLEAN,
-    thumbs_up BOOLEAN,
-    thumbs_sideways BOOLEAN,
-    thumbs_down BOOLEAN,
-    to_see BOOLEAN,
-    seen BOOLEAN,
     fav BOOLEAN,
+    seen BOOLEAN,
+    to_see BOOLEAN,
     comment_title TEXT,
     comment TEXT,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE UNIQUE INDEX movie_index ON movie_rating(movie_id, user_id);
 
 ---------------      DUMMY DATA      ---------------
 
@@ -59,7 +65,7 @@ VALUES(1197287247035846, 2197287247035846, 1),
     (4197287247035846, 3197287247035846, 1);
 
 INSERT INTO movie_rating
-    (movie_id, user_id, recommends, thumbs_up, thumbs_sideways, thumbs_down, to_see, seen, fav, comment_title, comment)
+    (movie_id, user_id, recommends, thumb_up, thumb_sideways, thumb_down, to_see, seen, fav, comment_title, comment)
 VALUES
     (4523, 1197287247035846, false, false, false, true, false, true, false, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd'),
     (4523, 4197287247035846, true, true, false, false, true, true, true, 'changed my life', 'I literally cannot express how much this movie changed my life. Incredible. It is like I''m suddenly a princess!!'),

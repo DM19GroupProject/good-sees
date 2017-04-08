@@ -1,4 +1,7 @@
--- takes movie id, user id.
+-- takes user id, movie id.
+-- $1 user_id
+-- $2 movie_id
+
 UPDATE movie_rating 
 SET recommends = false
 WHERE movie_rating.user_id = $1
