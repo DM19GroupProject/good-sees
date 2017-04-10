@@ -9,6 +9,7 @@
     height: 107px;
     border-bottom: 2px solid grey;
     z-index: 4;
+    margin-top: 75px;
 }
 
 .profilePic{
@@ -31,8 +32,7 @@
   li{
     width: 109px;
     height: 25px;
-    border-left: 3px solid grey;
-    border-bottom: 3px solid grey;
+    border: 1px solid grey;
     color: grey;
     font-size: 15px;
     text-align: center;
@@ -44,16 +44,18 @@
   }
     #wantToSeeTab{
       position: absolute;
+      background-color: #1A1A1A;
     }
     
     #seenTab{
       position: relative;
+      background-color: #1A1A1A;
     }
 
     #favoritesTab{
-      margin-right: 10px;
-      position:relative;
-      
+      position: relative;
+      margin-right: 100px;
+      background-color: #1A1A1A;
     }
 
 
