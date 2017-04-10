@@ -75,7 +75,7 @@ passport.deserializeUser(function (id, done) {
 //   else console.log("All tables successfully reset")
 // })
 
-let db = massive.connectSync({ connectionString: 'postgres://postgres:@localhost/sandbox' })
+let db = massive.connectSync({ connectionString: config.dbString })
 console.log('got here')
 app.set('db', db);
 db = app.get('db');
