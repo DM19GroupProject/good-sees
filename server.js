@@ -10,7 +10,14 @@ const express = require('express'),
 cors = require('cors');
 const baseUrl = 'https://api.themoviedb.org/3/';
 const app = express();
+
+/*--------------------------------------------------------------------*
+                              MIDDLEWARE
+*--------------------------------------------------------------------*/
+
 app.use(bodyParser.json());
+app.use(express.static('./public'));
+
 // app.use(session({
 //   resave: true,
 //   saveUninitialized: true,
@@ -19,14 +26,56 @@ app.use(bodyParser.json());
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-app.use(express.static('./public'));
+
+passport.use(new FacebookStrategy({
+  clientID: config.facebook.clientID,
+  clientSecret: config.facebook.clientSecret,
+  callbackURL: "http://localhost:3000/auth/facebook/callback",
+  profileFields: ['id', 'displayName']
+},
+  function (accessToken, refreshToken, profile, cb) {
+    db.getUserByFacebookId([profile.id], function (err, user) {
+      user = user[0];
+      if (!user) {
+        console.log('CREATING USER');
+        db.createUserFacebook([profile.displayName, profile.id], function (err, user) {
+          console.log('USER CREATED', user);
+          return cb(err, user);
+        })
+      } else {
+        return cb(err, user);
+      }
+    })
+  }));
+
+passport.serializeUser(function (user, done) {
+  done(null, user.userid);
+})
 
 
+passport.deserializeUser(function (id, done) {
+  db.getUserById([id], function (err, user) {
+    user = user[0];
+    if (err) console.log(err);
+    else console.log('RETRIEVED USER');
+    console.log(user);
+    done(null, user);
+  })
+})
 
+const baseUrl = 'https://api.themoviedb.org/3/'
 
 /////////////
 // DATABASE //
 /////////////
+
+
+//endpoints for sql
+// db.schema(function(err, data) {
+//   if (err) console.log(err);
+//   else console.log("All tables successfully reset")
+// })
+
 // let db = massive.connectSync({ connectionString: 'postgres://kwvmcdxe:crVqqUWVrJ4dLQ0G8HwMSqSRmySKQeK0@stampy.db.elephantsql.com:5432/kwvmcdxe' })
 // console.log('got here')
 // app.set('db', db);
@@ -37,178 +86,307 @@ app.use(express.static('./public'));
 //   else console.log('db created')
 // })
 
-// db.create_user(function(err, user) {
-//   if (err) console.log(err);
-//   else console.log('CREATED USER');
-//   console.log(user);
-// })
+
+db.create_user(function(err, user) {
+  if (err) console.log(err);
+  else console.log('CREATED USER');
+  console.log(user);
+})
+
+/*--------------------------------------------------------------------*
+                              ENDPOINTS
+*--------------------------------------------------------------------*/
 
 
+//auth
+app.get('/auth/facebook', passport.authenticate('facebook'))
 
-// passport.use(new FacebookStrategy({
-//   clientID: config.facebook.clientID,
-//   clientSecret: config.facebook.clientSecret,
-//   callbackURL: "http://localhost:3000/auth/facebook/callback",
-//   profileFields: ['id', 'displayName']
-// },
-//   function (accessToken, refreshToken, profile, cb) {
-//     db.getUserByFacebookId([profile.id], function (err, user) {
-//       user = user[0];
-//       if (!user) {
-//         console.log('CREATING USER');
-//         db.createUserFacebook([profile.displayName, profile.id], function (err, user) {
-//           console.log('USER CREATED', user);
-//           return cb(err, user);
-//         })
-//       } else {
-//         return cb(err, user);
-//       }
-//     })
-//   }));
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/' }), function (req, res) {
+    res.status(200).send(req.user);
+  })
 
-// passport.serializeUser(function (user, done) {
-//   done(null, user.userid);
-// })
+app.get('/auth/me', function (req, res) {
+  if (!req.user) return res.sendStatus(404);
+  res.status(200).send(req.user);
+})
+
+app.get('/auth/logout', function (req, res) {
+  req.logout();
+  res.redirect('/');
+})
+
+//feed
+app.get('/getNewFeed/:id'), function (req, res) {
+  db.feed.get_new_feed([req.params.id], (err, result) => {
+    if (err) return console.log(err)
+    else res.send(result)
+  })
+}
+//login
+
+app.get('/getIfUserExists/:id'), function (req, res) {
+  db.login.get_if_user_exists([req.params.id], (err, result) => {
+    if (err) return console.log(err)
+    else res.send(result)
+  })
+}
+
+app.post('/postNewUserInfo/:id/:first/:last/:picture'), function (req, res) {
+  db.login.post_new_user_info(
+    [
+      req.params.fb_id,
+      req.params.first,
+      req.params.last,
+      req.params.picture
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
+
+//movie
+app.get('/getReviews/:id'), function (req, res) {
+  db.movie.get_reviews([req.params.id], (err, result) => {
+    if (err) return console.log(err)
+    else res.send(result)
+  })
+}
+
+app.get('/getStats/:id'), function (req, res) {
+  db.movie.get_stats([req.params.id], (err, result) => {
+    if (err) return console.log(err)
+    else res.send(result)
+  })
+}
+
+app.post('/deleteFav/:id/:movieId'), function (req, res) {
+  db.movie.delete_fav(
+    [
+      req.params.id,
+      req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
+
+app.post('/deleteRecommendation/:id/:movieId'), function (req, res) {
+  db.movie.delete_recommendation(
+    [
+      req.params.id,
+      req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
+
+app.post('/deleteReview/:id/:movieId'), function (req, res) {
+  db.movie.delete_review(
+    [
+      req.params.id,
+      req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
+
+app.post('/deleteSeen/:id/:movieId'), function (req, res) {
+  db.movie.delete_seen(
+    [
+      req.params.id,
+      req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
+
+app.post('/deleteToSee/:id/:movieId'), function (req, res) {
+  db.movie.delete_to_see(
+    [
+      req.params.id,
+      req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
+
+app.post('/postFav/:id/:movieId'), function (req, res) {
+  db.movie.post_fav(
+    [
+      req.params.id,
+      req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
+
+app.post('/postRecommendations/:id/:movieId'), function (req, res) {
+  db.movie.post_recommendation(
+    [
+      req.params.id,
+      req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
 
 
-// passport.deserializeUser(function (id, done) {
-//   db.getUserById([id], function (err, user) {
-//     user = user[0];
-//     if (err) console.log(err);
-//     else console.log('RETRIEVED USER');
-//     console.log(user);
-//     done(null, user);
-//   })
-// })
+app.post('/postReview/:id/:movieId/:reviewTitle/:review'), function (req, res) {
+  db.movie.post_review_and_title(
+    [
+      req.params.id,
+      req.params.movieId,
+      req.params.reviewTitle,
+      req.params.review
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
 
+app.post('/postSeen/:id/:movieId'), function (req, res) {
+  db.movie.post_seen(
+    [req.params.id,
+    req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
 
+app.post('/postThumbDown/:id/:movieId'), function (req, res) {
+  db.movie.post_thumb_down(
+    [req.params.id,
+    req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
 
+app.post('/postThumbSide/:id/:movieId'), function (req, res) {
+  db.movie.post_thumb_side(
+    [req.params.id,
+    req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
 
-// app.get('/auth/facebook', passport.authenticate('facebook'))
+app.post('/postThumbUp/:id/:movieId'), function (req, res) {
+  db.movie.post_thumb_up(
+    [req.params.id,
+    req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
 
-// app.get('/auth/facebook/callback',
-//   passport.authenticate('facebook', { successRedirect: '/' }), function (req, res) {
-//     res.status(200).send(req.user);
-//   })
+app.post('/postToSee/:id/:movieId'), function (req, res) {
+  db.movie.post_to_see(
+    [req.params.id,
+    req.params.movieId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
+//navbar
+app.get('/getBasicUserInfo/:id'), function (req, res) {
+  db.navbar.get_basic_user_info([req.params.id], (err, result) => {
+    if (err) return console.log(err)
+    else res.send(result)
+  })
+}
 
-// app.get('/auth/me', function (req, res) {
-//   if (!req.user) return res.sendStatus(404);
-//   res.status(200).send(req.user);
-// })
+//profile
 
-// app.get('/auth/logout', function (req, res) {
-//   req.logout();
-//   res.redirect('/');
-// })
+app.post('/deleteFriend/:id/:friendId'), function (req, res) {
+  db.movie.delete_friend(
+    [
+      req.params.id,
+      req.params.friendId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
 
+app.get('/getFriends/:id'), function (req, res) {
+  db.profile.get_friends([req.params.id], (err, result) => {
+    if (err) return console.log(err)
+    else res.send(result)
+  })
+}
 
-// //endpoints for sql
-// // db.schema(function(err, data) {
-// //   if (err) console.log(err);
-// //   else console.log("All tables successfully reset")
-// // })
+app.get('/getUserActivity/:id'), function (req, res) {
+  db.profile.get_user_activity([req.params.id], (err, result) => {
+    if (err) return console.log(err)
+    else res.send(result)
+  })
+}
 
-// //feed
-// app.get('/getNewFeed/:id'), function (req, res) {
-//   db.feed.get_new_feed([req.params.id], (err, result) => {
+app.post('/postNewFriend/:id/:friendId'), function (req, res) {
+  db.movie.post_new_friend(
+    [
+      req.params.id,
+      req.params.friendId
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
+
+app.post('/postNewRankForFriend/:id/:friendId/:rank'), function (req, res) {
+  db.movie.delete_friend_rank(
+    [
+      req.params.id,
+      req.params.rank
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+  db.movie.post_friend_rank(
+    [
+      req.params.id,
+      req.params.friendId,
+      req.params.rank
+    ], (err, result) => {
+      if (err) return console.log(err)
+      else res.send(result)
+    })
+}
+
+//unused endpoints    
+
+// app.get('/getIfNewFriends/:id/:fb_id'), function (req, res) {
+//   db.login.get_if_new_friends([req.params.id], (err, result) => {
 //     if (err) return console.log(err)
 //     else res.send(result)
 //   })
 // }
-// //login
 
-// app.get('/getIfUserExists/:id'), function (req, res) {
-//   db.login.get_if_user_exists([req.params.id], (err, result) => {
+// app.get('/getAllFriends/:id'), function (req, res) {
+//   db.profile.get_all_friends([req.params.id], (err, result) => {
 //     if (err) return console.log(err)
 //     else res.send(result)
 //   })
 // }
 
-// app.post('/postNewUserInfo/:id/:first/:last/:picture'), function (req, res) {
-//   db.login.post_new_user_info(
-//     [
-//       req.params.fb_id,
-//       req.params.first,
-//       req.params.last,
-//       req.params.picture
-//     ], (err, result) => {
-//       if (err) return console.log(err)
-//       else res.send(result)
-//     })
-// }
-
-// //movie
-// app.get('/getReviews/:id'), function (req, res) {
-//   db.movie.get_reviews([req.params.id], (err, result) => {
+// app.get('/getAuthorized/:id'), function (req, res) {
+//   db.profile.get_authorized([req.params.id], (err, result) => {
 //     if (err) return console.log(err)
 //     else res.send(result)
 //   })
-// }
-
-// app.get('/getStats/:id'), function (req, res) {
-//   db.movie.get_stats([req.params.id], (err, result) => {
-//     if (err) return console.log(err)
-//     else res.send(result)
-//   })
-// }
-
-// // app.delete('/getReviews/:id'), function (req, res) {
-// // db.movie.get_reviews([req.params.id], (err, result) => {
-// // if (err) return console.log(err)
-// // else res.send(result)
-// // })
-// // }
-
-// // app.delete('/getReviews/:id'), function (req, res) {
-// // db.movie.get_reviews([req.params.id], (err, result) => {
-// // if (err) return console.log(err)
-// // else res.send(result)
-// // })
-// // }
-
-
-// // app.delete('/getReviews/:id'), function (req, res) {
-// // db.movie.get_reviews([req.params.id], (err, result) => {
-// // if (err) return console.log(err)
-// // else res.send(result)
-// // })
-// // }
-
-// // app.delete('/getReviews/:id'), function (req, res) {
-// // db.movie.get_reviews([req.params.id], (err, result) => {
-// // if (err) return console.log(err)
-// // else res.send(result)
-// // })
-// // }
-
-// // app.delete('/getReviews/:id'), function (req, res) {
-// // db.movie.get_reviews([req.params.id], (err, result) => {
-// // if (err) return console.log(err)
-// // else res.send(result)
-// // })
-// // }
-
-// app.post('/postFav/:id/:movieId'), function (req, res) {
-//   db.movie.post_fav(
-//     [
-//       req.params.id,
-//       req.params.movieId
-//     ], (err, result) => {
-//       if (err) return console.log(err)
-//       else res.send(result)
-//     })
-// }
-
-// app.post('/postRecommendations/:id'), function (req, res) {
-//   db.movie.post_recommendations(
-//     [
-//       req.params.id,
-//       req.params.movie_id,
-//       req.params.user_id
-//     ], (err, result) => {
-//       if (err) return console.log(err)
-//       else res.send(result)
-//     })
 // }
 
 // app.post('/postReviewTitle/:id'), function (req, res) {
@@ -224,38 +402,38 @@ app.use(express.static('./public'));
 //     })
 // }
 
-// app.post('/postReview/:id'), function (req, res) {
-//   db.movie.post_review(
-//     [req.params.id,
-//     req.params.user_id,
-//     req.params.movie_id
-//     ], (err, result) => {
-//       if (err) return console.log(err)
-//       else res.send(result)
-//     })
-// }
 
+//steven's endpoints
 
+app.get('/getMoviesByGenre/:id', function (req, res, next) {
+  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
+    .then(response => {
+      return res.send(response.data)
+    })
+    .catch(err => next(err))
+})
 
+app.get('/searchMovieByTitle/:movieTitle', function (req, res) {
+  axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=1`)
+    .then(response => res.send(response.data.results))
+    .catch(err => next(err))
+})
 
+app.get('/searchMovieByCastMember/:castMember', function (req, res) {
+  axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
+    .then(response => {
 
+      return res.send(response.data.results)
 
+    })
+    .catch(err => next(err))
+})
 
+app.get('/getMovieById/:id', function (req, res, next) {
+  console.log(2)
+  axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    .then(response => {
 
 
 // app.post('/postSeen/:id'), function (req, res) {
@@ -395,6 +573,7 @@ app.get('/getMovieById/:id', function (req, res, next) {
   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
 
     .then(response => {
+
 
       return res.send(response.data)
     })
