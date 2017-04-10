@@ -1,11 +1,6 @@
 angular.module('goodSees')
-<<<<<<< HEAD
     .controller('searchCtrl', function ($scope, tmdbService, $state) {
     
-=======
-    .controller('searchCtrl', function ($scope, tmdbService) {
-
->>>>>>> master
         /*--------------------------------------------------------------------*
                          Event Handlers
             *--------------------------------------------------------------------*/
