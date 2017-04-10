@@ -22,5 +22,5 @@ FROM users
   ON friends.friend_id = users.fb_id
   JOIN movie_rating
   ON movie_rating.user_id = friends.friend_id
-WHERE friends.user_id = 1197287247035846
+WHERE friends.user_id = $1
 ORDER BY movie_rating.date_created;

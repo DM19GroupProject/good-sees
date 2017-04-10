@@ -1,10 +1,12 @@
 angular.module('goodSees')
-    .controller('searchCtrl', function ($scope, tmdbService) {
+    .controller('searchCtrl', function ($scope, tmdbService, $state) {
+    
         /*--------------------------------------------------------------------*
-                         Event Handlers 
+                         Event Handlers
             *--------------------------------------------------------------------*/
         //movie title search
         $scope.searchMovieByTitle = function (keyEvent, movieTitle) {
+
             if (keyEvent.which === 13) {
                 tmdbService.searchMovieByTitle(movieTitle)
                     .then(movieInfo => {
@@ -21,8 +23,11 @@ angular.module('goodSees')
                 tmdbService.searchMovieByCastMember(castMember)
                     .then(actorInfo => {
                             console.log(actorInfo.data)
+                            console.log(actorInfo.data.known_for)
                         $scope.actorInfo = actorInfo.data
+
                     })
             }
         }
+
     });

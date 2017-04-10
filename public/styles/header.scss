@@ -224,6 +224,9 @@ $yellow: #e7bc2a;
     top: -22px;
     right: 10px;
 }
+#cat-btn:hover .desktop-categories-dropdown{
+    display: flex;
+}
 
 @media (min-width: 750px) {
     #wide-menu-ham{
