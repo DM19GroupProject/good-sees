@@ -1,10 +1,12 @@
 <h2>Search by</h2>
 <div class = 'search-options-container'>
-    <p class = 'search-by-title selected'>Movie Title</p>
-    <p class = 'search-by-name'>Actor/Actress</p>
-    <p class = 'search-by-friend'>Friend</p>
+    <p class = 'search-by-title selected' ng-click="searchCategory = 'title'" >Movie Title</p>
+    <p class = 'search-by-name' ng-click="searchCategory = 'name'">Actor/Actress</p>
+    <p class = 'search-by-friend' ng-click="searchCategory = 'friend'" >Friend</p>
 </div>
 <div class="mobile-search-container">
-    <input ng-model="navMovieTitle" ng-keypress="navSearchMovieByTitle($event, navMovieTitle)" class = 'mobile-search-input' type="text" name="mobile-search" placeholder="Type a search term">
-    <button class = 'mobile-search-btn' type="submit">Search</button>
+    <form ng-submit="search(searchTerm)">
+    <input ng-model="searchTerm" class = 'mobile-search-input' type="text" name="mobile-search" placeholder="Type a search term" >
+    <button class = 'mobile-search-btn' type="submit" >Search</button>
+    </form>
 </div>
