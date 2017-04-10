@@ -92,6 +92,28 @@ passport.deserializeUser(function (id, done) {
   })
 })
 
+/////////////
+// DATABASE //
+/////////////
+
+
+//endpoints for sql
+// db.schema(function(err, data) {
+//   if (err) console.log(err);
+//   else console.log("All tables successfully reset")
+// })
+
+let db = massive.connectSync({ connectionString: config.dbString })
+console.log('got here')
+app.set('db', db);
+db = app.get('db');
+
+db.schema(function (err, data) { 
+  if (err) console.log("hello",err);
+  else console.log('db created')
+})
+
+
 // db.create_user(function(err, user) {
 //   if (err) console.log(err);
 //   else console.log('CREATED USER');
