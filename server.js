@@ -76,7 +76,6 @@ passport.deserializeUser(function (id, done) {
 // })
 
 let db = massive.connectSync({ connectionString: config.dbString })
-console.log('got here')
 app.set('db', db);
 db = app.get('db');
 
@@ -429,7 +428,7 @@ app.get('/searchMovieByCastMember/:castMember', function (req, res) {
 })
 
 app.get('/getMovieById/:id', function (req, res, next) {
-  console.log(2)
+  
   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
     .then(response => {
       return res.send(response.data)
