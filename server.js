@@ -96,7 +96,6 @@ passport.deserializeUser(function (id, done) {
 // DATABASE //
 /////////////
 
-
 //endpoints for sql
 // db.schema(function(err, data) {
 //   if (err) console.log(err);
