@@ -3,10 +3,9 @@ angular.module('goodSees')
 
         console.log($state.params.id)
 
-
         tmdbService.getMoviesByGenre($state.params.id)
         .then(response => {
-            console.log(response.data.results)
+            console.log(response.data)
             $scope.moviesByGenre = response.data.results;
         })
 });
