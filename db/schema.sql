@@ -1,23 +1,20 @@
-DROP TABLE IF EXISTS users, friends, fav_movies, seen_movies, to_see_movies, movie_ratings;
+DROP TABLE IF EXISTS users, friends, movie_rating;
+DROP INDEX IF EXISTS users_index, friends_index,movie_index;
+
 
 CREATE TABLE users
 (
     id SERIAL PRIMARY KEY,
     fb_id BIGINT,
     first_name varchar(50),
-    has_comments BOOLEAN,
-    first_comment_snippet TEXT,
     last_name varchar(50),
     picture_url TEXT,
     google_id TEXT,
-    recommended_movies TEXT,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users
-    (fb_id, first_name, last_name, picture_url, google_id)
-VALUES(1197287247035846, 'Joe', 'Dirt', 'http:
-//bit.ly/2nbmoL6', null);
+CREATE UNIQUE INDEX users_index ON users(fb_id);
+
 
 CREATE TABLE friends
 (
@@ -27,53 +24,85 @@ CREATE TABLE friends
     rank INT,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+CREATE UNIQUE INDEX friends_index ON friends(user_id, friend_id);
 
--- CREATE TABLE to_see_movies
--- (
---   id SERIAL PRIMARY KEY,
---   user_id BIGINT,
---   movie_id BIGINT,
---   date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
--- );
-
--- CREATE TABLE seen_movies
--- (
---   id SERIAL PRIMARY KEY,
---   user_id BIGINT,
---   movie_id BIGINT,
---   has_comment BOOLEAN,
-
---   date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
--- );
-
--- CREATE TABLE fav_movies
--- (
---   id SERIAL PRIMARY KEY,
---   user_id BIGINT,
---   movie_id BIGINT,
---   has_comment BOOLEAN,
---   date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
--- );
-
-CREATE TABLE movie_ratings
+CREATE TABLE movie_rating
 (
     id SERIAL PRIMARY KEY,
     movie_id BIGINT,
     user_id BIGINT,
-    reccomends BOOLEAN,
-    thumbs_up INT,
-    thumbs_sideways INT,
-    thumbs_down INT,
-    want_to_see BOOLEAN,
-    seen BOOLEAN,
+    thumb_up BOOLEAN,
+    thumb_sideways BOOLEAN,
+    thumb_down BOOLEAN,
+    recommends BOOLEAN,
     fav BOOLEAN,
+    seen BOOLEAN,
+    to_see BOOLEAN,
     comment_title TEXT,
     comment TEXT,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO movie_ratings
-    (movie_id, thumbs_up, thumbs_sideways, thumbs_down, user_id, comment_title, comment, fav, seen)
+CREATE UNIQUE INDEX movie_index ON movie_rating(movie_id, user_id);
+
+---------------      DUMMY DATA      ---------------
+
+INSERT INTO users
+    (fb_id, first_name, last_name, picture_url, google_id)
+VALUES(1197287247035846, 'Joe', 'Dirt', 'http://bit.ly/2nbmoL6', null),
+    (2197287247035846, 'Stevey', 'Wonder', 'http://bit.ly/2nbmoL6', null),
+    (3197287247035846, 'Louie', 'King', 'http://bit.ly/2nbmoL6', null),
+    (4197287247035846, 'Pouie', 'Doo', 'http://bit.ly/2nbmoL6', null);
+
+INSERT INTO friends
+    (user_id, friend_id, rank)
+VALUES(1197287247035846, 2197287247035846, 1),
+    (1197287247035846, 3197287247035846, 2),
+    (1197287247035846, 4197287247035846, 3),
+    (2197287247035846, 4197287247035846, 1),
+    (2197287247035846, 3197287247035846, 2),
+    (2197287247035846, 1197287247035846, 3),
+    (3197287247035846, 1197287247035846, 1),
+    (4197287247035846, 1197287247035846, null),
+    (4197287247035846, 3197287247035846, 1);
+
+INSERT INTO movie_rating
+    (movie_id, user_id, recommends, thumb_up, thumb_sideways, thumb_down, to_see, seen, fav, comment_title, comment)
 VALUES
-    (4523, 0, 0, 1, 1197287247035846, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd', false, true),
-    (4523, 0, 1, 0, 1197287247035849, 'ehh', 'the songs are ok. everything else is not', false, true);
+    (4523, 1197287247035846, false, false, false, true, false, true, false, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd'),
+    (4523, 4197287247035846, true, true, false, false, true, true, true, 'changed my life', 'I literally cannot express how much this movie changed my life. Incredible. It is like I''m suddenly a princess!!'),
+    (4523, 3197287247035846, false, false, false, true, false, false, false, 'I don''t have time for titles', 'I was told this movie sucked. So I came here to tell everyone. Trollalala  -lallalala-lala-la.'),
+    (4523, 2197287247035846, true, false, true, false, false, true, false, 'ehh', 'the songs are ok. everything else is not');
+
+
+select users.first_name,
+    friends.user_id,
+    friends.friend_id
+from users
+    join friends
+    on friends.user_id = users.fb_id;
+
+
+
+select distinct users.first_name,
+    friends.user_id,
+    friends.friend_id
+from users
+    join friends
+    on friends.friend_id = users.fb_id
+where friends.user_id = 4197287247035846;
+
+
+
+
+select distinct users.first_name,
+    friends.user_id,
+    friends.friend_id,
+    movie_rating.user_id,
+    movie_rating.recommends
+from users
+    join friends
+    on friends.friend_id = users.fb_id
+    join movie_rating
+    on movie_rating.user_id = friends.friend_id
+where friends.user_id = 2197287247035846;

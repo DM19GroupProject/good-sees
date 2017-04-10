@@ -63,6 +63,7 @@ passport.serializeUser(function(user, done) {
   done(null, user.userid);
 })
 
+
 passport.deserializeUser(function(id, done) {
   db.getUserById([id], function(err, user) {
     user = user[0];
@@ -72,6 +73,8 @@ passport.deserializeUser(function(id, done) {
     done(null, user);
   })
 })
+
+
 
 
 app.get('/auth/facebook', passport.authenticate('facebook'))
@@ -161,6 +164,7 @@ else res.send(result)
 })
 }
 
+
 app.delete('/getReviews/:id'), function (req, res) {
 db.movie.get_reviews([req.params.id], (err, result) => {
 if (err) return console.log(err)
@@ -230,6 +234,53 @@ else res.send(result)
 })
 }
 
+app.get('/getMovieById/:id', function(req, res, next) {
+  console.log(2)
+  axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
+
+  .then(response => {
+
+    return res.send(response.data)
+  })
+  .catch(err => next(err))
+
+})
+
+app.get('/searchMovieByTitle/:movieTitle', function(req, res) {
+  axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=1`)
+  .then(response => res.send(response.data.results))
+  .catch(err => next(err))
+})
+
+app.get('/searchMovieByCastMember/:castMember', function(req, res) {
+  axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
+  .then(response => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/getMoviesByGenre/:id', function(req, res, next) {
+  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
+  .then(response => {
+    return res.send(response.data)
+  })
+  .catch(err => next(err))
+})
+
+
+
+
 app.post('/postSeen/:id'), function (req, res) {
 db.movie.post_seen(
 	[req.params.id,
@@ -251,6 +302,11 @@ if (err) return console.log(err)
 else res.send(result)
 })
 }
+
+app.listen(8080, function(){
+    console.log(`listening on port ${this.address().port}`)
+});
+
 
 app.post('/postThumbSide/:id'), function (req, res) {
 db.movie.post_thumb_side(

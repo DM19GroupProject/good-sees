@@ -12,18 +12,31 @@ $yellow-search-text: #CE9C29;
   width: 100%;
 }
 
+.feedContainer{
+  width: 100%;
+  height: 100vh;
+  display: flex; 
+  justify-content: space-between;
+  padding-top: 100px;
+}
+
+.feedSidebarContainer{
+ display: none;
+}
+
 .postContainer{
   width: 100%;
   height: 100vh;
   display: flex; 
-  justify-content: center;
   align-content: space-between;
-  
+  flex-direction: column;
+  background-color: $main-background-color;
+  align-items: center;
 }
 
 .postData{
   flex-direction: column;
-  width: 80%;
+  width: 60%;
   height: 100px;
   margin-top: 25px;
   background-color: black;
@@ -34,6 +47,7 @@ $yellow-search-text: #CE9C29;
   color: white;
   padding: 15px 0 25px 0;
   border: 1px solid $header-text;
+  position: fixed;
 
 
   input{
@@ -70,5 +84,142 @@ $yellow-search-text: #CE9C29;
   .recPostSearchContainer{
     display: flex;
     justify-content: space-between;
+  }
+}
+
+.feedSearchResults{
+  width: 80%;
+  background-color: lightgray;
+  color: black;
+  overflow: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 146px 0;
+  box-shadow: $main-box-shaddow;
+}
+
+
+.feedSearchResultsMovie{
+  width: 160px;
+  height: 185px;
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px 5px 5px 5px;
+  font-size: 12px;
+  
+  
+
+  img{
+    width: 90px;
+    height: 120px;
+    
+    box-shadow: $main-box-shaddow;
+   }
+  
+  p{
+    padding-top: 5px;
+    margin: 2px;
+  }
+ }
+
+.feedSearchResultsMovie:hover{
+  background-color: $yellow-from-logo;
+}
+
+@media(min-width: 650px){
+
+  .feedLeftSide{
+    width: 450px;
+    height: 100vh;
+    background-color: $main-background-color;
+  }
+
+  .feedSidebarContainer{
+    display: block;
+    width: 250px;
+    height: 70vh;
+    background-color: black;
+    margin-left: 30px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    box-shadow: $main-box-shaddow;
+
+  }
+
+
+  .feedProfilePicContainer{
+    height: 200px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .feedLinksContainer{
+    height: 272px; 
+    width: 200px;
+   border-top: 1px solid grey;
+   border-bottom: 1px solid grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .feedLinks{
+    list-style: none;
+    line-height: 40px;
+    color: grey;
+    font-size: 15px;
+
+    li:hover{
+      color: $yellow-search-text;
+
+    }
+  }
+
+  .feedProfilePic{
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+  }
+
+
+    
+
+}
+
+@media(min-width: 974px){
+  
+  .postData{
+    font-size: 25px;
+    height: 150px;
+    padding: 23px 0 32px 0;
+
+    input{
+      height: 40px;
+      width: 400px;
+    }
+
+    button{
+      height: 40px;
+      width: 57px;
+      font-size: 20px;
+    }
+  }
+
+  .recPostSearchContainer{
+    align-items: center;
+    width: 480px;
   }
 }

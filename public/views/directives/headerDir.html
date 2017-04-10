@@ -1,0 +1,45 @@
+<header class="good-sees-header">
+    <div class="logoContainer">
+        <img class="logo" ng-src="../assets/good-sees-logo.svg ">
+    </div>
+    <div class = 'wide-nav'>
+        <p id = 'cat-btn'>CATEGORIES</p>
+        <p id = 'search-btn'>SEARCH</p>
+    </div>
+    <div id = 'mobile-menu-ham' class="menuIconContainer">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <div class = 'menuIconContainer' id = 'wide-menu-ham'>
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+</header> 
+<nav class = 'mobile-dropdown-menu'>
+    <search-dir></search-dir>
+    <div class = 'dropdown-divider'></div>
+    <p id = 'cat-link'>Categories</p>
+    <div class = 'name-separator'></div>
+    <div class = 'dropdown-category-links'>
+        <a ui-sref = 'main.categories({id: category.id})' ng-repeat="category in categories">{{category.name}}</a> 
+    </div>
+    <profile-links-dir></profile-links-dir>
+</nav>
+<nav class = 'desktop-profile-dropdown animated bounceInDown'>
+    <i id='ham-triangle' class="fa fa-caret-up fa-2x yellow-triangle" aria-hidden="true"></i>
+    <profile-links-dir></profile-links-dir>
+</nav>
+<div class = 'desktop-search-dropdown animated bounceInDown'>
+    <i id='search-triangle' class="fa fa-caret-up fa-2x yellow-triangle" aria-hidden="true"></i>
+    <search-dir></search-dir>
+</div>
+<div class = 'desktop-categories-dropdown animated bounceInDown'>
+    <i id='categories-triangle' class="fa fa-caret-up fa-2x yellow-triangle" aria-hidden="true"></i>
+    <div class = 'categories-column'>
+        <a ui-sref = 'main.categories({id: category.id})' ng-repeat="category in categories | slice:0:6">{{category.name}}</a>
+    </div>
+    <div class = 'categories-column'>
+        <a ui-sref = 'main.categories({id: category.id})' ng-repeat="category in categories | slice:6:12">{{category.name}}</a>
+    </div>
+    <div class = 'categories-column'>
+        <a ui-sref = 'main.categories({id: category.id})' ng-repeat="category in categories | slice:12:18">{{category.name}}</a>
+    </div>
+</div>

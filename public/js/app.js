@@ -38,4 +38,9 @@ angular.module('goodSees', ['ui.router'])
                 templateUrl: './views/categories.html',
                 controller: 'categoriesCtrl'
             })
+    })
+    .filter('slice', function() {
+        return function(arr, start, end) {
+            return arr.slice(start, end);
+        };
     });
