@@ -63,7 +63,6 @@ passport.deserializeUser(function (id, done) {
   })
 })
 
-const baseUrl = 'https://api.themoviedb.org/3/'
 
 /////////////
 // DATABASE //
@@ -76,22 +75,22 @@ const baseUrl = 'https://api.themoviedb.org/3/'
 //   else console.log("All tables successfully reset")
 // })
 
-// let db = massive.connectSync({ connectionString: 'postgres://kwvmcdxe:crVqqUWVrJ4dLQ0G8HwMSqSRmySKQeK0@stampy.db.elephantsql.com:5432/kwvmcdxe' })
-// console.log('got here')
-// app.set('db', db);
-// db = app.get('db');
+let db = massive.connectSync({ connectionString: 'postgres://postgres:@localhost/sandbox' })
+console.log('got here')
+app.set('db', db);
+db = app.get('db');
 
-// db.schema(function (err, data) { 
-//   if (err) console.log("hello",err);
-//   else console.log('db created')
-// })
-
-
-db.create_user(function(err, user) {
-  if (err) console.log(err);
-  else console.log('CREATED USER');
-  console.log(user);
+db.schema(function (err, data) { 
+  if (err) console.log("hello",err);
+  else console.log('db created')
 })
+
+
+// db.create_user(function(err, user) {
+//   if (err) console.log(err);
+//   else console.log('CREATED USER');
+//   console.log(user);
+// })
 
 /*--------------------------------------------------------------------*
                               ENDPOINTS
@@ -432,9 +431,11 @@ app.get('/searchMovieByCastMember/:castMember', function (req, res) {
 app.get('/getMovieById/:id', function (req, res, next) {
   console.log(2)
   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
-
     .then(response => {
-
+      return res.send(response.data)
+    })
+  .catch(err => next(err))
+})
 
 // app.post('/postSeen/:id'), function (req, res) {
 //   db.movie.post_seen(
