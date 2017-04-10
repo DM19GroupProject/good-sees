@@ -1,7 +1,7 @@
 angular.module('goodSees')
-    .controller('mainCtrl', function($scope, mainService, tmdbService){
-       
+    .controller('mainCtrl', function($scope, $state, mainService, tmdbService){
        $scope.categories = [  
+
             {  
                 "id":28,
                 "name":"Action"
@@ -74,33 +74,36 @@ angular.module('goodSees')
                 "id":37,
                 "name":"Western"
             }
-        ]
+     ]
 
 
-        
-        /*--------------------------------------------------------------------*
-                     Event Handlers 
-        *--------------------------------------------------------------------*/ 
-        //movie title search
-        $scope.navSearchMovieByTitle = function (keyEvent, navMovieTitle) {
-            if (keyEvent.which === 13) {
-                tmdbService.searchMovieByTitle(navMovieTitle)
+/*--------------------------------------------------------------------*
+                            Event Handlers 
+*--------------------------------------------------------------------*/
+         $scope.searchCategory = 'title'
+      
+      $scope.search = function(searchTerm){
+          
+          if( $scope.searchCategory === 'title'){
+              console.log($scope.searchCategory)
+              tmdbService.searchMovieByTitle(searchTerm)
                 .then(movieInfo => {
                     console.log(movieInfo.data)
-                    $scope.navMovieInfo = movieInfo.data
+                    $scope.movieInfo = movieInfo.data
+                     $state.go('main.search-results')
                 })
-            }
-        }
-        
-       //cast search
-        $scope.navSearchMovieByCast = function (keyEvent, navCastMember) {
-            if(keyEvent.which === 13) {
             
-                tmdbService.ssearchMovieByCastMember(navCastMember)
+          }
+          if( $scope.searchCategory === 'name'){
+               console.log($scope.searchCategory)
+            tmdbService.searchMovieByCastMember(searchTerm)
                 .then(navActorInfo => {
-                    
-                    $scope.navActorInfo = navActorInfo.data
+                   
+                    console.log(navActorInfo.data)
+                    $scope.actorInfo = navActorInfo.data
+                    $state.go('main.search-results')
                 })
-            }
-        }
+          }   
+      }
+    
     });
