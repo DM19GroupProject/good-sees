@@ -12,7 +12,9 @@ CREATE TABLE users
     google_id TEXT,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
 CREATE UNIQUE INDEX users_index ON users(fb_id);
+
 
 CREATE TABLE friends
 (
@@ -78,7 +80,7 @@ select users.first_name,
     friends.friend_id
 from users
     join friends
-    on friends.user_id = users.fb_id; 
+    on friends.user_id = users.fb_id;
 
 
 
