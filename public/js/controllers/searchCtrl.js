@@ -1,5 +1,6 @@
 angular.module('goodSees')
-    .controller('searchCtrl', function ($scope, tmdbService) {
+    .controller('searchCtrl', function ($scope, tmdbService, $state) {
+    
         /*--------------------------------------------------------------------*
                          Event Handlers 
             *--------------------------------------------------------------------*/
@@ -21,7 +22,9 @@ angular.module('goodSees')
                 tmdbService.searchMovieByCastMember(castMember)
                     .then(actorInfo => {
                             console.log(actorInfo.data)
+                            console.log(actorInfo.data.known_for)
                         $scope.actorInfo = actorInfo.data
+
                     })
             }
         }
