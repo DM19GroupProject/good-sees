@@ -24,11 +24,17 @@ angular.module('goodSees')
                     $('.dropdown-link-container').toggleClass('display-flex')
                     $('.desktop-profile-dropdown').toggleClass('display-block');
                 })
-                $('#search-btn').click(function(){
-                    $('.desktop-search-dropdown').toggleClass('display-block')
+                $('#search-btn').mouseenter(function(){
+                    $('.desktop-search-dropdown').addClass('display-block')
                 })
-                $('#cat-btn').click(function(){
-                    $('.desktop-categories-dropdown').toggleClass('display-flex');
+                $('.desktop-search-dropdown').mouseleave(function(){
+                    $('.desktop-search-dropdown').removeClass('display-block')
+                })
+                $('#cat-btn').mouseenter(function(){
+                    $('.desktop-categories-dropdown').addClass('display-flex');
+                })
+                $('.desktop-categories-dropdown').mouseleave(function(){
+                    $('.desktop-categories-dropdown').removeClass('display-flex');
                 })
                 
                 /*--------------------------------------------------------------------*

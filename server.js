@@ -8,7 +8,7 @@ const express = require('express'),
   config = require('./config.js'),
   axios = require('axios')
 cors = require('cors');
-
+const baseUrl = 'https://api.themoviedb.org/3/';
 const app = express();
 app.use(bodyParser.json());
 // app.use(session({
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-// app.use(express.static('./public'));
+app.use(express.static('./public'));
 
 
 
@@ -27,15 +27,15 @@ app.use(bodyParser.json());
 /////////////
 // DATABASE //
 /////////////
-let db = massive.connectSync({ connectionString: 'postgres://kwvmcdxe:crVqqUWVrJ4dLQ0G8HwMSqSRmySKQeK0@stampy.db.elephantsql.com:5432/kwvmcdxe' })
-console.log('got here')
-app.set('db', db);
-db = app.get('db');
+// let db = massive.connectSync({ connectionString: 'postgres://kwvmcdxe:crVqqUWVrJ4dLQ0G8HwMSqSRmySKQeK0@stampy.db.elephantsql.com:5432/kwvmcdxe' })
+// console.log('got here')
+// app.set('db', db);
+// db = app.get('db');
 
-db.schema(function (err, data) { 
-  if (err) console.log("hello",err);
-  else console.log('db created')
-})
+// db.schema(function (err, data) { 
+//   if (err) console.log("hello",err);
+//   else console.log('db created')
+// })
 
 // db.create_user(function(err, user) {
 //   if (err) console.log(err);
@@ -366,41 +366,41 @@ db.schema(function (err, data) {
 
 // //steven's endpoints
 
-// app.get('/getMoviesByGenre/:id', function (req, res, next) {
-//   axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
-//     .then(response => {
-//       return res.send(response.data)
-//     })
-//     .catch(err => next(err))
-// })
+app.get('/getMoviesByGenre/:id', function (req, res, next) {
+  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
+    .then(response => {
+      return res.send(response.data)
+    })
+    .catch(err => next(err))
+})
 
-// app.get('/searchMovieByTitle/:movieTitle', function (req, res) {
-//   axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=1`)
-//     .then(response => res.send(response.data.results))
-//     .catch(err => next(err))
-// })
+app.get('/searchMovieByTitle/:movieTitle', function (req, res) {
+  axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=1`)
+    .then(response => res.send(response.data.results))
+    .catch(err => next(err))
+})
 
-// app.get('/searchMovieByCastMember/:castMember', function (req, res) {
-//   axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
-//     .then(response => {
+app.get('/searchMovieByCastMember/:castMember', function (req, res) {
+  axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
+    .then(response => {
 
-//       return res.send(response.data.results)
+      return res.send(response.data.results)
 
-//     })
-//     .catch(err => next(err))
-// })
+    })
+    .catch(err => next(err))
+})
 
-// app.get('/getMovieById/:id', function (req, res, next) {
-//   console.log(2)
-//   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
+app.get('/getMovieById/:id', function (req, res, next) {
+  console.log(2)
+  axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
 
-//     .then(response => {
+    .then(response => {
 
-//       return res.send(response.data)
-//     })
-//     .catch(err => next(err))
+      return res.send(response.data)
+    })
+    .catch(err => next(err))
 
-// })
+})
 
 app.listen(8080, function () {
   console.log('Connected on 8080')
