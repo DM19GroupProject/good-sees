@@ -1,8 +1,13 @@
+<div class = 'categories-wrapper'>
+    <h1 class = 'cat-heading'>{{catHeading}}</h1>
+    <div class = 'category-results-wrapper'>
+        <div class = 'category-results-movie' ui-sref="main.movie-profile({id: movie.id})" ng-repeat="movie in moviesByGenre" header-controls>
+            <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}"/>
+            <div class = 'category-overlay'>
+                <h2>{{movie.title}}</h2>
+                <h4>{{movie.release_date |date: 'yyyy' }}</h4>
+            </div>
 
-
-<ul ui-sref="main.movie-profile({id: movie.id})" ng-repeat="movie in moviesByGenre">
-	<li>{{movie.title}}</li>
-	<li>{{movie.release_date}}</li>
-	<img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}"/>
-
-</ul>
+        </div>
+    </div>
+</div>
