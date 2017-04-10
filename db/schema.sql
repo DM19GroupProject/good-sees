@@ -9,16 +9,15 @@ CREATE TABLE users
     first_comment_snippet TEXT,
     last_name varchar(50),
     picture_url TEXT,
-    fb_friends TEXT,
     google_id TEXT,
     recommended_movies TEXT,
     date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO users
-    (fb_id, first_name, last_name, picture_url, fb_friends, google_id)
+    (fb_id, first_name, last_name, picture_url, google_id)
 VALUES(1197287247035846, 'Joe', 'Dirt', 'http:
-//bit.ly/2nbmoL6', '1197987247035846, 11972872447035846,1197287247035826, 1797287247035846', null);
+//bit.ly/2nbmoL6', null);
 
 CREATE TABLE friends
 (

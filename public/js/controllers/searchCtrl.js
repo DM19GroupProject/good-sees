@@ -1,8 +1,12 @@
 angular.module('goodSees')
     .controller('searchCtrl', function ($scope, tmdbService) {
    /*--------------------------------------------------------------------*
-                     Event Handlers 
-    *--------------------------------------------------------------------*/ 
+                     Event Handlers
+    *--------------------------------------------------------------------*/
+
+  
+
+
     //movie title search
         $scope.searchMovieByTitle = function (keyEvent) {
             if (keyEvent.which === 13) {
