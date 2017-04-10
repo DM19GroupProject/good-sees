@@ -1,6 +1,6 @@
 -- takes in user id
 -- $1 user id
--- returns all good-sees friends basic info - first name, last name, rank, picture and id.
+-- returns all good-sees friends basic info - id, first name, last name, rank, and picture.
 
 SELECT DISTINCT
   users.fb_id,
