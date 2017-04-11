@@ -1,15 +1,86 @@
-
-
-  <div class="background">
+<div class="background">
     <div class="profileHeader">
       <div class="profilePicContainer">
         <div class="profilePic"></div>
+        <h1>NAME</h1>
       </div>
-      <ul id="profileTabList">
-        <li id="seenTab">SEEN</li>
-        <li id="favoritesTab">FAVORITES</li>
-        <li id="wantToSeeTab">WANT TO SEE</li>
-      </ul>
 
+      <select ng-model="selection" class="profileTabList">
+        <option value="default">HOME</option>
+        <option value="seen" id="seenTab">SEEN</option>
+        <option value="want" id="wantToSeeTab">WANT TO SEE</option>
+        <option value="fav" id="favoritesTab">FAVORITES</option>
+      </select>
     </div>
+  <div ng-switch on="selection">
+
+    <div ng-switch-when="seen">
+      <h1 class="seenLabel">MOVIES NAME HAS SEEN</h1>
+      <div class="profileSeenLink">
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+      </div>
+    </div>
+    <div ng-switch-when="want">
+      <h1 class="seenLabel">MOVIES NAME WANTS TO SEE</h1>
+      <div class="profileSeenLink">
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+      </div>
+    </div>
+    <div ng-switch-when="fav">
+      <h1 class="seenLabel">NAMES FAVORITE MOVIES</h1>
+      <div class="profileSeenLink">
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+        <div class="profileMoviesSeen"></div>
+      </div>
+    </div>
+
+
+
+    <div ng-switch-default>
+      <div class="profileTopFriendsContainer">
+        <div class="profileLabel">TOP FRIENDS</div>
+        <div class="topFriends">
+
+          <div class="topFriendCarousel">
+            <div class="topFriend">1</div>
+            <div class="topFriend">2</div>
+            <div class="topFriend">3</div>
+            <!--<div class="topFriend">4</div>
+            <div class="topFriend">5</div>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="recommendationLabel">MOVIES RECOMMENDED BY NAME</div>
+
+      <div class="profileRecCarousel">
+        <div class="profileRecMovies"></div>
+        <div class="profileRecMovies"></div>
+        <div class="profileRecMovies"></div>
+      </div>
+    </div> 
   </div>
+</div>

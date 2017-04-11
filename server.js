@@ -56,30 +56,42 @@ db.schema(function (err, data) {
 *--------------------------------------------------------------------*/
 
 
-passport.use(new FacebookStrategy({
-  clientID: config.facebook.clientID,
-  clientSecret: config.facebook.clientSecret,
-  callbackURL: "http://localhost:3000/auth/facebook/callback",
-  profileFields: ['id', 'displayName']
-},
-  function (accessToken, refreshToken, profile, cb) {
-    db.getUserByFacebookId([profile.id], function (err, user) {
-      user = user[0];
-      if (!user) {
-        console.log('CREATING USER');
-        db.createUserFacebook([profile.displayName, profile.id], function (err, user) {
-          console.log('USER CREATED', user);
-          return cb(err, user);
-        })
-      } else {
-        return cb(err, user);
-      }
-    })
-  }));
+// passport.use(new FacebookStrategy({
+//   clientID: config.facebook.clientID,
+//   clientSecret: config.facebook.clientSecret,
+//   callbackURL: "http://localhost:3000/auth/facebook/callback",
+//   profileFields: ['id', 'displayName']
+// },
+//   function (accessToken, refreshToken, profile, cb) {
+//     db.getUserByFacebookId([profile.id], function (err, user) {
+//       user = user[0];
+//       if (!user) {
+//         console.log('CREATING USER');
+//         db.createUserFacebook([profile.displayName, profile.id], function (err, user) {
+//           console.log('USER CREATED', user);
+//           return cb(err, user);
+//         })
+//       } else {
+//         return cb(err, user);
+//       }
+//     })
+//   }));
 
-passport.serializeUser(function (user, done) {
-  done(null, user.userid);
-})
+
+// passport.serializeUser(function (user, done) {
+//   done(null, user.userid);
+// })
+
+
+// passport.deserializeUser(function (id, done) {
+//   db.getUserById([id], function (err, user) {
+//     user = user[0];
+//     if (err) console.log(err);
+//     else console.log('RETRIEVED USER');
+//     console.log(user);
+//     done(null, user);
+//   })
+// })
 
 passport.deserializeUser(function (id, done) {
   db.getUserById([id], function (err, user) {
@@ -90,6 +102,7 @@ passport.deserializeUser(function (id, done) {
     done(null, user);
   })
 })
+// >>>>>>> 45dbd8d46ffdb067e341ff2cf6525e280495a68a
 
 /*--------------------------------------------------------------------*
                               ENDPOINTS
