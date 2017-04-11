@@ -56,7 +56,7 @@ $yellow-search-text: #CE9C29;
     height: 35px;
     border-style: none;
     background-color: transparent;
-    color: grey;
+    color: white;
     font-size: 20px;
     text-align: center;
     padding-top: 3px;
@@ -90,7 +90,8 @@ $yellow-search-text: #CE9C29;
   word-wrap: break-word;
   text-align: center;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
+  font-family: 'raleway'
 }
 
 .topFriends{
@@ -123,4 +124,18 @@ $yellow-search-text: #CE9C29;
   font-family: 'Raleway';
   font-weight: 600;
   color: white;
+  padding: 10px;
+}
+
+
+.profileRecCarousel{
+  display: flex;
+  justify-content: space-around;
+}
+
+.profileRecMovies{
+  height: 200px;
+  width: 175px;
+  background-color: black;
+  margin-top: 10px;
 }
