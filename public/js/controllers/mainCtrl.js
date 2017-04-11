@@ -77,10 +77,23 @@ angular.module('goodSees')
         ]
         $scope.setCatHeading = category => {$scope.catHeading = category};
 
+        /////variables///////
+        $scope.resultFlag = true;
+        $scope.hideFlag = false;
+        $scope.searchCategory = 'title'
         /*--------------------------------------------------------------------*
                                     Event Handlers 
         *--------------------------------------------------------------------*/
-        $scope.searchCategory = 'title'
+        $scope.titleClicked = function(){
+            $scope.searchCategory = 'title';
+            $scope.resultFlag = true;
+            $scope.hideFlag = false;
+        }
+        $scope.nameClicked = function(){
+            $scope.searchCategory = 'name';
+            $scope.resultFlag = false;
+            $scope.hideFlag = true;
+        }
 
         $scope.search = function (searchTerm) {
 

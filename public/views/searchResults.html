@@ -7,7 +7,7 @@
 
 
 		<!--searching by movie title-->
-		<div class='category-results-wrapper'>
+		<div ng-show="resultFlag" ng-hide="hideFlag" class='category-results-wrapper'>
 			<div class='category-results-movie' ui-sref="main.movie-profile({id: movie.id})" ng-repeat="movie in movieInfo" header-controls>
 				<img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}" />
 				<div class='category-overlay'>
@@ -16,8 +16,9 @@
 				</div>
 			</div>
 		</div>
+
 		<!--searching by actor or actress-->
-		<div class = 'actor-result-container' ng-repeat="actor in actorInfo">
+		<div  ng-show="hideFlag" ng-hide="resultFlag" class = 'actor-result-container' ng-repeat="actor in actorInfo">
 			<div class = 'actor-name-pic'>
 				<div class = 'actor-image-container' style="background-image: url('https://image.tmdb.org/t/p/w300_and_h450_bestv2{{actor.profile_path}}')">
 				</div>
