@@ -29,7 +29,7 @@ CREATE UNIQUE INDEX friends_index ON friends(user_id, friend_id);
 CREATE TABLE movie_rating
 (
     id SERIAL PRIMARY KEY,
-    movie_id BIGINT,
+    movie_id INT,
     user_id BIGINT,
     thumb_up BOOLEAN,
     thumb_sideways BOOLEAN,
