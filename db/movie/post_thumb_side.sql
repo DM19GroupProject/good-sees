@@ -4,10 +4,10 @@
 
 INSERT INTO movie_rating
   (movie_id, thumb_down, thumb_sideways, thumb_up, user_id)
-SELECT $2, false, true, false, $2
+SELECT $2, false, true, false, $1
 WHERE NOT EXISTS (SELECT 1
 FROM movie_rating
-WHERE id=$2 AND user_id = $2)
+WHERE id=$2 AND user_id = $1)
 ON CONFLICT
 (user_id, movie_id) DO
 UPDATE SET thumb_down = false, thumb_sideways = true, thumb_up = false;
