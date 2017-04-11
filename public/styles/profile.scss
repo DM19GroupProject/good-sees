@@ -41,7 +41,7 @@ $yellow-search-text: #CE9C29;
 
 }
   
-#profileTabList{
+.profileTabList{
   display: flex;
   list-style: none;
   justify-content: flex-end;
@@ -51,7 +51,7 @@ $yellow-search-text: #CE9C29;
   margin-bottom: -2px;
   
 
-  button{
+  option{
     
     height: 35px;
     border-style: none;
@@ -138,4 +138,29 @@ $yellow-search-text: #CE9C29;
   width: 175px;
   background-color: black;
   margin-top: 10px;
+}
+
+.seenLabel{
+    font-family: 'raleway';
+    font-size:17px;
+    color: white;
+    padding: 10px;
+}
+.profileSeenLink{
+  width: 100%;
+  height: 415px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0 10px;
+  overflow: scroll;
+
+
+  .profileMoviesSeen{
+    width: 120px;
+    height: 180px;
+    background-color: grey;
+    margin: 10px 5px;
+  }
+  
 }
