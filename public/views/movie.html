@@ -1,10 +1,28 @@
-<div class="movie-info-container" > 
-<div>
-   <ul>
-	<li>{{movieData.title}}</li>
-	<li>{{movieData.release_date}}</li>
-	<img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movieData.poster_path}}"/>
+<div class="background">
+	<div class="movie-info-container">
+		<div class="movie-flex-box">
+			<img class="movie-img" ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movieData.poster_path}}" />
+			<div class="movie-text-container">
+				<div class="movie-text movie-title-text">{{movieData.title}}</div>
 
-</ul>
+				<div>
+					<p class="movie-text movie-overview">{{movieData.overview}}</p>
+				</div>
+			</div>
+		</div>
+		<h1 class="movie-text add-to">Add to:</h1>
+		<div class="movie-button-container">
+			<button class="movie-buttons">Favorites</button>
+			<button class="movie-buttons">Seen</button>
+			<button class="movie-buttons">To see</button>
+		</div>
+		<div>
+			<button> Recommend to friends</button>
+			<h1 class="movie-review">Review:</h1>
+			<button></button>
+			<button></button>
+			<input type="text">
+		</div>
+
+	</div>
 </div>
-    </div>
