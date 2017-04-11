@@ -97,10 +97,10 @@ angular.module('goodSees')
             if ($scope.searchCategory === 'name') {
                 console.log($scope.searchCategory)
                 tmdbService.searchMovieByCastMember(searchTerm)
-                    .then(navActorInfo => {
+                    .then(actorInfo => {
 
-                        console.log(navActorInfo.data)
-                        $scope.actorInfo = navActorInfo.data
+                        console.log(actorInfo.data)
+                        $scope.actorInfo = actorInfo.data
                         $state.go('main.search-results')
                     })
             }

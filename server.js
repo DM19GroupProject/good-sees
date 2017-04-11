@@ -578,42 +578,42 @@ app.post('/postNewUserInfo/:id/:first/:last/:picture', endpointCtrl.postNewUserI
 
 // //steven's endpoints
 
-// app.get('/getMoviesByGenre/:id', function (req, res, next) {
-//   axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
-//     .then(response => {
-//       return res.send(response.data)
-//     })
-//     .catch(err => next(err))
-// })
+app.get('/getMoviesByGenre/:id', function (req, res, next) {
+  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
+    .then(response => {
+      return res.send(response.data)
+    })
+    .catch(err => next(err))
+})
 
-// app.get('/searchMovieByTitle/:movieTitle', function (req, res) {
-//   axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=1`)
-//     .then(response => res.send(response.data.results))
-//     .catch(err => next(err))
-// })
+app.get('/searchMovieByTitle/:movieTitle', function (req, res) {
+  axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=1`)
+    .then(response => res.send(response.data.results))
+    .catch(err => next(err))
+})
 
-// app.get('/searchMovieByCastMember/:castMember', function (req, res) {
-//   axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
-//     .then(response => {
+app.get('/searchMovieByCastMember/:castMember', function (req, res) {
+  axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
+    .then(response => {
 
-//       return res.send(response.data.results)
+      return res.send(response.data.results)
 
-//     })
-//     .catch(err => next(err))
-// })
+    })
+    .catch(err => next(err))
+})
 
-// app.get('/getMovieById/:id', function (req, res, next) {
-//   console.log(2)
-//   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
+app.get('/getMovieById/:id', function (req, res, next) {
+  console.log(2)
+  axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
 
-//     .then(response => {
+    .then(response => {
 
 
-//       return res.send(response.data)
-//     })
-//     .catch(err => next(err))
+      return res.send(response.data)
+    })
+    .catch(err => next(err))
 
-// })
+})
 
 app.get('/test', function (req, res) {
   console.log('hi')
