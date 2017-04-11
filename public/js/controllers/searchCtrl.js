@@ -23,7 +23,7 @@ angular.module('goodSees')
                 tmdbService.searchMovieByCastMember(castMember)
                     .then(actorInfo => {
                             console.log(actorInfo.data)
-                            console.log(actorInfo.data.known_for)
+                         console.log(actorInfo.data.known_for)
                         $scope.actorInfo = actorInfo.data
 
                     })
