@@ -2,6 +2,7 @@ angular.module('goodSees')
     .controller('loginCtrl', function($scope, mainService,$http,$state){
 
 
+
         // This is called with the results from from FB.getLoginStatus().
         function statusChangeCallback(response) {
             console.log('statusChangeCallback');
@@ -12,6 +13,7 @@ angular.module('goodSees')
             // for FB.getLoginStatus().
             if (response.status === 'connected') {
                 // Logged into your app and Facebook.
+                magicFunction();
                 testAPI();
             } else {
                 // The person is not logged into your app or we are unable to tell.
@@ -23,7 +25,7 @@ angular.module('goodSees')
         // This function is called when someone finishes with the Login
         // Button.  See the onlogin handler attached to it in the sample
         // code below.
-        function checkLoginState() {
+        $scope.checkLoginState = function() {
             FB.getLoginStatus(function (response) {
                 statusChangeCallback(response);
             });
@@ -77,4 +79,5 @@ angular.module('goodSees')
         }
 
 
+        
     });
