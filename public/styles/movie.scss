@@ -42,9 +42,13 @@ $yellow-search-text: #CE9C29;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    justify-content: center;
 }
 .movie-button-container{
     padding-bottom: 15px;
+    display: flex;
+    justify-content: space-around;
 }
 .add-to{
     color: $yellow-search-text
@@ -57,24 +61,43 @@ $yellow-search-text: #CE9C29;
 }
 .movie-thumbs{
     color: $red-from-logo;
-    padding: 10px
+    padding: 10px;
+}
+.movie-thumb-buttons{
+    background: none;
+    border: none;
 }
 .movie-flex-box{
     display: flex;
     flex-direction: column;
 }
-@media(min-width: 414px){
+.movie-img-container{
+        display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media(min-width: 500px){
 .movie-flex-box{
     display: flex;
-    padding-bottom: 20px 
+    padding-bottom: 20px;
+    flex-direction: inherit
 }
+.movie-title-text{
+    display: block;
+    font-size: 35px;
+    padding: 0px 10px 85px 15px;
+}
+
 }
 @media(min-width: 650px){
-
+.movie-flex{
+    display: flex;
+}
 
 .movie-flex-box{
     display: flex;
-    padding-bottom: 20px
+    padding-bottom: 20px;
+    flex-direction: inherit;
 }
 .movie-title-text{
     display: flex;
@@ -114,16 +137,46 @@ width: 300px;
 }
 .movie-img {
     width: 100%;
-//     height: auto;
-//     width: auto\9; /* ie8 */
+
 }
+.movie-text-container{
+    width: 60%
 }
-@media (max-width: 900px){
+.movie-img-container{
+    width: 40%
+}
+   .movie-recommend-button{
+    background: grey;
+    width: 150px;
+    margin-bottom: 10px;
+    border: none;
+    height: 60px;
+    font-size: 20px;
+    }
+    .movie-review{
+        font-size: 30px;
+    }
+    .movie-thumbs{
+        font-size: 6em;
+    }
+}
+@media (min-width: 900px){
    
     .movie-overview{
-        font-size: 15px;
+        font-size: 40px;
     }
-    .movie-img{
-
+    .movie-recommend-button{
+    background: grey;
+    width: 250px;
+    margin-bottom: 10px;
+    border: none;
+    height: 100px;
+    font-size: 20px;
+    }
+    .movie-review{
+        font-size: 45px;
+    }
+    .movie-thumbs{
+        font-size: 10em;
     }
 }
