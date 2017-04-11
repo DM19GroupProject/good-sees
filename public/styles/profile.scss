@@ -50,8 +50,8 @@ $yellow-search-text: #CE9C29;
   font-size: 20px;
   margin-bottom: -2px;
   
-
-  option{
+}
+  .beforeClick{
     
     height: 35px;
     border-style: none;
@@ -65,33 +65,24 @@ $yellow-search-text: #CE9C29;
     margin: 0 10px;
   }
   
-  button:hover{
+  .afterClick{
     // box-shadow: 2px 4px 3px black;
     color: $yellow-from-logo;
     border-bottom: 2px solid $red-from-logo;
   }
 
-
-
-}
-
 .profileTopFriendsContainer{
     background-color: #1A1a1a;
     border-bottom: 2px solid grey;
-    border-top: 2px solid grey;
-    padding-top: 7px;
+    
+    padding-top: 6px;
     padding-left: 5px;
   // font-family: 'Oswald', sans-serif;
 }
 
 .profileLabel{
-  color: white;
-  width: 100px;
-  word-wrap: break-word;
-  text-align: center;
-  font-size: 15px;
-  font-weight: 600;
-  font-family: 'raleway'
+ @extend .seenLabel;
+ padding: 15px 15px 10px 5px;
 }
 
 .topFriends{
@@ -122,9 +113,10 @@ $yellow-search-text: #CE9C29;
 .recommendationLabel{
   height: 40px;
   font-family: 'Raleway';
-  font-weight: 600;
+  font-weight: 500;
   color: white;
   padding: 10px;
+  font-size: 17px;
 }
 
 
