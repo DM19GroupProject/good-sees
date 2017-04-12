@@ -139,7 +139,7 @@ app.get('/getUserActivity/:id', endpointCtrl.getUserActivity);
 app.get('/getMoviesByGenre/:id', endpointCtrl.getMoviesByGenre);
 app.get('/searchMovieByTitle/:movieTitle', endpointCtrl.searchMovieByTitle);
 app.get('/searchMovieByCastMember/:castMember', endpointCtrl.searchMovieByCastMember);
-app.get('/getMovieById/:id', endpointCtrl.getMovieById);
+app.get('/getMovieById/:id/:page', endpointCtrl.getMovieById);
 
 //----POST------*
 
@@ -172,13 +172,13 @@ app.listen(8080, function () {
 
 //steven's endpoints
 
-// app.get('/getMoviesByGenre/:id', function (req, res, next) {
-//   axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
-//     .then(response => {
-//       return res.send(response.data)
-//     })
-//     .catch(err => next(err))
-// })
+app.get('/getMoviesByGenre/:id', function (req, res, next) {
+  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
+    .then(response => {
+      return res.send(response.data)
+    })
+    .catch(err => next(err))
+})
 
 // app.get('/searchMovieByTitle/:movieTitle', function (req, res) {
 //   axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=1`)
