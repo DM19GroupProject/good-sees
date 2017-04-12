@@ -151,7 +151,7 @@ app.post('/thumbUp/:id/:movieId', endpointCtrl.thumbUp);
 app.post('/postToSee/:id/:movieId', endpointCtrl.postToSee);
 
 
-app.post('/getUser/:id', endpointCtrl.getUser);
+app.get('/getUser/:id', endpointCtrl.getUser);
 
 
 app.post('/deleteFriend/:id/:friendId', endpointCtrl.deleteFriend);
