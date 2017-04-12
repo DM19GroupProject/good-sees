@@ -17,4 +17,19 @@ angular.module('goodSees')
         .then(function(response){
             $scope.recMovies = response;
         })
+
+        mainService.getSeenMovies(2197287247035846)
+        .then(function(response){
+            $scope.seenMovies = response;
+        })
+
+        mainService.getWantToSee(2197287247035846)
+        .then(function(response){
+            $scope.wantToSee = response;
+        })
+
+        mainService.getFavMovies(2197287247035846)
+        .then(function(response){
+            $scope.favMovies = response;
+        })
 });
