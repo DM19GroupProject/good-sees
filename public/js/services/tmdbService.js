@@ -3,7 +3,7 @@ angular.module('goodSees')
     var baseUrl = 'https://api.themoviedb.org/3/'
     var discoverPageNum = 1
 
-    this.searchMovieByTitle = movieTitle => $http.get(`/searchMovieByTitle/${movieTitle}`)
+    this.searchMovieByTitle = (movieTitle, page) => $http.get(`/searchMovieByTitle/${movieTitle}/${page}`)
     
     
     this.searchMovieByCastMember = castMember => {
@@ -21,8 +21,8 @@ angular.module('goodSees')
 
 
 
-    this.getMoviesByGenre = id => {
-        return $http.get(`/getMoviesByGenre/${id}`)
+    this.getMoviesByGenre = (id, page) => {
+        return $http.get(`/getMoviesByGenre/${id}/${page}`)
     }
    
    this.getMovieById = movieId => {
