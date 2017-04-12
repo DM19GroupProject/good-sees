@@ -197,14 +197,167 @@ app.listen(8080, function () {
 // })
 
 // app.get('/getMovieById/:id', function (req, res, next) {
+
+//   console.log(2)
+//   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
+//     .then(response => {
+//       return res.send(response.data)
+//     })
+//   .catch(err => next(err))
+// })
+
+// app.post('/postSeen/:id'), function (req, res) {
+//   db.movie.post_seen(
+//     [req.params.id,
+//     req.params.user_id,
+//     req.params.movie.id
+//     ], (err, result) => {
+//       if (err) return console.log(err)
+//       else res.send(result)
+//     })
+// }
+
+// app.post('/postThumbDown/:id'), function (req, res) {
+//   db.movie.post_thumb_down(
+//     [req.params.id,
+//     req.params.movie_id,
+//     req.params.user_id
+//     ], (err, result) => {
+//       if (err) return console.log(err)
+//       else res.send(result)
+//     })
+// }
+
+// app.listen(8080, function () {
+//   console.log(`listening on port ${this.address().port}`)
+// });
+
+
+// app.post('/postThumbSide/:id'), function (req, res) {
+//   db.movie.post_thumb_side(
+//     [req.params.id,
+//     req.params.movie_id,
+//     req.params.user_id
+//     ], (err, result) => {
+//       if (err) return console.log(err)
+//       else res.send(result)
+//     })
+// }
+
+// app.post('/postThumbUp/:id'), function (req, res) {
+//   db.movie.post_thumb_up(
+//     [req.params.id,
+//     req.params.user_id,
+//     req.params.mpvie_id
+//     ], (err, result) => {
+//       if (err) return console.log(err)
+//       else res.send(result)
+//     })
+// }
+
+// app.post('/postToSee/:id'), function (req, res) {
+//   db.movie.post_to_see(
+//     [req.params.id,
+//     req.params.user_id,
+//     req.params.movie_id
+//     ], (err, result) => {
+//       if (err) return console.log(err)
+//       else res.send(result)
+//     })
+// }
+// //navbar
+// app.get('/getBasicUserInfo/:id'), function (req, res) {
+//   db.navbar.get_basic_user_info([req.params.id], (err, result) => {
+//     if (err) return console.log(err)
+//     else res.send(result)
+//   })
+// }
+
+
+// })
+
+// //profile
+// app.get('/getAllFriends/:id'), function (req, res) {
+//   db.profile.get_all_friends([req.params.id], (err, result) => {
+//     if (err) return console.log(err)
+//     else res.send(result)
+//   })
+// }
+
+// app.get('/getAuthorized/:id'), function (req, res) {
+//   db.profile.get_authorized([req.params.id], (err, result) => {
+//     if (err) return console.log(err)
+//     else res.send(result)
+//   })
+// }
+
+// app.get('/getFriends/:id'), function (req, res) {
+//   db.profile.get_friends([req.params.id], (err, result) => {
+//     if (err) return console.log(err)
+//     else res.send(result)
+//   })
+// }
+
+// app.get('/getUser/:id'), function (req, res) {
+//   db.profile.get_user([req.params.id], (err, result) => {
+//     if (err) return console.log(err)
+//     else res.send(result)
+//   })
+// }
+
+
+// //unused endpoints    
+// app.get('/getIfNewFriends/:id/:fb_id'), function (req, res) {
+//   db.login.get_if_new_friends([req.params.id], (err, result) => {
+//     if (err) return console.log(err)
+//     else res.send(result)
+//   })
+// }
+
+
+// //steven's endpoints
+
+app.get('/getMoviesByGenre/:id', function (req, res, next) {
+  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
+    .then(response => {
+      return res.send(response.data)
+    })
+    .catch(err => next(err))
+})
+
+app.get('/searchMovieByTitle/:movieTitle', function (req, res) {
+  axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=1`)
+    .then(response => res.send(response.data.results))
+    .catch(err => next(err))
+})
+
+app.get('/searchMovieByCastMember/:castMember', function (req, res) {
+  axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
+    .then(response => {
+
+      return res.send(response.data.results)
+
+    })
+    .catch(err => next(err))
+})
+
+app.get('/getMovieById/:id', function (req, res, next) {
+  console.log(2)
+  axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
   
 //   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
 
-//     .then(response => {
+
+    .then(response => {
 
 
-//       return res.send(response.data)
-//     })
-//     .catch(err => next(err))
+      return res.send(response.data)
+    })
+    .catch(err => next(err))
 
-// })
+})
+
+app.listen(8080, function () {
+  console.log('Connected on 8080')
+})
+

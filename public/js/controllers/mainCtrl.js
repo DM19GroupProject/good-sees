@@ -77,10 +77,23 @@ angular.module('goodSees')
         ]
         $scope.setCatHeading = category => {$scope.catHeading = category};
 
+        /////variables///////
+        $scope.resultFlag = true;
+        $scope.hideFlag = false;
+        $scope.searchCategory = 'title'
         /*--------------------------------------------------------------------*
                                     Event Handlers 
         *--------------------------------------------------------------------*/
-        $scope.searchCategory = 'title'
+        $scope.titleClicked = function(){
+            $scope.searchCategory = 'title';
+            $scope.resultFlag = true;
+            $scope.hideFlag = false;
+        }
+        $scope.nameClicked = function(){
+            $scope.searchCategory = 'name';
+            $scope.resultFlag = false;
+            $scope.hideFlag = true;
+        }
 
         $scope.search = function (searchTerm) {
 
@@ -97,10 +110,10 @@ angular.module('goodSees')
             if ($scope.searchCategory === 'name') {
                 console.log($scope.searchCategory)
                 tmdbService.searchMovieByCastMember(searchTerm)
-                    .then(navActorInfo => {
+                    .then(actorInfo => {
 
-                        console.log(navActorInfo.data)
-                        $scope.actorInfo = navActorInfo.data
+                        console.log(actorInfo.data)
+                        $scope.actorInfo = actorInfo.data
                         $state.go('main.search-results')
                     })
             }
