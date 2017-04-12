@@ -28,14 +28,73 @@ angular.module('goodSees')
                     if(response.data[i].recommends){
                         $http.get("/getMovieById/" + response.data[i].movie_id)
                         .then(function(response){
-                            console.log(baseUrl + response.data.poster_path)
-                            recommendedMovies.push(baseUrl + response.data.poster_path)
+                            console.log(response.data)
+                        
+                            recommendedMovies.push({imageUrl: baseUrl + response.data.poster_path, title: response.data.original_title})
                         })
                     }
                 }
                 console.log(recommendedMovies);
-                
+                return recommendedMovies;
             
+            })
+        }
+
+        this.getSeenMovies = function(id){
+            return $http.get('/getUserActivity/' + id)
+            .then(function(response){
+                var seenMovies = [];
+                
+                for(var i=0; i < response.data.length; i++){
+                    if(response.data[i].seen){
+                        $http.get('/getMovieById/' + response.data[i].movie_id)
+                        .then(function(response){
+                            console.log(response.data)
+
+                            seenMovies.push({imageUrl: baseUrl + response.data.poster_path, title: response.data.original_title})
+                        })
+                    }
+                }
+                console.log(seenMovies);
+                return seenMovies;
+            })
+        }
+        this.getWantToSee = function(id){
+            return $http.get('/getUserActivity/' + id)
+            .then(function(response){
+                var wantToSee = [];
+                
+                for(var i=0; i < response.data.length; i++){
+                    if(response.data[i].to_see){
+                        $http.get('/getMovieById/' + response.data[i].movie_id)
+                        .then(function(response){
+                            console.log(response.data)
+
+                            wantToSee.push({imageUrl: baseUrl + response.data.poster_path, title: response.data.original_title})
+                        })
+                    }
+                }
+                console.log(wantToSee);
+                return wantToSee;
+            })
+        }
+        this.getFavMovies = function(id){
+            return $http.get('/getUserActivity/' + id)
+            .then(function(response){
+                var favMovies = [];
+                
+                for(var i=0; i < response.data.length; i++){
+                    if(response.data[i].fav){
+                        $http.get('/getMovieById/' + response.data[i].movie_id)
+                        .then(function(response){
+                            console.log(response.data)
+
+                            favMovies.push({imageUrl: baseUrl + response.data.poster_path, title: response.data.original_title})
+                        })
+                    }
+                }
+                console.log(favMovies);
+                return favMovies;
             })
         }
 

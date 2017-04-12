@@ -38,15 +38,9 @@
       <div ng-switch-when="fav">
         <h1 class="seenLabel" style="text-transform: uppercase">{{userData.first_name}}'S FAVORITE MOVIES</h1>
         <div class="profileSeenLink">
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
+          <div ng-repeat='movies in seenMovies'>
+            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
+          </div>
         </div>
       </div>
 
@@ -77,7 +71,7 @@
 
         <div class="profileRecCarousel">
           <div ng-repeat="movies in recMovies">
-            <div class="profileRecMovies" style="background-image: url('{{movies.picture_url}}')"></div>
+            <div class="profileRecMovies" style="background-image: url('{{movies.imageUrl}}')"></div>
           </div>
           <!--<div class="profileRecMovies"></div>
           <div class="profileRecMovies"></div>
