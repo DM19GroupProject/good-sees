@@ -27,21 +27,35 @@ angular.module('goodSees')
                               Desktop Dropdown Controls
                 *--------------------------------------------------------------------*/ 
                 $('#wide-menu-ham').click(function(){
+                    console.log('clicked')
                     $('.dropdown-link-container').toggleClass('display-flex')
                     $('.desktop-profile-dropdown').toggleClass('display-block');
                 })
-                $('#search-btn').mouseenter(function(){
-                    $('.desktop-search-dropdown').addClass('display-block')
+                $(document).click(function(e) {
+                    if( e.target.id != 'wide-menu-ham') {
+                        console.log('not ham')
+                        $(".desktop-profile-dropdown").removeClass('display-block');
+                        $('.dropdown-link-container').removeClass('display-flex')
+                    }
+                });
+                //////////////Search///////////////                
+                $('#search-btn').click(function(){
+                    console.log('clicked button')
+                    $('.desktop-search-dropdown').toggleClass('display-block')
                 })
-                $('.desktop-search-dropdown').mouseleave(function(){
-                    $('.desktop-search-dropdown').removeClass('display-block')
+                $('#cat-btn, #wide-menu-ham, .feedContainer, .mobile-search-btn').click(function(){
+                    $('.desktop-search-dropdown').removeClass('display-block');
                 })
-                $('#cat-btn').mouseenter(function(){
-                    $('.desktop-categories-dropdown').addClass('display-flex');
+                
+                //////////////Categories///////////////
+                $('#cat-btn').click(function(){
+                    $('.desktop-categories-dropdown').toggleClass('display-flex');
                 })
-                $('.desktop-categories-dropdown').mouseleave(function(){
-                    $('.desktop-categories-dropdown').removeClass('display-flex');
-                })
+                $(document).click(function(e) {
+                    if( e.target.id != 'cat-btn') {
+                        $(".desktop-categories-dropdown").removeClass('display-flex');
+                    }
+                });
                 
                 /*--------------------------------------------------------------------*
                               Search By Toggle
@@ -71,3 +85,10 @@ angular.module('goodSees')
         }
     }
 });
+
+// $(document).click(function(e) {
+//                     if( e.target.id != 'search-btn') {
+//                         $(".desktop-search-dropdown").removeClass('display-block');
+//                     }
+//                 });
+                

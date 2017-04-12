@@ -23,10 +23,10 @@ $font-color: #858585;
 }
 
 .category-results-wrapper{
-    min-height: 100vh;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
+    min-height: 100vh;
 }
 .category-results-movie{
     width: 50%;

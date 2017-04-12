@@ -12,6 +12,8 @@ angular.module('goodSees')
                     .then(movieInfo => {
                         console.log(movieInfo.data)
                         $scope.movieInfo = movieInfo.data
+                        $scope.resultFlag = true;
+                        $scope.hideFlag = false;
                     })
             }
         }
@@ -25,6 +27,8 @@ angular.module('goodSees')
                             console.log(actorInfo.data)
                          console.log(actorInfo.data.known_for)
                         $scope.actorInfo = actorInfo.data
+                        $scope.resultFlag = false;
+                        $scope.hideFlag = true;
 
                     })
             }
