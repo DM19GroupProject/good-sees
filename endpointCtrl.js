@@ -258,7 +258,7 @@ module.exports = {
     res.end()
   },
   getMoviesByGenre: (req, res, next) => {
-    axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
+    axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc&page=1`)
       .then(response => {
         return res.send(response.data)
       })
