@@ -15,18 +15,24 @@
 					<h4>{{movie.release_date |date: 'yyyy' }}</h4>
 				</div>
 			</div>
+			<div class = 'pagination-btns'>
+				<p class = 'scroll-up' ng-click="prevPage()"><i class="fa fa-angle-left" aria-hidden="true"></i> PREVIOUS</p>
+				<p class = 'scroll-up' href='#'ng-click="nextPage()">NEXT <i class="fa fa-angle-right" aria-hidden="true"></i></p>
+			</div>
 		</div>
 
 		<!--searching by actor or actress-->
-		<div  ng-show="hideFlag" ng-hide="resultFlag" class = 'actor-result-container' ng-repeat="actor in actorInfo">
-			<div class = 'actor-name-pic'>
-				<div class = 'actor-image-container' style="background-image: url('https://image.tmdb.org/t/p/w300_and_h450_bestv2{{actor.profile_path}}')">
+		<div style="padding-bottom: 50px">
+			<div  ng-show="hideFlag" ng-hide="resultFlag" class = 'actor-result-container' ng-repeat="actor in actorInfo">
+				<div class = 'actor-name-pic'>
+					<div class = 'actor-image-container' style="background-image: url('https://image.tmdb.org/t/p/w300_and_h450_bestv2{{actor.profile_path}}')">
+					</div>
+					<h1>{{actor.name}}</h1>
 				</div>
-				<h1>{{actor.name}}</h1>
-			</div>
-			<div class = 'actor-movies-container'>
-				<div class = 'actor-results-movie' ng-repeat="known in actor.known_for" ui-sref="main.movie-profile({id:known.id})" header-controls>
-					<img style = "width: 100%" ng-src='https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{known.poster_path}}' />
+				<div class = 'actor-movies-container'>
+					<div class = 'actor-results-movie' ng-repeat="known in actor.known_for" ui-sref="main.movie-profile({id:known.id})" header-controls>
+						<img style = "width: 100%" ng-src='https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{known.poster_path}}' />
+					</div>
 				</div>
 			</div>
 		</div>

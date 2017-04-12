@@ -1,6 +1,9 @@
 angular.module('goodSees')
     .controller('searchCtrl', function ($scope, tmdbService, $state) {
-    
+
+        var titlePage = 1;
+        $scope.apiSearchTerm = $scope.searchTerm;
+
         /*--------------------------------------------------------------------*
                          Event Handlers
             *--------------------------------------------------------------------*/
@@ -14,6 +17,7 @@ angular.module('goodSees')
                         $scope.movieInfo = movieInfo.data
                         $scope.resultFlag = true;
                         $scope.hideFlag = false;
+                        $scope.apiSearchTerm = $scope.movieTitle;
                     })
             }
         }
@@ -24,14 +28,35 @@ angular.module('goodSees')
 
                 tmdbService.searchMovieByCastMember(castMember)
                     .then(actorInfo => {
-                            console.log(actorInfo.data)
-                         console.log(actorInfo.data.known_for)
+                        console.log(actorInfo.data)
+                        console.log(actorInfo.data.known_for)
                         $scope.actorInfo = actorInfo.data
                         $scope.resultFlag = false;
                         $scope.hideFlag = true;
 
                     })
             }
+        }
+        $scope.nextPage = function () {
+            titlePage++;
+            tmdbService.searchMovieByTitle($scope.apiSearchTerm, titlePage)
+                .then(movieInfo => {
+                    console.log(movieInfo.data)
+                    $scope.movieInfo = movieInfo.data
+
+                });
+        }
+        $scope.prevPage = function () {
+            if (titlePage > 1) {
+                titlePage--;
+                tmdbService.searchMovieByTitle($scope.apiSearchTerm, titlePage)
+                    .then(movieInfo => {
+                        console.log(movieInfo.data)
+                        $scope.movieInfo = movieInfo.data
+
+                    });
+            }
+
         }
 
     });
