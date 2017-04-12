@@ -127,20 +127,23 @@ passport.deserializeUser(function (id, done) {
                               ENDPOINTS
 *--------------------------------------------------------------------*/
 
+//----GET---------*
+
 app.get('/getNewFeed/:id', endpointCtrl.getNewFeed);
-
-
 app.get('/getIfUserExists/:id', endpointCtrl.getIfUserExists);
-app.post('/postNewUserInfo/:id/:first/:last/:picture', endpointCtrl.postNewUserInfo);
-
-
-app.post('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
-app.post('/deleteRecommendation/:id/:movieId', endpointCtrl.deleteRecommendation);
-app.post('/deleteReview/:id/:movieId', endpointCtrl.deleteReview);
-app.post('/deleteSeen/:id/:movieId', endpointCtrl.deleteSeen);
-app.post('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
 app.get('/getReviews/:id', endpointCtrl.getReviews);
 app.get('/getStats/:id', endpointCtrl.getStats);
+app.get('/getUser/:id', endpointCtrl.getUser);
+app.get('/getFriends/:id', endpointCtrl.getFriends);
+app.get('/getUserActivity/:id', endpointCtrl.getUserActivity);
+app.get('/getMoviesByGenre/:id', endpointCtrl.getMoviesByGenre);
+app.get('/searchMovieByTitle/:movieTitle', endpointCtrl.searchMovieByTitle);
+app.get('/searchMovieByCastMember/:castMember', endpointCtrl.searchMovieByCastMember);
+app.get('/getMovieById/:id', endpointCtrl.getMovieById);
+
+//----POST------*
+
+app.post('/postNewUserInfo/:id/:first/:last/:picture', endpointCtrl.postNewUserInfo);
 app.post('/postFav/:id/:movieId', endpointCtrl.postFav);
 app.post('/postRecommendation/:id/:movieId', endpointCtrl.postRecommendation);
 app.post('/postReview/:id/:movieId/:title/:review', endpointCtrl.postReview);
@@ -149,20 +152,22 @@ app.post('/thumbDown/:id/:movieId', endpointCtrl.thumbDown);
 app.post('/thumbSide/:id/:movieId', endpointCtrl.thumbSide);
 app.post('/thumbUp/:id/:movieId', endpointCtrl.thumbUp);
 app.post('/postToSee/:id/:movieId', endpointCtrl.postToSee);
-
-
-app.post('/getUser/:id', endpointCtrl.getUser);
-
-
-app.post('/deleteFriend/:id/:friendId', endpointCtrl.deleteFriend);
-app.get('/getFriends/:id', endpointCtrl.getFriends);
-app.get('/getUserActivity/:id', endpointCtrl.getUserActivity);
-app.post('/postFriendRank/:id/:friendId/:rank', endpointCtrl.postFriendRank);
 app.post('/postNewFriend/:id/:friendId', endpointCtrl.postNewFriend);
-app.get('/getMoviesByGenre/:id', endpointCtrl.getMoviesByGenre);
-app.get('/searchMovieByTitle/:movieTitle', endpointCtrl.searchMovieByTitle)
-app.get('/searchMovieByCastMember/:castMember', endpointCtrl.searchMovieByCastMember)
-app.get('/getMovieById/:id', endpointCtrl.getMovieById)
+app.post('/postFriendRank/:id/:friendId/:rank', endpointCtrl.postFriendRank);
+
+//----DELETE----*
+
+app.delete('/deleteFriend/:id/:friendId', endpointCtrl.deleteFriend);
+app.delete('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
+app.delete('/deleteRecommendation/:id/:movieId', endpointCtrl.deleteRecommendation);
+app.delete('/deleteReview/:id/:movieId', endpointCtrl.deleteReview);
+app.delete('/deleteSeen/:id/:movieId', endpointCtrl.deleteSeen);
+app.delete('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
+
+
+app.listen(8080, function () {
+  console.log('Connected on 8080')
+})
 
 
 //steven's endpoints
@@ -268,6 +273,9 @@ app.get('/getMovieById/:id', endpointCtrl.getMovieById)
 //   })
 // }
 
+
+// })
+
 // //profile
 // app.get('/getAllFriends/:id'), function (req, res) {
 //   db.profile.get_all_friends([req.params.id], (err, result) => {
@@ -352,3 +360,4 @@ app.get('/getMovieById/:id', function (req, res, next) {
 app.listen(8080, function () {
   console.log('Connected on 8080')
 })
+

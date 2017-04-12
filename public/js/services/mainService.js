@@ -3,4 +3,25 @@ angular.module('goodSees')
 
         this.test = 'Service is working'
 
+        this.getUserData = function(id){
+            return $http.get('/getUser/'+ id).then(function(response){
+                console.log(response.data);
+                return response.data;
+            })
+        }
+
+        this.getTopFriends = function(id){
+            return $http.get('/getFriends/' + id).then(function(response){
+                console.log(response.data);
+                return response.data;
+            })
+        }
+
+        this.getRecommendedMovies = function(id){
+            return $http.get('/getReviews/' + id)
+            .then(function(response){
+                console.log(response.data);
+                return response.data;
+            })
+        }
 });
