@@ -157,12 +157,12 @@ app.post('/postFriendRank/:id/:friendId/:rank', endpointCtrl.postFriendRank);
 
 //----DELETE----*
 
-app.delete('/deleteFriend/:id/:friendId', endpointCtrl.deleteFriend);
-app.delete('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
-app.delete('/deleteRecommendation/:id/:movieId', endpointCtrl.deleteRecommendation);
-app.delete('/deleteReview/:id/:movieId', endpointCtrl.deleteReview);
-app.delete('/deleteSeen/:id/:movieId', endpointCtrl.deleteSeen);
-app.delete('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
+app.post('/deleteFriend/:id/:friendId', endpointCtrl.deleteFriend);
+app.post('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
+app.post('/deleteRecommendation/:id/:movieId', endpointCtrl.deleteRecommendation);
+app.post('/deleteReview/:id/:movieId', endpointCtrl.deleteReview);
+app.post('/deleteSeen/:id/:movieId', endpointCtrl.deleteSeen);
+app.post('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
 
 
 app.listen(8080, function () {
@@ -314,3 +314,50 @@ app.listen(8080, function () {
 //   })
 // }
 
+<<<<<<< HEAD
+=======
+
+// //steven's endpoints
+
+app.get('/getMoviesByGenre/:id/:page', function (req, res, next) {
+  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc&page=${req.params.page}`)
+    .then(response => {
+      return res.send(response.data)
+    })
+    .catch(err => next(err))
+})
+
+app.get('/searchMovieByTitle/:movieTitle/:page', function (req, res) {
+  axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=${req.params.page}`)
+    .then(response => res.send(response.data.results))
+    .catch(err => next(err))
+})
+
+app.get('/searchMovieByCastMember/:castMember', function (req, res) {
+  axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
+    .then(response => {
+
+      return res.send(response.data.results)
+
+    })
+    .catch(err => next(err))
+})
+
+app.get('/getMovieById/:id', function (req, res, next) {
+  console.log(2)
+  axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
+  
+//   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
+
+
+    .then(response => {
+
+
+      return res.send(response.data)
+    })
+    .catch(err => next(err))
+
+})
+
+
+>>>>>>> master
