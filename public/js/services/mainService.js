@@ -34,7 +34,7 @@ angular.module('goodSees')
                         })
                     }
                 }
-                console.log(recommendedMovies);
+                console.log("recMovies:" + recommendedMovies);
                 return recommendedMovies;
             
             })
@@ -55,7 +55,7 @@ angular.module('goodSees')
                         })
                     }
                 }
-                console.log(seenMovies);
+                console.log("seenMovies:" + seenMovies);
                 return seenMovies;
             })
         }
@@ -74,7 +74,7 @@ angular.module('goodSees')
                         })
                     }
                 }
-                console.log(wantToSee);
+                console.log("want:" + wantToSee);
                 return wantToSee;
             })
         }
@@ -93,7 +93,7 @@ angular.module('goodSees')
                         })
                     }
                 }
-                console.log(favMovies);
+                console.log("favMovies:" + favMovies);
                 return favMovies;
             })
         }
