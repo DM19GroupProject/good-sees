@@ -77,38 +77,3 @@ VALUES
     (920, 2197287247035846, true, true, false, false, true, true, true, 'cars!', 'kids movies are my favorite movies.'),
     (10195, 2197287247035846, false, true, false, false, false, true, true, 'that hammer tho', 'i like thor. his hair made me too jealous to finish watching. :('),
     (10020, 2197287247035846, true, true, false, false, true, true, true, 'teapots', 'singing teapots make my day. everyday.');
-
-
-
-
-select users.first_name,
-    friends.user_id,
-    friends.friend_id
-from users
-    join friends
-    on friends.user_id = users.fb_id;
-
-
-
-select distinct users.first_name,
-    friends.user_id,
-    friends.friend_id
-from users
-    join friends
-    on friends.friend_id = users.fb_id
-where friends.user_id = 4197287247035846;
-
-
-
-
-select distinct users.first_name,
-    friends.user_id,
-    friends.friend_id,
-    movie_rating.user_id,
-    movie_rating.recommends
-from users
-    join friends
-    on friends.friend_id = users.fb_id
-    join movie_rating
-    on movie_rating.user_id = friends.friend_id
-where friends.user_id = 2197287247035846;
