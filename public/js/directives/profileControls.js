@@ -11,19 +11,20 @@ angular.module('goodSees')
           $('#favoritesTab').removeClass('afterClick');
         });
         $('#seenTab').click(function() {
+          $('#profileTab').removeClass('afterClick');
           $('#profileTab').addClass('beforeClick');
           $('#seenTab').addClass('afterClick');
           $('#wantToSeeTab').removeClass('afterClick');
           $('#favoritesTab').removeClass('afterClick');
         });
         $('#wantToSeeTab').click(function() {
-          $('#profileTab').addClass('beforeClick');
+          $('#profileTab').removeClass('afterClick');
           $('#seenTab').removeClass('afterClick');
           $('#wantToSeeTab').addClass('afterClick');
           $('#favoritesTab').removeClass('afterClick');
         });
         $('#favoritesTab').click(function() {
-          $('#profileTab').addClass('beforeClick');
+          $('#profileTab').removeClass('afterClick');
           $('#seenTab').removeClass('afterClick');
           $('#wantToSeeTab').removeClass('afterClick');
           $('#favoritesTab').addClass('afterClick');
