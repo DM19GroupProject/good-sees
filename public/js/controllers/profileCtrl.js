@@ -7,4 +7,9 @@ angular.module('goodSees')
         .then(function(response){
             $scope.userData = response[0];
         })
+
+        mainService.getTopFriends(1197287247035846)
+        .then(function(response){
+            $scope.friends = response;
+        })
 });

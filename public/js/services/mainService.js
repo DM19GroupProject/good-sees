@@ -9,4 +9,11 @@ angular.module('goodSees')
                 return response.data;
             })
         }
+
+        this.getTopFriends = function(id){
+            return $http.get('/getFriends/' + id).then(function(response){
+                console.log(response.data);
+                return response.data;
+            })
+        }
 });
