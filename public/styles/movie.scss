@@ -87,6 +87,15 @@ $yellow-search-text: #CE9C29;
     font-size: 35px;
     padding: 0px 10px 85px 15px;
 }
+.fa-rotate-90{
+    .fa-rotate-45 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+}
 
 }
 @media(min-width: 650px){
