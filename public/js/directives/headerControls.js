@@ -16,12 +16,19 @@ angular.module('goodSees')
                 $('.list-link').click(function(){
                     $('.lists-links').toggleClass('display-flex');
                 })
-                $('.category-results-movie').mouseenter(function(){
-                    $(this).children('.category-overlay').css('display', 'block');
-                })
-                $('.category-results-movie').mouseleave(function(){
-                    $(this).children('.category-overlay').css('display', 'none');
-                })
+
+
+                /////////adding overlay to movie thumbnails/////
+                if($(window).width() >= 750) {
+                    $('.category-results-movie').mouseenter(function(){
+                        $(this).children('.category-overlay').css('display', 'block');
+                    })
+                    $('.category-results-movie').mouseleave(function(){
+                        $(this).children('.category-overlay').css('display', 'none');
+                    })
+                }
+                ////////////////////////////////////////////////////////
+
 
                 /*--------------------------------------------------------------------*
                               Desktop Dropdown Controls
