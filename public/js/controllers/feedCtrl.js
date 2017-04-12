@@ -1,6 +1,7 @@
 angular.module('goodSees')
     .controller('feedCtrl', function ($scope, mainService, tmdbService) {
 
+        $scope.baseUrl = mainService.baseUrl;
         /*--------------------------------------------------------------------*
                       Event Handlers 
          *--------------------------------------------------------------------*/
@@ -13,6 +14,11 @@ angular.module('goodSees')
                         $scope.feedMovieInfo = movieInfo.data
                     })
             }
+        }
+        $scope.selectMovie = function(movie) {
+            $scope.recSelection = movie;
+            console.log($scope.recSelection)
+            
         }
 
         $scope.newRecommendation;
