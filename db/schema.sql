@@ -72,37 +72,8 @@ VALUES
     (4523, 1197287247035846, false, false, false, true, false, true, false, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd'),
     (4523, 4197287247035846, true, true, false, false, true, true, true, 'changed my life', 'I literally cannot express how much this movie changed my life. Incredible. It is like I''m suddenly a princess!!'),
     (4523, 3197287247035846, false, false, false, true, false, false, false, 'I don''t have time for titles', 'I was told this movie sucked. So I came here to tell everyone. Trollalala  -lallalala-lala-la.'),
-    (4523, 2197287247035846, true, false, true, false, false, true, false, 'ehh', 'the songs are ok. everything else is not');
-
-
-select users.first_name,
-    friends.user_id,
-    friends.friend_id
-from users
-    join friends
-    on friends.user_id = users.fb_id;
-
-
-
-select distinct users.first_name,
-    friends.user_id,
-    friends.friend_id
-from users
-    join friends
-    on friends.friend_id = users.fb_id
-where friends.user_id = 4197287247035846;
-
-
-
-
-select distinct users.first_name,
-    friends.user_id,
-    friends.friend_id,
-    movie_rating.user_id,
-    movie_rating.recommends
-from users
-    join friends
-    on friends.friend_id = users.fb_id
-    join movie_rating
-    on movie_rating.user_id = friends.friend_id
-where friends.user_id = 2197287247035846;
+    (4523, 2197287247035846, true, false, true, false, false, true, false, 'ehh', 'the songs are ok. everything else is not'),
+    (69531, 2197287247035846, true, false, false, false, true, false, true, 'i don''t even know', 'i think i want to see this movie'),
+    (920, 2197287247035846, true, true, false, false, true, true, true, 'cars!', 'kids movies are my favorite movies.'),
+    (10195, 2197287247035846, false, true, false, false, false, true, true, 'that hammer tho', 'i like thor. his hair made me too jealous to finish watching. :('),
+    (10020, 2197287247035846, true, true, false, false, true, true, true, 'teapots', 'singing teapots make my day. everyday.');

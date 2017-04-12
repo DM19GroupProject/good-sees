@@ -157,12 +157,12 @@ app.post('/postFriendRank/:id/:friendId/:rank', endpointCtrl.postFriendRank);
 
 //----DELETE----*
 
-app.delete('/deleteFriend/:id/:friendId', endpointCtrl.deleteFriend);
-app.delete('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
-app.delete('/deleteRecommendation/:id/:movieId', endpointCtrl.deleteRecommendation);
-app.delete('/deleteReview/:id/:movieId', endpointCtrl.deleteReview);
-app.delete('/deleteSeen/:id/:movieId', endpointCtrl.deleteSeen);
-app.delete('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
+app.post('/deleteFriend/:id/:friendId', endpointCtrl.deleteFriend);
+app.post('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
+app.post('/deleteRecommendation/:id/:movieId', endpointCtrl.deleteRecommendation);
+app.post('/deleteReview/:id/:movieId', endpointCtrl.deleteReview);
+app.post('/deleteSeen/:id/:movieId', endpointCtrl.deleteSeen);
+app.post('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
 
 
 app.listen(8080, function () {
