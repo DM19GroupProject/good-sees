@@ -19,14 +19,6 @@
         <h1 class="seenLabel" style="text-transform: uppercase">MOVIES {{userData.first_name}} HAS SEEN</h1>
         <div class="profileSeenLink">
           <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
         </div>
       </div>
       <div ng-switch-when="want">
@@ -84,12 +76,14 @@
         <div class="recommendationLabel" style="text-transform: uppercase">MOVIES RECOMMENDED BY {{userData.first_name}}</div>
 
         <div class="profileRecCarousel">
+          <div ng-repeat="movies in recMovies">
+            <div class="profileRecMovies" style="background-image: url('{{movies.picture_url}}')"></div>
+          </div>
+          <!--<div class="profileRecMovies"></div>
           <div class="profileRecMovies"></div>
           <div class="profileRecMovies"></div>
           <div class="profileRecMovies"></div>
-          <div class="profileRecMovies"></div>
-          <div class="profileRecMovies"></div>
-          <div class="profileRecMovies"></div>
+          <div class="profileRecMovies"></div>-->
         </div>
       </div> 
     </div>
