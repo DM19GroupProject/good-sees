@@ -317,16 +317,16 @@ app.listen(8080, function () {
 
 // //steven's endpoints
 
-app.get('/getMoviesByGenre/:id', function (req, res, next) {
-  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc`)
+app.get('/getMoviesByGenre/:id/:page', function (req, res, next) {
+  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc&page=${req.params.page}`)
     .then(response => {
       return res.send(response.data)
     })
     .catch(err => next(err))
 })
 
-app.get('/searchMovieByTitle/:movieTitle', function (req, res) {
-  axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=1`)
+app.get('/searchMovieByTitle/:movieTitle/:page', function (req, res) {
+  axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=${req.params.page}`)
     .then(response => res.send(response.data.results))
     .catch(err => next(err))
 })

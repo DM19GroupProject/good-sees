@@ -88,14 +88,14 @@ angular.module('goodSees')
                     byTitle.removeClass('selected');
                 })
 
+                /////////////scroll up//////////
+                $('.scroll-up').click(function(){
+                    $('body').scrollTop(0);
+                })
+
             });
         }
     }
 });
 
-// $(document).click(function(e) {
-//                     if( e.target.id != 'search-btn') {
-//                         $(".desktop-search-dropdown").removeClass('display-block');
-//                     }
-//                 });
                 

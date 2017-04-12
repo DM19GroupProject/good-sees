@@ -81,6 +81,7 @@ angular.module('goodSees')
         $scope.resultFlag = true;
         $scope.hideFlag = false;
         $scope.searchCategory = 'title'
+        
         /*--------------------------------------------------------------------*
                                     Event Handlers 
         *--------------------------------------------------------------------*/
@@ -99,7 +100,7 @@ angular.module('goodSees')
 
             if ($scope.searchCategory === 'title') {
                 console.log($scope.searchCategory)
-                tmdbService.searchMovieByTitle(searchTerm)
+                tmdbService.searchMovieByTitle(searchTerm, 1)
                     .then(movieInfo => {
                         console.log(movieInfo.data)
                         $scope.movieInfo = movieInfo.data

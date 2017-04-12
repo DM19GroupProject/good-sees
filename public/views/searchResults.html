@@ -16,8 +16,8 @@
 				</div>
 			</div>
 			<div class = 'pagination-btns'>
-				<p><i class="fa fa-angle-left" aria-hidden="true"></i> PREVIOUS</p>
-				<p>NEXT <i class="fa fa-angle-right" aria-hidden="true"></i></p>
+				<p class = 'scroll-up' ng-click="prevPage()"><i class="fa fa-angle-left" aria-hidden="true"></i> PREVIOUS</p>
+				<p class = 'scroll-up' href='#'ng-click="nextPage()">NEXT <i class="fa fa-angle-right" aria-hidden="true"></i></p>
 			</div>
 		</div>
 
@@ -34,10 +34,6 @@
 						<img style = "width: 100%" ng-src='https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{known.poster_path}}' />
 					</div>
 				</div>
-			</div>
-			<div class = 'pagination-btns'>
-				<p><i class="fa fa-angle-left" aria-hidden="true"></i> PREVIOUS</p>
-				<p>NEXT <i class="fa fa-angle-right" aria-hidden="true"></i></p>
 			</div>
 		</div>
 	</div>
