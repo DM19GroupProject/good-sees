@@ -12,6 +12,7 @@ angular.module('goodSees')
         });
         $('#seenTab').click(function() {
           $('#profileTab').removeClass('afterClick');
+          $('#profileTab').addClass('beforeClick');
           $('#seenTab').addClass('afterClick');
           $('#wantToSeeTab').removeClass('afterClick');
           $('#favoritesTab').removeClass('afterClick');
