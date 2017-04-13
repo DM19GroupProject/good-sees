@@ -1,6 +1,7 @@
 let app = require('./server.js');
 let config = require('./config.js');
-const axios = require('axios')
+let passport = require('passport');
+const axios = require('axios');
 let db;
 
 setImmediate(() => {
@@ -18,7 +19,15 @@ module.exports = {
 
   // feed endpoints
 
+  // passport.authenticate('facebook', { failureRedirect: '/login' }),
+  // function(req, res) {
+  //   // Successful authentication, redirect home.
+  //   res.redirect('/');
+  // });
+
+
   getNewFeed: (req, res, next) => {
+    passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.feed.get_new_feed([req.params.id], (err, result) => {
       if (err) console.log('get new feed endpoint error: ', err)
       else {
