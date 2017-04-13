@@ -69,7 +69,7 @@ VALUES(1197287247035846, 2197287247035846, 1),
 INSERT INTO movie_rating
     (movie_id, user_id, recommends, thumb_up, thumb_sideways, thumb_down, to_see, seen, fav, comment_title, comment)
 VALUES
-    (4523, 1197287247035846, false, false, false, true, false, true, false, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd'),
+    (4523, 1197287247035846, true, false, false, true, false, true, false, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd'),
     (4523, 4197287247035846, true, true, false, false, true, true, true, 'changed my life', 'I literally cannot express how much this movie changed my life. Incredible. It is like I''m suddenly a princess!!'),
     (4523, 3197287247035846, false, false, false, true, false, false, false, 'I don''t have time for titles', 'I was told this movie sucked. So I came here to tell everyone. Trollalala  -lallalala-lala-la.'),
     (4523, 2197287247035846, true, false, true, false, false, true, false, 'ehh', 'the songs are ok. everything else is not'),

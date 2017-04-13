@@ -67,7 +67,7 @@
       </div>
       <div class="feedActivityContainer">
         <div ng-repeat="activity in activities track by $index" class="activityCards">
-          <div class="recFeedCard">
+          <div class="recFeedCard" ng-if="activity.feedData[$index].recommends">
             <div class="userDidSomething">
               <div class="picName">
                 <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
