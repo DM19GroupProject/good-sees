@@ -9,6 +9,7 @@ SELECT DISTINCT
   friends.friend_id,
   movie_rating.movie_id,
   movie_rating.comment_title,
+  movie_rating.comment,
   movie_rating.date_created,
   movie_rating.thumb_up,
   movie_rating.thumb_sideways,
