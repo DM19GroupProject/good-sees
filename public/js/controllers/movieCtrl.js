@@ -12,7 +12,7 @@ angular.module('goodSees')
         })
         
         $scope.addToFavs = (userId, movieId) =>{
-            tmdbService.addToFavs(userId, movieId)
+            mainService.addToFavs(userId, movieId)
         }
 
 

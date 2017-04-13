@@ -97,8 +97,8 @@ angular.module('goodSees')
                 return favMovies;
             })
         }
-        this.addToFavs = (userId, movieID) => {
-            return $http.post('/postFav/:id/:movieId')
+        this.addToFavs = (userId, movieId) => {
+            return $http.post(`/postFav/${userId}/${movieId}`)
         }
 
        
