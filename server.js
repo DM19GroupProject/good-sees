@@ -6,6 +6,7 @@ const express = require('express'),
   // LocalStrategy = require('passport-local').Strategy,
   FacebookStrategy = require('passport-facebook').Strategy,
   config = require('./config.js'),
+  userService = require('./public/js/services/userService.js')
   axios = require('axios'),
   cors = require('cors');
 const baseUrl = 'https://api.themoviedb.org/3/';
@@ -92,9 +93,13 @@ passport.use(new FacebookStrategy({
         console.log('CREATING USER');
         db.login.post_new_user_info([profile._json.id, profile._json.first_name, profile._json.last_name,  profile._json.picture.data.url], function (err, user) {
           console.log('USER CREATED', profile._json.first_name, profile._json.last_name);
+          userService.user = profile._json.id;
+          // console.log(userService.user);
           return cb(err, user);
         })
       } else {
+        userService.user = profile._json.id;
+        // console.log(userService.user);
         return cb(err, user);
       }
     })
