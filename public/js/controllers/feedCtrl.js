@@ -2,6 +2,7 @@ angular.module('goodSees')
     .controller('feedCtrl', function ($scope, mainService, tmdbService) {
 
         $scope.baseUrl = mainService.baseUrl;
+        var id = 2197287247035846;
         /*--------------------------------------------------------------------*
                       Event Handlers 
          *--------------------------------------------------------------------*/
@@ -21,6 +22,17 @@ angular.module('goodSees')
             
         }
 
+     
+
         $scope.newRecommendation;
+
+        $scope.getMovieForFeed = function(){
+            mainService.getMovieForFeed(id)
+            .then(function(response){
+                $scope.activities = response;
+            })
+        }
+
+        $scope.getMovieForFeed();
        
     });

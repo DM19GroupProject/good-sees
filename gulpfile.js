@@ -7,7 +7,7 @@ const sass = require('gulp-sass');
 gulp.task('js', function () {
   // gulp.src(['./js/services/mainService.js', './js/adventurerCard.js', './js/'])       Bad way
   // Use a wildcard instead. Wildcard = *
-  gulp.src(['./public/js/app.js', './public/js/**/*.js'])
+  gulp.src(['./public/js/app.js', './public/js/directives/headerControls.js', './public/js/**/*.js'])
     .pipe(babel({
       presets: ['es2015']
     }))

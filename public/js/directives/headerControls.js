@@ -13,17 +13,18 @@ angular.module('goodSees')
                 $('.dropdown-profile-info').click(function(){
                     $('.dropdown-link-container').toggleClass('display-flex');
                 })
-                $('.list-link').click(function(){
+                $('.list-link').click(function(e){
+                    e.preventDefault();
                     $('.lists-links').toggleClass('display-flex');
                 })
 
 
                 /////////adding overlay to movie thumbnails/////
                 if($(window).width() >= 750) {
-                    $('.category-results-movie').mouseenter(function(){
+                    $('.category-results-movie, .actor-results-movie').mouseenter(function(){
                         $(this).children('.category-overlay').css('display', 'block');
                     })
-                    $('.category-results-movie').mouseleave(function(){
+                    $('.category-results-movie, .actor-results-movie').mouseleave(function(){
                         $(this).children('.category-overlay').css('display', 'none');
                     })
                 }
@@ -33,10 +34,9 @@ angular.module('goodSees')
                 /*--------------------------------------------------------------------*
                               Desktop Dropdown Controls
                 *--------------------------------------------------------------------*/ 
-                $('#wide-menu-ham').click(function(){
-                    // console.log('clicked')
-                    $('.dropdown-link-container').toggleClass('display-flex')
-                    $('.desktop-profile-dropdown').toggleClass('display-block');
+                $('#wide-menu-ham').click(function(){ 
+                    $('.dropdown-link-container').addClass('display-flex')
+                    $('.desktop-profile-dropdown').addClass('display-block');
                 })
                 $(document).click(function(e) {
                     if( e.target.id != 'wide-menu-ham') {
@@ -46,16 +46,15 @@ angular.module('goodSees')
                 });
                 //////////////Search///////////////                
                 $('#search-btn').click(function(){
-                    // console.log('clicked button')
-                    $('.desktop-search-dropdown').toggleClass('display-block')
+                    $('.desktop-search-dropdown').addClass('display-block')
                 })
-                $('#cat-btn, #wide-menu-ham, .feedContainer, .mobile-search-btn').click(function(){
+                $('#cat-btn, #wide-menu-ham, .feedContainer, .mobile-search-btn, .categories-wrapper, .profilePicContainer, .results-search-container').click(function(){
                     $('.desktop-search-dropdown').removeClass('display-block');
                 })
                 
                 //////////////Categories///////////////
                 $('#cat-btn').click(function(){
-                    $('.desktop-categories-dropdown').toggleClass('display-flex');
+                    $('.desktop-categories-dropdown').addClass('display-flex');
                 })
                 $(document).click(function(e) {
                     if( e.target.id != 'cat-btn') {

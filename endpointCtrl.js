@@ -320,8 +320,6 @@ searchMovieByCastMember:(req, res) => {
 },
 
 getMovieById: (req, res, next) => {
-    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
-  console.log(2)
   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
    .then(response => {
 

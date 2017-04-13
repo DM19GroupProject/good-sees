@@ -56,15 +56,41 @@
             <button>POST</button>
           </div>
       </div>
-        <div class="feedSearchResults">
-          <div header-controls class="feedSearchSelection" ng-repeat="movie in feedMovieInfo" ng-click="selectMovie(movie)">
-            <div class="feedSearchResultsMovie">
-              <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}" />
-              <p>{{movie.title}}</p>
-              <p>{{movie.release_date}}</p>
+      <div class="feedSearchResults">
+        <div header-controls class="feedSearchSelection" ng-repeat="movie in feedMovieInfo" ng-click="selectMovie(movie)">
+          <div class="feedSearchResultsMovie">
+            <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}" />
+            <p>{{movie.title}}</p>
+            <p>{{movie.release_date}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="feedActivityContainer">
+        <div ng-repeat="activity in activities track by $index" class="activityCards">
+          <div class="recFeedCard" ng-if="activity.feedData[$index].recommends">
+            <div class="userDidSomething">
+              <div class="picName">
+                <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                <h2>{{activity.feedData[$index].first_name}}</h2>
+              </div>
+              <p>recommends</p>
+            </div>
+            <div class="activityMovieContainer">
+              <div class="activityMoviePic">
+                <img src="{{activity.imageUrl}}">
+              </div>
+              <div class="activityMovieWords">
+                <div class="activityMovieTitle">{{activity.title}}</div>
+                <div class="activityMovieDescription">{{activity.overview}}</div>
+              </div>
+            </div>
+            <div class="activityComment">
+              <div class="userSays">{{activity.feedData[$index].first_name}} says</div>
+              <div class="userComment">{{activity.feedData[$index].comment_title}}</div>
             </div>
           </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
