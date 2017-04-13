@@ -7,11 +7,11 @@ angular.module('goodSees')
 
         this.getUserData = function(id){
             return $http.get('/getUser/'+ id).then(function(response){
-                console.log(response.data);
+                // console.log(response.data);
                 return response.data;
             })
         }
-
+            
         this.getTopFriends = function(id){
             return $http.get('/getFriends/' + id).then(function(response){
                 console.log(response.data);
@@ -96,6 +96,9 @@ angular.module('goodSees')
                 console.log("favMovies:" + favMovies);
                 return favMovies;
             })
+        }
+        this.addToFavs = (userId, movieID) => {
+            return $http.post('/postFav/:id/:movieId')
         }
 
        
