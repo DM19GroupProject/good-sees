@@ -12,22 +12,13 @@ angular.module('goodSees')
     }
 
 
-
-
-
-
-
-
-
-
-
     this.getMoviesByGenre = (id, page) => {
         return $http.get(`/getMoviesByGenre/${id}/${page}`)
     }
    
    this.getMovieById = movieId => {
-       console.log(movieId)
        return $http.get(`/getMovieById/${movieId}`)
+       
    }
 
 });
