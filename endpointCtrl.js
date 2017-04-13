@@ -175,6 +175,7 @@ module.exports = {
   },
   thumbDown: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
+    console.log('sad face')
     db.movie.post_thumb_down([
       req.params.id,
       req.params.movieId
@@ -185,6 +186,7 @@ module.exports = {
   },
   thumbSide: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
+    console.log('meh face')
     db.movie.post_thumb_side([
       req.params.id,
       req.params.movieId
@@ -195,6 +197,7 @@ module.exports = {
   },
   thumbUp: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
+    console.log('happy face')
     db.movie.post_thumb_up([
       req.params.id,
       req.params.movieId
@@ -321,6 +324,7 @@ getMovieById: (req, res, next) => {
   console.log(2)
   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
    .then(response => {
+
     return res.send(response.data)
   })
   .catch(err => next(err))
