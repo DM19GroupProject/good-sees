@@ -40,7 +40,6 @@ angular.module('goodSees')
                 })
                 $(document).click(function(e) {
                     if( e.target.id != 'wide-menu-ham') {
-                        // console.log('not ham')
                         $(".desktop-profile-dropdown").removeClass('display-block');
                         $('.dropdown-link-container').removeClass('display-flex')
                     }
@@ -93,6 +92,15 @@ angular.module('goodSees')
                     $('body').scrollTop(0);
                 })
 
+                 /*--------------------------------------------------------------------*
+                              Feed
+                *--------------------------------------------------------------------*/
+                $('.feedSearchSelection').click(function(){
+                    console.log('selected movie')
+                    $('.postData').hide();
+                    $('.recCard').show();
+                    $('.feedSearchResults').hide();
+                })
             });
         }
     }
