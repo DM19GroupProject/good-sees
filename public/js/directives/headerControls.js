@@ -34,7 +34,7 @@ angular.module('goodSees')
                               Desktop Dropdown Controls
                 *--------------------------------------------------------------------*/ 
                 $('#wide-menu-ham').click(function(){
-                    console.log('clicked')
+                    // console.log('clicked')
                     $('.dropdown-link-container').toggleClass('display-flex')
                     $('.desktop-profile-dropdown').toggleClass('display-block');
                 })
@@ -46,7 +46,7 @@ angular.module('goodSees')
                 });
                 //////////////Search///////////////                
                 $('#search-btn').click(function(){
-                    console.log('clicked button')
+                    // console.log('clicked button')
                     $('.desktop-search-dropdown').toggleClass('display-block')
                 })
                 $('#cat-btn, #wide-menu-ham, .feedContainer, .mobile-search-btn').click(function(){
