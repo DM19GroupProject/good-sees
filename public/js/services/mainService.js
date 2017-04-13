@@ -7,7 +7,7 @@ angular.module('goodSees')
 
         this.getUserData = function(id){
             return $http.get('/getUser/'+ id).then(function(response){
-                // console.log(response.data);
+                console.log(response.data);
                 return response.data;
             })
         }
@@ -99,6 +99,24 @@ angular.module('goodSees')
         }
         this.addToFavs = (userId, movieId) => {
             return $http.post(`/postFav/${userId}/${movieId}`)
+        }
+        this.addToSeen = (userId, movieId) => {
+            return $http.post(`/postSeen/${userId}/${movieId}`)
+        }
+        this.addToSee = (userId, movieId) => {
+            return $http.post(`/postToSee/${userId}/${movieId}`)
+        }
+        this.postRecommendation = (userId, movieId) => {
+            return $http.post(`/postRecommendation/${userId}/${movieId}`)
+        }
+        this.thumbUp = (userId, movieId) => {
+            return $http.post(`/thumbUp/${userId}/${movieId}`)
+        }
+        this.thumbSide = (userId, movieId) => {
+            return $http.post(`/thumbSide/${userId}/${movieId}`)
+        }
+        this.thumbDown = (userId, movieId) => {
+            return $http.post(`/thumbDown/${userId}/${movieId}`)
         }
 
        

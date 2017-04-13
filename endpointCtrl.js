@@ -151,6 +151,7 @@ module.exports = {
     res.end()
   },
   thumbDown: (req, res, next) => {
+    console.log('sad face')
     db.movie.post_thumb_down([
       req.params.id,
       req.params.movieId
@@ -160,6 +161,7 @@ module.exports = {
     res.end()
   },
   thumbSide: (req, res, next) => {
+    console.log('meh face')
     db.movie.post_thumb_side([
       req.params.id,
       req.params.movieId
@@ -169,6 +171,7 @@ module.exports = {
     res.end()
   },
   thumbUp: (req, res, next) => {
+    console.log('happy face')
     db.movie.post_thumb_up([
       req.params.id,
       req.params.movieId
