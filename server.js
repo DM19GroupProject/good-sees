@@ -28,6 +28,17 @@ app.use(passport.session());
 
 
 
+app.get('/auth/facebook',
+  passport.authenticate('facebook', { scope: ['user_friends']}));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/#/feed');
+  });
+
+
 /*--------------------------------------------------------------------*
                               DATABASE
 *--------------------------------------------------------------------*/
@@ -56,26 +67,47 @@ db.schema(function (err, data) {
 *--------------------------------------------------------------------*/
 
 
-// passport.use(new FacebookStrategy({
-//   clientID: config.facebook.clientID,
-//   clientSecret: config.facebook.clientSecret,
-//   callbackURL: "http://localhost:3000/auth/facebook/callback",
-//   profileFields: ['id', 'displayName']
-// },
-//   function (accessToken, refreshToken, profile, cb) {
-//     db.getUserByFacebookId([profile.id], function (err, user) {
-//       user = user[0];
-//       if (!user) {
-//         console.log('CREATING USER');
-//         db.createUserFacebook([profile.displayName, profile.id], function (err, user) {
-//           console.log('USER CREATED', user);
-//           return cb(err, user);
-//         })
-//       } else {
-//         return cb(err, user);
-//       }
-//     })
-//   }));
+
+
+
+
+
+
+
+
+
+passport.use(new FacebookStrategy({
+  clientID: config.facebook.clientID,
+  clientSecret: config.facebook.clientSecret,
+  callbackURL: "http://localhost:8080/auth/facebook/callback",
+  profileFields: ['id', 'displayName', 'first_name', 'last_name', 'picture']
+},
+  function (accessToken, refreshToken, profile, cb) {
+    db.login.get_if_user_exists([profile.id], function (err, user) {
+      // console.log('checking user out')
+      // user = user[0];
+      // console.log(user[0].case)
+      // console.log(profile._json.first_name, profile._json.last_name, profile._json.id, profile._json.picture.data.url)
+      if (user[0].case == 0) {
+        console.log('CREATING USER');
+        db.login.post_new_user_info([profile._json.id, profile._json.first_name, profile._json.last_name,  profile._json.picture.data.url], function (err, user) {
+          console.log('USER CREATED', profile._json.first_name, profile._json.last_name);
+          return cb(err, user);
+        })
+      } else {
+        return cb(err, user);
+      }
+    })
+  }));
+
+passport.serializeUser(function (user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function (obj, cb) {
+  cb(null, obj);
+});
+
 
 
 // passport.serializeUser(function (user, done) {
@@ -93,15 +125,36 @@ db.schema(function (err, data) {
 //   })
 // })
 
-passport.deserializeUser(function (id, done) {
-  db.getUserById([id], function (err, user) {
-    user = user[0];
-    if (err) console.log(err);
-    else console.log('RETRIEVED USER');
-    console.log(user);
-    done(null, user);
-  })
-})
+// passport.deserializeUser(function (id, done) {
+//   db.getUserById([id], function (err, user) {
+//     user = user[0];
+//     if (err) console.log(err);
+//     else console.log('RETRIEVED USER');
+//     console.log(user);
+//     done(null, user);
+//   })
+// })
+// >>>>>>> 45dbd8d46ffdb067e341ff2cf6525e280495a68a
+
+
+/////////////
+// DATABASE //
+/////////////
+
+
+//endpoints for sql
+// db.schema(function(err, data) {
+//   if (err) console.log(err);
+//   else console.log("All tables successfully reset")
+// })
+
+
+// db.create_user(function(err, user) {
+//   if (err) console.log(err);
+//   else console.log('CREATED USER');
+//   console.log(user);
+// })
+
 
 /*--------------------------------------------------------------------*
                               ENDPOINTS
@@ -143,6 +196,10 @@ app.post('/deleteRecommendation/:id/:movieId', endpointCtrl.deleteRecommendation
 app.post('/deleteReview/:id/:movieId', endpointCtrl.deleteReview);
 app.post('/deleteSeen/:id/:movieId', endpointCtrl.deleteSeen);
 app.post('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
+
+
+// app.get('/login',
+//   passport.authenticate('facebook'));
 
 
 app.listen(8080, function () {
