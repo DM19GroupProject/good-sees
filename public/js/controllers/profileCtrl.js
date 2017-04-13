@@ -16,6 +16,7 @@ angular.module('goodSees')
         mainService.getRecommendedMovies(2197287247035846)
         .then(function(response){
             $scope.recMovies = response;
+            console.log($scope.recMovies)
         })
 
         mainService.getSeenMovies(2197287247035846)
