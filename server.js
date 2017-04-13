@@ -6,7 +6,7 @@ const express = require('express'),
   // LocalStrategy = require('passport-local').Strategy,
   FacebookStrategy = require('passport-facebook').Strategy,
   config = require('./config.js'),
-  userService = require('./public/js/services/userService.js')
+  // userService = require('./public/js/services/userService.js'),
   axios = require('axios'),
   cors = require('cors');
 const baseUrl = 'https://api.themoviedb.org/3/';
@@ -39,6 +39,9 @@ app.get('/auth/facebook/callback',
     res.redirect('/#/feed');
   });
 
+app.get('/auth/me', (req, res) => {
+  res.status(200).send(req.user[0].fb_id);
+})
 
 /*--------------------------------------------------------------------*
                               DATABASE
@@ -84,21 +87,23 @@ passport.use(new FacebookStrategy({
   profileFields: ['id', 'displayName', 'first_name', 'last_name', 'picture']
 },
   function (accessToken, refreshToken, profile, cb) {
-    db.login.get_if_user_exists([profile.id], function (err, user) {
+    db.login.get_user([profile.id], function (err, user) {
       // console.log('checking user out')
       // user = user[0];
-      // console.log(user[0].case)
+      console.log('this is the user: ',user,'with this id',profile.id )
       // console.log(profile._json.first_name, profile._json.last_name, profile._json.id, profile._json.picture.data.url)
-      if (user[0].case == 0) {
+
+      if (!user[0]) {
         console.log('CREATING USER');
         db.login.post_new_user_info([profile._json.id, profile._json.first_name, profile._json.last_name,  profile._json.picture.data.url], function (err, user) {
           console.log('USER CREATED', profile._json.first_name, profile._json.last_name);
-          userService.user = profile._json.id;
+          // userService.user = profile._json.id;
           // console.log(userService.user);
           return cb(err, user);
         })
       } else {
-        userService.user = profile._json.id;
+
+        // userService.user = profile._json.id;
         // console.log(userService.user);
         return cb(err, user);
       }
