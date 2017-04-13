@@ -1,6 +1,7 @@
 let app = require('./server.js');
 let config = require('./config.js');
-const axios = require('axios')
+let passport = require('passport');
+const axios = require('axios');
 let db;
 
 setImmediate(() => {
@@ -13,12 +14,21 @@ const baseUrl = 'https://api.themoviedb.org/3/';
 
 module.exports = {
   test: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     res.send('this worked')
   },
 
   // feed endpoints
 
+  // passport.authenticate('facebook', { failureRedirect: '/login' }),
+  // function(req, res) {
+  //   // Successful authentication, redirect home.
+  //   res.redirect('/');
+  // });
+
   getNewFeed: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
+    console.log('running')
     db.feed.get_new_feed([req.params.id], (err, result) => {
       if (err) console.log('get new feed endpoint error: ', err)
       else {
@@ -30,6 +40,7 @@ module.exports = {
   // login endpoints
 
   getIfUserExists: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.login.get_if_user_exists([req.params.id], (err, result) => {
       if (err) console.log('get if user exists endpoint error: ', err)
       else {
@@ -38,6 +49,7 @@ module.exports = {
     })
   },
   postNewUserInfo: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.login.post_new_user_info([
       req.params.id,
       req.params.first,
@@ -52,6 +64,7 @@ module.exports = {
   // movie endpoints
 
   deleteFav: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.delete_fav([
       req.params.id,
       req.params.movieId
@@ -61,6 +74,7 @@ module.exports = {
     res.end()
   },
   deleteRecommendation: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.delete_recommendation([
       req.params.id,
       req.params.movieId
@@ -70,6 +84,7 @@ module.exports = {
     res.end()
   },
   deleteReview: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.delete_review([
       req.params.id,
       req.params.movieId
@@ -79,6 +94,7 @@ module.exports = {
     res.end()
   },
   deleteSeen: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.delete_seen([
       req.params.id,
       req.params.movieId
@@ -88,6 +104,7 @@ module.exports = {
     res.end()
   },
   deleteToSee: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.delete_to_see([
       req.params.id,
       req.params.movieId
@@ -97,6 +114,7 @@ module.exports = {
     res.end()
   },
   getStats: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.get_stats([req.params.id], (err, result) => {
       if (err) console.log('get stats endpoint error: ', err)
       else {
@@ -105,6 +123,7 @@ module.exports = {
     })
   },
   getReviews: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.get_reviews([req.params.id], (err, result) => {
       if (err) console.log('get reviews endpoint error: ', err)
       else {
@@ -113,6 +132,7 @@ module.exports = {
     })
   },
   postFav: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.post_fav([
       req.params.id,
       req.params.movieId
@@ -122,6 +142,7 @@ module.exports = {
     res.end()
   },
   postRecommendation: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.post_recommendation([
       req.params.id,
       req.params.movieId
@@ -131,6 +152,7 @@ module.exports = {
     res.end()
   },
   postReview: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.post_review_and_title([
       req.params.id,
       req.params.movieId,
@@ -142,6 +164,7 @@ module.exports = {
     res.end()
   },
   postSeen: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.post_seen([
       req.params.id,
       req.params.movieId
@@ -151,6 +174,8 @@ module.exports = {
     res.end()
   },
   thumbDown: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
+    console.log('sad face')
     db.movie.post_thumb_down([
       req.params.id,
       req.params.movieId
@@ -160,6 +185,8 @@ module.exports = {
     res.end()
   },
   thumbSide: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
+    console.log('meh face')
     db.movie.post_thumb_side([
       req.params.id,
       req.params.movieId
@@ -169,6 +196,8 @@ module.exports = {
     res.end()
   },
   thumbUp: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
+    console.log('happy face')
     db.movie.post_thumb_up([
       req.params.id,
       req.params.movieId
@@ -178,6 +207,7 @@ module.exports = {
     res.end()
   },
   postToSee: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.movie.post_to_see([
       req.params.id,
       req.params.movieId
@@ -190,6 +220,7 @@ module.exports = {
   // navbar endpoints
 
   getUser: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.navbar.get_basic_user_info([req.params.id], (err, result) => {
       if (err) console.log('get user endpoint error: ', err)
       else {
@@ -201,6 +232,7 @@ module.exports = {
   // profile endpoints
 
   deleteFriend: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.profile.delete_friend([
       req.params.id,
       req.params.friendId
@@ -210,6 +242,7 @@ module.exports = {
     res.end()
   },
   getFriends: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.profile.get_friends([
       req.params.id
     ], (err, result) => {
@@ -220,6 +253,7 @@ module.exports = {
     })
   },
   getUserActivity: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.profile.get_user_activity([
       req.params.id
     ], (err, result) => {
@@ -230,6 +264,7 @@ module.exports = {
     })
   },
   postFriendRank: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.profile.delete_friend_rank(
       [
         req.params.id,
@@ -249,6 +284,7 @@ module.exports = {
       })
   },
   postNewFriend: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
     db.profile.post_new_friend([
       req.params.id,
       req.params.friendId
@@ -259,6 +295,7 @@ module.exports = {
   },
 
 getMoviesByGenre: (req, res, next) => {
+    // passport.authenticate('facebook', { failureRedirect: '/#/login' })
   axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc&page=${req.params.page}`)
     .then(response => {
       return res.send(response.data)
@@ -285,6 +322,7 @@ searchMovieByCastMember:(req, res) => {
 getMovieById: (req, res, next) => {
   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
    .then(response => {
+
     return res.send(response.data)
   })
   .catch(err => next(err))

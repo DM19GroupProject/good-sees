@@ -11,7 +11,7 @@ angular.module('goodSees')
                 return response.data;
             })
         }
-
+            
         this.getTopFriends = function(id){
             return $http.get('/getFriends/' + id).then(function(response){
                 console.log(response.data);
@@ -97,10 +97,34 @@ angular.module('goodSees')
                 return favMovies;
             })
         }
+
+
+        this.addToFavs = (userId, movieId) => {
+            return $http.post(`/postFav/${userId}/${movieId}`)
+        }
+        this.addToSeen = (userId, movieId) => {
+            return $http.post(`/postSeen/${userId}/${movieId}`)
+        }
+        this.addToSee = (userId, movieId) => {
+            return $http.post(`/postToSee/${userId}/${movieId}`)
+        }
+        this.postRecommendation = (userId, movieId) => {
+            return $http.post(`/postRecommendation/${userId}/${movieId}`)
+        }
+        this.thumbUp = (userId, movieId) => {
+            return $http.post(`/thumbUp/${userId}/${movieId}`)
+        }
+        this.thumbSide = (userId, movieId) => {
+            return $http.post(`/thumbSide/${userId}/${movieId}`)
+        }
+        this.thumbDown = (userId, movieId) => {
+            return $http.post(`/thumbDown/${userId}/${movieId}`)
+        }
+
+
         /*--------------------------------------------------------------------*
                               Feed Endpoints
         *--------------------------------------------------------------------*/ 
-
 
        this.getMovieForFeed = function(id){
            return $http.get('/getNewFeed/' + id)

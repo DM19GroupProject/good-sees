@@ -34,8 +34,7 @@ angular.module('goodSees')
                 /*--------------------------------------------------------------------*
                               Desktop Dropdown Controls
                 *--------------------------------------------------------------------*/ 
-                $('#wide-menu-ham').click(function(){
-                    console.log('clicked')
+                $('#wide-menu-ham').click(function(){ 
                     $('.dropdown-link-container').addClass('display-flex')
                     $('.desktop-profile-dropdown').addClass('display-block');
                 })
@@ -47,7 +46,6 @@ angular.module('goodSees')
                 });
                 //////////////Search///////////////                
                 $('#search-btn').click(function(){
-                    console.log('clicked button')
                     $('.desktop-search-dropdown').addClass('display-block')
                 })
                 $('#cat-btn, #wide-menu-ham, .feedContainer, .mobile-search-btn, .categories-wrapper, .profilePicContainer, .results-search-container').click(function(){
