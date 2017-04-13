@@ -287,11 +287,14 @@ searchMovieByCastMember:(req, res) => {
 
 getMovieById: (req, res, next) => {
   axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
-  .then(response => {
+   .then(response => {
+
     return res.send(response.data)
   })
   .catch(err => next(err))
 }
+
+
 }//end of module
 
 
