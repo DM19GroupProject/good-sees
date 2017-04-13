@@ -16,12 +16,19 @@ angular.module('goodSees')
                 $('.list-link').click(function(){
                     $('.lists-links').toggleClass('display-flex');
                 })
-                $('.category-results-movie').mouseenter(function(){
-                    $(this).children('.category-overlay').css('display', 'block');
-                })
-                $('.category-results-movie').mouseleave(function(){
-                    $(this).children('.category-overlay').css('display', 'none');
-                })
+
+
+                /////////adding overlay to movie thumbnails/////
+                if($(window).width() >= 750) {
+                    $('.category-results-movie').mouseenter(function(){
+                        $(this).children('.category-overlay').css('display', 'block');
+                    })
+                    $('.category-results-movie').mouseleave(function(){
+                        $(this).children('.category-overlay').css('display', 'none');
+                    })
+                }
+                ////////////////////////////////////////////////////////
+
 
                 /*--------------------------------------------------------------------*
                               Desktop Dropdown Controls
@@ -33,7 +40,6 @@ angular.module('goodSees')
                 })
                 $(document).click(function(e) {
                     if( e.target.id != 'wide-menu-ham') {
-                        console.log('not ham')
                         $(".desktop-profile-dropdown").removeClass('display-block');
                         $('.dropdown-link-container').removeClass('display-flex')
                     }
@@ -81,14 +87,23 @@ angular.module('goodSees')
                     byTitle.removeClass('selected');
                 })
 
+                /////////////scroll up//////////
+                $('.scroll-up').click(function(){
+                    $('body').scrollTop(0);
+                })
+
+                 /*--------------------------------------------------------------------*
+                              Feed
+                *--------------------------------------------------------------------*/
+                $('.feedSearchSelection').click(function(){
+                    console.log('selected movie')
+                    $('.postData').hide();
+                    $('.recCard').show();
+                    $('.feedSearchResults').hide();
+                })
             });
         }
     }
 });
 
-// $(document).click(function(e) {
-//                     if( e.target.id != 'search-btn') {
-//                         $(".desktop-search-dropdown").removeClass('display-block');
-//                     }
-//                 });
                 

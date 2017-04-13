@@ -31,15 +31,15 @@ console.log('url stuff')
     </div>
     <profile-links-dir></profile-links-dir>
 </nav>
-<nav class = 'desktop-profile-dropdown animated bounceInDown'>
+<nav class = 'desktop-profile-dropdown animated slideInDown'>
     <i id='ham-triangle' class="fa fa-caret-up fa-2x yellow-triangle" aria-hidden="true"></i>
     <profile-links-dir></profile-links-dir>
 </nav>
-<div id="search-dropdown" class = 'desktop-search-dropdown animated bounceInDown'>
+<div id="search-dropdown" class = 'desktop-search-dropdown animated slideInDown'>
     <i id='search-triangle' class="fa fa-caret-up fa-2x yellow-triangle" aria-hidden="true"></i>
     <search-dir></search-dir>
 </div>
-<div class = 'desktop-categories-dropdown animated bounceInDown'>
+<div class = 'desktop-categories-dropdown animated slideInDown'>
     <i id='categories-triangle' class="fa fa-caret-up fa-2x yellow-triangle" aria-hidden="true"></i>
     <div class = 'categories-column'>
         <a ng-click="setCatHeading(category.name)" ui-sref = 'main.categories({id: category.id})' ng-repeat="category in categories | slice:0:6">{{category.name}}</a>

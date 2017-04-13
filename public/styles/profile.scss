@@ -25,8 +25,9 @@ $yellow-search-text: #CE9C29;
       margin-top: 18px;
       font-size: 40px;
       color: white;
-      font-weight: normal;
-      font-family: 'Raleway';
+      font-weight: 500;
+      font-family: $main-font;
+
     }
 }
 
@@ -47,7 +48,6 @@ $yellow-search-text: #CE9C29;
   list-style: none;
   justify-content: flex-end;
   padding-right: 5px;
-  font-family: 'Oswald', sans-serif;
   font-size: 20px;
   margin-bottom: -2px;
   
@@ -56,6 +56,7 @@ $yellow-search-text: #CE9C29;
 
   .beforeClick{
     
+    font-family: 'Oswald', sans-serif;
     height: 35px;
     border-style: none;
     background-color: transparent;
@@ -117,15 +118,17 @@ $yellow-search-text: #CE9C29;
 }
  .favFriendName {
   font-size: 15px;
-  font-family: 'raleway';
+  font-family: $main-font;
   color: white;
   text-align: center;
+  font-weight: 400;
+  padding-top: 5px;
 }
 
 
 .recommendationLabel{
   height: 40px;
-  font-family: 'Raleway';
+  font-family: $main-font;
   font-weight: 500;
   color: white;
   padding: 10px;
@@ -147,14 +150,17 @@ $yellow-search-text: #CE9C29;
   width: 140px;
   background-color: black;
   margin: 10px 25px;
+  background-size: cover;
   
 }
 
 .seenLabel{
-    font-family: 'raleway';
+    font-family: $main-font;
     font-size:17px;
     color: white;
     padding: 10px;
+    font-weight: 400;
+    padding-top: 13px;
 }
 .profileSeenLink{
   width: 100%;
@@ -171,6 +177,7 @@ $yellow-search-text: #CE9C29;
     height: 180px;
     background-color: grey;
     margin: 10px 5px;
+    background-size: cover;
   }
   
 }

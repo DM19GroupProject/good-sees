@@ -18,35 +18,25 @@
       <div ng-switch-when="seen">
         <h1 class="seenLabel" style="text-transform: uppercase">MOVIES {{userData.first_name}} HAS SEEN</h1>
         <div class="profileSeenLink">
-          <div class="profileMoviesSeen"></div>
+          <div ng-repeat='movies in seenMovies' ui-sref="main.movie-profile({id: movies.id})">
+            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
+          </div>
         </div>
       </div>
       <div ng-switch-when="want">
         <h1 class="seenLabel" style="text-transform: uppercase">MOVIES {{userData.first_name}} WANTS TO SEE</h1>
-        <div class="profileSeenLink">
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
+        <div class="profileSeenLink" ui-sref="main.movie-profile({id: movies.id})">
+          <div ng-repeat='movies in wantToSee'>
+            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
+          </div>
         </div>
       </div>
       <div ng-switch-when="fav">
         <h1 class="seenLabel" style="text-transform: uppercase">{{userData.first_name}}'S FAVORITE MOVIES</h1>
-        <div class="profileSeenLink">
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
-          <div class="profileMoviesSeen"></div>
+        <div class="profileSeenLink" ui-sref="main.movie-profile({id: movies.id})">
+          <div ng-repeat='movies in favMovies'>
+            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
+          </div>
         </div>
       </div>
 
@@ -76,8 +66,8 @@
         <div class="recommendationLabel" style="text-transform: uppercase">MOVIES RECOMMENDED BY {{userData.first_name}}</div>
 
         <div class="profileRecCarousel">
-          <div ng-repeat="movies in recMovies">
-            <div class="profileRecMovies" style="background-image: url('{{movies.picture_url}}')"></div>
+          <div ng-repeat="movies in recMovies" ui-sref="main.movie-profile({id: movies.id})">
+            <div class="profileRecMovies" style="background-image: url('{{movies.imageUrl}}')"></div>
           </div>
           <!--<div class="profileRecMovies"></div>
           <div class="profileRecMovies"></div>
