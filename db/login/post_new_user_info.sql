@@ -1,4 +1,3 @@
-
 -- takes in fb id, first name, last name, and picture_url.
 -- $1 fb id
 -- $2 first name
@@ -7,4 +6,5 @@
 -- will throw error if user exists.
 
 INSERT INTO users (fb_id, first_name, last_name, picture_url)
-VALUES ($1, $2, $3, $4);
+VALUES ($1, $2, $3, $4)
+RETURNING *;

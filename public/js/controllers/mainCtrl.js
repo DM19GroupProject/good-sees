@@ -1,5 +1,5 @@
 angular.module('goodSees')
-    .controller('mainCtrl', function ($scope, $state, mainService, tmdbService) {
+    .controller('mainCtrl', function ($scope, $state, mainService, tmdbService, userService) {
         $scope.categories = [
 
             {
