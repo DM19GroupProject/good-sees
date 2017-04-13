@@ -97,6 +97,29 @@ angular.module('goodSees')
                 return favMovies;
             })
         }
+        /*--------------------------------------------------------------------*
+                              Feed Endpoints
+        *--------------------------------------------------------------------*/ 
 
-       
+
+       this.getMovieForFeed = function(id){
+           return $http.get('/getNewFeed/' + id)
+           .then(function(response){
+               var moviesForFeed = [];
+               var feedData = response.data;
+               for(var i=0; i < response.data.length; i++){
+                    if(response.data[i].movie_id){
+                        $http.get('/getMovieById/' + response.data[i].movie_id)
+                        .then(function(response){
+                            // console.log(response.data)
+                            // console.log("feedData:", feedData)
+
+                            moviesForFeed.push({feedData: feedData, imageUrl: baseUrl + response.data.poster_path, title: response.data.original_title, overview: response.data.overview})
+                        })
+                    }
+                }
+                console.log("movies:", moviesForFeed)
+                return moviesForFeed;
+           })
+       }
 });
