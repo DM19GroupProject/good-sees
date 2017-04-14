@@ -1,6 +1,6 @@
 <div class = 'dropdown-profile-info'>
-    <div class = 'profile-pic-container' style = 'background-image: url("https://scontent.fmkc1-1.fna.fbcdn.net/v/t31.0-8/1274894_10201993562983447_510944764_o.jpg?oh=71073628d807814859fff0f84e58f240&oe=59930A4B")'></div>
-    <p>Mason Galland</p> <!--this will be provided from user table-->
+    <div class = 'profile-pic-container' style = 'background-image: url({{currentUserData.picture_url}})'></div>
+    <p>{{currentUserData.first_name}}{{currentUserData.last_name}}</p> <!--this will be provided from user table-->
 </div>
 <div class = 'name-separator'></div>
 <div class = 'dropdown-link-container'>
