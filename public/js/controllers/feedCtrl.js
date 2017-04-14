@@ -1,6 +1,16 @@
 angular.module('goodSees')
-    .controller('feedCtrl', function ($scope, mainService, tmdbService) {
+    .controller('feedCtrl', function ($scope, mainService, tmdbService, userService) {
 
+        userService.getUserId().then(response => {
+            console.log("mubuaba",response)
+            return response
+        }).then(response => {
+            mainService.getUserData(response)
+            .then( response => {
+                $scope.currentUserData = response[0]
+                console.log($scope.currentUserData)
+            })
+        })
         $scope.baseUrl = mainService.baseUrl;
         var id = 2197287247035846;
         /*--------------------------------------------------------------------*
@@ -21,7 +31,7 @@ angular.module('goodSees')
             console.log($scope.recSelection)
             
         }
-
+        
      
 
         $scope.newRecommendation;

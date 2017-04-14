@@ -1,36 +1,51 @@
 angular.module('goodSees')
-    .controller('profileCtrl', function($scope, mainService){
+    .controller('profileCtrl', function($scope, mainService, userService){
         $scope.link = 'default'
         $scope.test = mainService.test;
 
-        mainService.getUserData(2197287247035846)
+        userService.getUserId().then( response => {
+           return response
+           $scope.currentUserData = response
+        }).then( response =>  {
+
+            
+        mainService.getUserData(response)
         .then(function(response){
+            console.log("my user data", response)
             $scope.userData = response[0];
         })
+        
+       
 
-        mainService.getTopFriends(2197287247035846)
+        // userService.getUserID().then( response => {
+        //     return response
+        // }).then( response => {
+    
+        // })
+        mainService.getTopFriends(response)
         .then(function(response){
             $scope.friends = response;
         })
 
-        mainService.getRecommendedMovies(2197287247035846)
+        mainService.getRecommendedMovies(response)
         .then(function(response){
             $scope.recMovies = response;
             console.log($scope.recMovies)
         })
 
-        mainService.getSeenMovies(2197287247035846)
+        mainService.getSeenMovies(response)
         .then(function(response){
             $scope.seenMovies = response;
         })
 
-        mainService.getWantToSee(2197287247035846)
+        mainService.getWantToSee(response)
         .then(function(response){
             $scope.wantToSee = response;
         })
 
-        mainService.getFavMovies(2197287247035846)
+        mainService.getFavMovies(response)
         .then(function(response){
             $scope.favMovies = response;
+        })
         })
 });

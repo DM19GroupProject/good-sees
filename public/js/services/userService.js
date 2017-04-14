@@ -9,6 +9,7 @@ angular.module('goodSees')
     function getUserId() {
       return $http.get(`/auth/me`).then(res => {
         userId = res.data
+        return userId
       })
     }
     

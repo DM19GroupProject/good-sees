@@ -85,6 +85,18 @@ angular.module('goodSees')
         /*--------------------------------------------------------------------*
                                     Event Handlers 
         *--------------------------------------------------------------------*/
+        userService.getUserId().then(response => {
+            console.log("mubuaba",response)
+            return response
+        }).then(response => {
+            mainService.getUserData(response)
+            .then( response => {
+                $scope.currentUserData = response[0]
+                console.log($scope.currentUserData)
+            })
+        })
+
+
         $scope.titleClicked = function(){
             $scope.searchCategory = 'title';
             $scope.resultFlag = true;
