@@ -33,7 +33,7 @@ $yellow-search-text: #CE9C29;
 
 .postData{
   flex-direction: column;
-  width: 60%;
+  width: 623px;
   height: 100px;
   margin-top: 25px;
   background-color: black;
@@ -184,41 +184,83 @@ $yellow-search-text: #CE9C29;
 }
 .feedActivityContainer {
   width: 80%;
+  margin: 199px 60px 0;
 }
 .activityCards {
-  width: 100%;
+  width: 581px;
   background-color: black;
   color: white;
   box-shadow: $main-box-shaddow;
   border: 1px solid gray;
   padding: 10px;
+  
 }
 .userDidSomething {
   display: flex;
-  justify-content: space-between;
+  padding: 10px 20px 0;
+  
+  p{
+     margin: 30px 8px;
+  }
 }
+
 .picName{
   display: flex;
   align-items: center;
+    width: 141px;
+    height: 74px;
+    justify-content: center;
+    font-size: 34px;
 
   h2 {
     padding-left: 15px;
   }
+
 }
 .userCardPic {
-  width: 50px;
-  height: 50px;
-  background-size: cover;
-  border-radius: 50%;
+  width: 70px;
+    height: 70px;
+    background-size: cover;
+    border-radius: 50%;
 
 }
 .activityMoviePic {
   width: 120px;
 
   img {
-    width: 100%;
+    margin: 21px;
+    border-radius: 3px;
   }
 
+}
+
+.activityMovieContainer{
+  text-align: center;
+  display: flex;
+
+  img{
+    width: 150px;
+    height: 225px;
+  }
+}
+
+.activityMovieWords{
+    margin-top: 56px;
+    width: 297px;
+}
+
+.activityMovieTitle{
+      font-size: 36px;
+    font-family: oswald;
+}
+.activityMovieDescription{
+    overflow: scroll;
+    height: 100px;
+    width: 327px;
+    padding: 20px 0;
+    margin-left: 83px;
+    margin-top: 14px;
+    text-align: justify;
 }
 
 @media(min-width: 650px){
@@ -297,11 +339,18 @@ $yellow-search-text: #CE9C29;
     font-size: 25px;
     height: 150px;
     padding: 23px 0 32px 0;
+    margin-left: 36px;
+    p{
+      margin-bottom: 20px;
+    }
 
     input{
       height: 40px;
-      width: 400px;
+      width: 359px;
+      
     }
+
+    
 
     button{
       height: 40px;
@@ -312,6 +361,6 @@ $yellow-search-text: #CE9C29;
 
   .recPostSearchContainer{
     align-items: center;
-    width: 480px;
+    width: 447px;
   }
 }
