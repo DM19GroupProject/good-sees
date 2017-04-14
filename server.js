@@ -129,7 +129,7 @@ passport.deserializeUser(function (obj, cb) {
 //   db.getUserById([id], function (err, user) {
 //     user = user[0];
 //     if (err) console.log(err);
-//     else console.log('RETRIEVED USER');
+//     elog('RETRIEVED USER');
 //     console.log(user);
 //     done(null, user);
 //   })

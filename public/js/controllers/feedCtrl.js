@@ -17,13 +17,12 @@ angular.module('goodSees')
                       Event Handlers 
          *--------------------------------------------------------------------*/
         //movie title search
-        $scope.searchMovieByTitle = function (keyEvent, movieTitle) {
-            if (keyEvent.which === 13) {
-                tmdbService.searchMovieByTitle(movieTitle)
-                    .then(movieInfo => {
-                        $scope.feedMovieInfo = movieInfo.data
-                    })
-            }
+        $scope.searchMovieByTitle = function (movieTitle) {
+            tmdbService.searchMovieByTitle(movieTitle)
+                .then(movieInfo => {
+                    $scope.feedMovieInfo = movieInfo.data
+                    console.log('feedSearch: ', $scope.feedMovieInfo)
+                })
         }
         $scope.selectMovie = function(movie) {
             $scope.recSelection = movie;
