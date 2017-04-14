@@ -10,12 +10,12 @@
 
       <div class="feedSidebarContainer">
         <div class="feedProfilePicContainer">
-          <div class="feedProfilePic" style='background-image: url("https://scontent.fmkc1-1.fna.fbcdn.net/v/t31.0-8/1274894_10201993562983447_510944764_o.jpg?oh=71073628d807814859fff0f84e58f240&oe=59930A4B")'></div>
+          <div class="feedProfilePic" style='background-image: url({{currentUserData.picture_url}})'></div>
         </div>
 
         <div class="feedLinksContainer">
           <ul class="feedLinks">
-            <li id="feedListLink">PROFILE</li>
+            <li ui-sref = 'main.user-profile' id="feedListLink">PROFILE</li>
             <li id="feedListLink">FRIENDS</li>
             <li id="feedListLink">MOVIES YOU'VE SEEN</li>
             <li id="feedListLink">MOVIES YOU WANT TO SEE</li>
