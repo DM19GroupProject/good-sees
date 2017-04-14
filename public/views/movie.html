@@ -15,18 +15,18 @@
 		<h1 class="movie-text add-to">Add to:</h1>
 		<div class="movie-flex">
 		<div class="movie-button-container">
-			<button ng-click="addToFavs(userData.fb_id, movieData.id)" class="movie-buttons">Favorites</button>
-			<button ng-click="addToSeen(userData.fb_id, movieData.id)"/class="movie-buttons">Seen</button>
-			<button ng-click="addToSee(userData.fb_id, movieData.id)" class="movie-buttons">To see</button>
+			<button ng-click="addToFavs(userData.fb_id, movieData.id)" class="movie-buttons slide"><p id=two>Favorites</p></button>
+			<button ng-click="addToSeen(userData.fb_id, movieData.id)"/class="movie-buttons slide"><p id=two>Seen</p></button>
+			<button ng-click="addToSee(userData.fb_id, movieData.id)" class="movie-buttons slide"><p id=two>To see</p></button>
 		</div>
-		
+
 		<div class="recommend-review">
 			<button ng-click="postRecommendation(userData.fb_id, movieData.id)" class="movie-recommend-button"> Recommend to friends</button>
 			<h1 class="movie-text movie-review">Review:</h1>
 			<div>
-			<button ng-click="thumbUp(userData.fb_id, movieData.id)" class="movie-thumb-buttons"><i class="fa fa-smile-o fa-4x movie-thumbs" aria-hidden="true"></i></button>
-			<button ng-click="thumbSide(userData.fb_id, movieData.id)" class="movie-thumb-buttons"><i class="fa fa-meh-o fa-4x movie-thumbs" aria-hidden="true"></i></button>
-			<button ng-click="thumbDown(userData.fb_id, movieData.id)" class="movie-thumb-buttons"><i class="fa fa-frown-o fa-4x movie-thumbs" aria-hidden="true"></i></button>
+			<button ng-click="thumbUp(userData.fb_id, movieData.id)" class="movie-thumb-buttons pulse"><i class="fa fa-smile-o fa-4x movie-thumbs" aria-hidden="true"></i></button>
+			<button ng-click="thumbSide(userData.fb_id, movieData.id)" class="movie-thumb-buttons pulse"><i class="fa fa-meh-o fa-4x movie-thumbs" aria-hidden="true"></i></button>
+			<button ng-click="thumbDown(userData.fb_id, movieData.id)" class="movie-thumb-buttons pulse"><i class="fa fa-frown-o fa-4x movie-thumbs" aria-hidden="true"></i></button>
 			</div>
 			<input class="movie-input" type="text">
 		</div>
