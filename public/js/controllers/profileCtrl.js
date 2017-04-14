@@ -11,17 +11,8 @@ angular.module('goodSees')
             
         mainService.getUserData(response)
         .then(function(response){
-            console.log("my user data", response)
             $scope.userData = response[0];
         })
-        
-       
-
-        // userService.getUserID().then( response => {
-        //     return response
-        // }).then( response => {
-    
-        // })
         mainService.getTopFriends(response)
         .then(function(response){
             $scope.friends = response;
@@ -30,7 +21,7 @@ angular.module('goodSees')
         mainService.getRecommendedMovies(response)
         .then(function(response){
             $scope.recMovies = response;
-            console.log($scope.recMovies)
+           
         })
 
         mainService.getSeenMovies(response)

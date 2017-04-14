@@ -7,18 +7,11 @@ angular.module('goodSees')
             mainService.getUserData(response)
         .then(function(response){
             $scope.userData = response[0];
-        console.log("look at me right now" , $scope.userData)
         })
         })
-        
-        //  mainService.getUserData(2197287247035846)
-        // .then(function(response){
-        //     $scope.userData = response[0];
-        // console.log("look at me right now" , $scope.userData)
-        // })
+    
         var id = $state.params.id
         tmdbService.getMovieById(id).then(response =>{
-            console.log(response.data)
             $scope.movieData = response.data 
         })
         
@@ -45,20 +38,4 @@ angular.module('goodSees')
          $scope.thumbDown = (userId, movieId) => {
             mainService.thumbDown(userId, movieId)
         }
-
-
-        // if ($state.params.id === NaN){
-        //     return  tmdbService.getMovieById(id)
-        //             .then(id => {
-                        
-        //                 $scope.movieInfo = id
-        //             })
-        // }
-    //  getMovieById = function (id) {
-    //             tmdbService.getMovieById(id)
-    //                 .then(id => {
-    //                     $scope.movieInfo = id
-    //                 })
-            
-    //     }
     });

@@ -86,7 +86,6 @@ angular.module('goodSees')
                                     Event Handlers 
         *--------------------------------------------------------------------*/
         userService.getUserId().then(response => {
-            console.log("mubuaba",response)
             return response
         }).then(response => {
             mainService.getUserData(response)
