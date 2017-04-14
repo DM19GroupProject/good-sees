@@ -44,10 +44,14 @@ $font-color: #858585;
     background-color: rgba(0, 0, 0, 0.8);
     color: #bab9b9;
     width: 100%;
+    height: 100%;
     z-index: 1;
     position: absolute;
     bottom: 0;
     padding: 10px 0 10px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .pagination-btns {
     display: flex;
@@ -61,6 +65,22 @@ $font-color: #858585;
         cursor: pointer;
     }
 }
+.overlayMovieInfo {
+    height: 175px;
+}
+.addTo-Overlay{
+    font-size: 12px;
+    p{
+        padding: 2px 0;
+    }
+    p:hover{
+        color: red;
+    }
+    i{
+        padding-right: 10px;
+    }
+}
+
 @media(min-width: 750px) {
     .category-results-movie{
         width:25%;

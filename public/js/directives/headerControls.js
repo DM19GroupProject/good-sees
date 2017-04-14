@@ -22,10 +22,19 @@ angular.module('goodSees')
                 /////////adding overlay to movie thumbnails/////
                 if($(window).width() >= 750) {
                     $('.category-results-movie, .actor-results-movie').mouseenter(function(){
-                        $(this).children('.category-overlay').css('display', 'block');
+                        $(this).children('.category-overlay').css('display', 'flex');
                     })
                     $('.category-results-movie, .actor-results-movie').mouseleave(function(){
                         $(this).children('.category-overlay').css('display', 'none');
+                    })
+                    $('.overlayFav').click(function(){
+                        $(this).children('i').css('color', '#F6BC2A')
+                    })
+                    $('.overlaySeen').click(function(){
+                        $(this).children('i').css('color', '#4AC948')
+                    })
+                    $('.overlayList').click(function(){
+                        $(this).children('i').css('color', '#008B8B')
                     })
                 }
                 ////////////////////////////////////////////////////////
