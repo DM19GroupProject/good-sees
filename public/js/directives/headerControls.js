@@ -100,6 +100,9 @@ angular.module('goodSees')
                     $('.recCard').show();
                     $('.feedSearchResults').hide();
                 })
+                $('#feed-search-btn').click(function(){
+                    $('.feedSearchResultsContainer').css('display', 'flex');
+                })
             });
         }
     }
