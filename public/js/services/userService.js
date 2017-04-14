@@ -9,7 +9,15 @@ angular.module('goodSees')
     function getUserId() {
       return $http.get(`/auth/me`).then(res => {
         userId = res.data
+        return res.data
       })
     }
     
   });
+
+// make sure that you inject userService, and then wrap all call relating to the user id in this function >>
+// userService.getUserId().then(function (userId) { 
+//   $http.get('/whatever/' + userId + '/' + 'whatever').then(res => {
+//     do stuff here
+//   })
+// })
