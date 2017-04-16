@@ -29,14 +29,47 @@ $yellow-search-text: #CE9C29;
     width: 92px;
     height: 40px;
     border: none;
-    background: $red-from-logo;
-    border-radius: 20px
+    // background: $red-from-logo;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.slide {
+  position: relative;
+  color: black;
+  text-decoration: none;
+  border-radius: 5em;
+  padding: 15px 50px;
+
+background: -webkit-linear-gradient(right, #9B0606 50%, #CE9C29 50%);
+background: -moz-linear-gradient(right, #9B0606 50%, #CE9C29 50%);
+background: -o-linear-gradient(right, #9B0606 50%, #CE9C29 50%);
+background: linear-gradient(to left, #9B0606 50%, #CE9C29 50%);
+
+	background-size: 200% 100%;
+	background-position: left bottom;
+	transition: all 1s ease;
+}
+
+.slide:hover {
+	background-position: right bottom;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: white;
+}
+
+#two {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
 }
 .movie-recommend-button{
     background: grey;
      width: 140px;
     margin-bottom: 10px;
-    border: none
+    border: none;
+    cursor: pointer;
 }
 .recommend-review{
     display: flex;
@@ -62,7 +95,18 @@ $yellow-search-text: #CE9C29;
 .movie-thumbs{
     color: $red-from-logo;
     padding: 10px;
+    cursor: pointer;
+    -webkit-transition: color 1s;
+    -moz-transition:    color 1s;
+    -ms-transition:     color 1s;
+    -o-transition:      color 1s;
+    transition:         color 1s;
 }
+
+.movie-thumbs:hover{
+    color: #CE9C29;
+}
+
 .movie-thumb-buttons{
     background: none;
     border: none;
@@ -75,6 +119,14 @@ $yellow-search-text: #CE9C29;
         display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.pulse:hover {
+	animation-name: pulse_animation;
+	animation-duration: 5000ms;
+	transform-origin:70% 70%;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
 }
 @media(min-width: 500px){
 .movie-flex-box{
@@ -110,7 +162,7 @@ $yellow-search-text: #CE9C29;
 }
 .movie-title-text{
     display: flex;
-    width: 100%;    
+    width: 100%;
     justify-content: center;
     font-size: 50px;
     padding-bottom: 80px
@@ -133,8 +185,8 @@ width: 300px;
     justify-content: center;
     align-items: center;
     border: none;
-    background: $red-from-logo
-    
+    // background: $red-from-logo
+
 }
 .movie-img{
     padding-left: 20px;
@@ -170,7 +222,7 @@ width: 300px;
     }
 }
 @media (min-width: 900px){
-   
+
     .movie-overview{
         font-size: 40px;
     }
@@ -188,4 +240,14 @@ width: 300px;
     .movie-thumbs{
         font-size: 10em;
     }
+}
+@keyframes pulse_animation {
+0% { transform: scale(1); }
+30% { transform: scale(1); }
+40% { transform: scale(1.08); }
+50% { transform: scale(1); }
+60% { transform: scale(1); }
+70% { transform: scale(1.05); }
+80% { transform: scale(1); }
+100% { transform: scale(1); }
 }
