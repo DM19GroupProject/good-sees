@@ -24,6 +24,11 @@ angular.module('goodSees')
            
         })
 
+        mainService.getFriends(response)
+        .then(function(response){
+            $scope.friendList = response;
+        })
+
         mainService.getSeenMovies(response)
         .then(function(response){
             $scope.seenMovies = response;
@@ -38,5 +43,5 @@ angular.module('goodSees')
         .then(function(response){
             $scope.favMovies = response;
         })
-        })
+    })
 });

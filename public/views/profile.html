@@ -8,7 +8,8 @@
 
         <div class="profileTabList">
           <button class="afterClick" ng-click="link='profile'" id="profileTab">PROFILE</button>
-          <button class="beforeClick" ng-click="link='friends'" id="friendsTab" ui-sref="main.friendProfile">FRIENDS</button>
+          <button class="beforeClick" ng-click="link='friends'" id="friendsTab">FRIENDS</button>
+          <!--ui-sref="main.friendProfile"-->
           <button class="beforeClick" ng-click="link='seen'" id="seenTab">SEEN</button>
           <button class="beforeClick" ng-click="link='want'" id="wantToSeeTab">WANT TO SEE</button>
           <button class="beforeClick" ng-click="link='fav'" id="favoritesTab">FAVORITES</button>
@@ -17,11 +18,11 @@
     <div ng-switch on="link">
 
       <div ng-switch-when="friends">
-        <h1 class="seenLabel" style="text-transform: uppercase">{{userData.first_name}}'S FRIENDS</h1>
+        <h1 class="seenLabel" style="text-transform: uppercase">ALL OF {{userData.first_name}}'S FRIENDS</h1>
         <div class="profileSeenLink">
-          <!--<div ng-repeat='movies in seenMovies' ui-sref="main.movie-profile({id: movies.id})">
+          <div ng-repeat="friend in friendList">
             <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
-          </div>-->
+          </div>
         </div>
       </div>
       <div ng-switch-when="seen">

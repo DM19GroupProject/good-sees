@@ -113,7 +113,7 @@ angular.module('goodSees')
         this.getFriends = function(id){
             return $http.get('/getFriends/' + id)
             .then(function(response){
-                console.log("friends", response.data);
+                console.log("friends", response);
                 return response.data;
             })
         }
@@ -169,7 +169,7 @@ angular.module('goodSees')
                                 })
                         }
                     }
-                    console.log("movies:", moviesForFeed)
+                    // console.log("movies:", moviesForFeed)
                     return moviesForFeed;
                 })
         }
