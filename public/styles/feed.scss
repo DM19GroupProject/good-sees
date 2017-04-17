@@ -1,37 +1,36 @@
-$main-background-color: #1A1A1A; 
+$main-background-color: #1A1A1A;
 $header-text: #3E3E3E;
 $main-box-shaddow: 9px 0px 95px black;
-$main-font:'Raleway', sans-serif;
+$main-font:'Raleway',
+sans-serif;
 $yellow-from-logo: #F6BC2A;
-$red-from-logo:  #9B0606;
+$red-from-logo: #9B0606;
 $yellow-search-text: #CE9C29;
-
-.background{
-  background-color: $main-background-color;
+.background {
   height: 100vh;
   width: 100%;
 }
 
-.feedContainer{
+.feedContainer {
+  background-image: url('../assets/moviePosters.jpg');
+  background-repeat: repeat-y;
   width: 100%;
-  height: 100vh;
-  display: flex; 
+  display: flex;
   justify-content: space-between;
   padding-top: 100px;
 }
 
-.feedSidebarContainer{
- display: none;
+.feedSidebarContainer {
+  display: none;
 }
 
-.postContainer{
+.postContainer {
   width: 100%;
-  height: 100vh; 
-  background-color: $main-background-color;
-  
+  // height: 100vh;
+ 
 }
 
-.postData{
+.postData {
   flex-direction: column;
   width: 623px;
   height: 100px;
@@ -45,9 +44,7 @@ $yellow-search-text: #CE9C29;
   padding: 15px 0 25px 0;
   border: 1px solid $header-text;
   position: fixed;
-
-
-  input{
+  input {
     width: 128%;
     height: 30px;
     font-family: 'Oswald', sans-serif;
@@ -57,13 +54,12 @@ $yellow-search-text: #CE9C29;
     background: transparent;
     border: 1px solid $header-text;
     text-decoration: none;
-    color:$yellow-search-text;
+    color: $yellow-search-text;
   }
-
-  button{
+  button {
     width: 50px;
     height: 30px;
-    background-color:transparent;
+    background-color: transparent;
     color: $yellow-from-logo;
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
@@ -72,206 +68,240 @@ $yellow-search-text: #CE9C29;
     border-radius: 1pt;
     margin-left: 20px;
   }
-
-  button:hover{
+  button:hover {
     background-color: $yellow-from-logo;
     color: black;
   }
-
-  .recPostSearchContainer{
+  .recPostSearchContainer {
     display: flex;
     justify-content: space-between;
   }
 }
-.feedSearchResultsContainer{
-  display:none;
+
+.feedSearchResultsContainer {
+  display: none;
 }
-.feedSearchResults{
+
+.feedSearchResults {
   width: 80%;
   background-color: lightgray;
-  color: black;
-  // overflow: scroll;
+  color: black; // overflow: scroll;
   display: flex;
   flex-wrap: wrap;
   margin: 146px 0;
   box-shadow: $main-box-shaddow;
 }
 
-
-.feedSearchResultsMovie{
+.feedSearchResultsMovie {
   width: 160px;
   height: 185px;
-  display: flex;
-  // justify-content: center;
+  display: flex; // justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
   padding: 10px 5px 5px 5px;
   font-size: 12px;
-  
-  
-
-  img{
+  img {
     width: 90px;
     height: 120px;
-    
     box-shadow: $main-box-shaddow;
-   }
-  
-  p{
+  }
+  p {
     padding-top: 5px;
     margin: 2px;
   }
- }
+}
 
-.feedSearchResultsMovie:hover{
+.feedSearchResultsMovie:hover {
   background-color: $yellow-from-logo;
 }
-.recCard{
+
+.recCard {
   width: 340px;
   border: 1px solid gray;
   background: black;
   color: white;
   padding: 15px;
-  display: none;  
+  display: none;
 }
-.recMovieInfo{
+
+.seenCard {
+  width: 340px;
+  border: 1px solid gray;
+  background: black;
+  color: white;
+  padding: 15px;
+  display: none;
+}
+
+.wantCard {
+  width: 340px;
+  border: 1px solid gray;
+  background: black;
+  color: white;
+  padding: 15px;
+  display: none;
+}
+
+.favCard {
+  width: 340px;
+  border: 1px solid gray;
+  background: black;
+  color: white;
+  padding: 15px;
+  display: none;
+}
+
+.recMovieInfo {
   display: flex;
   justify-content: space-between;
 }
+
 .recImage {
   width: 100px;
-
-  img{
+  img {
     width: 100%;
   }
 }
-.recTitleRating {
-    width: 230px;
-    text-align: center;
-}
-#recTitle {
-    font-size: 30px;
-    padding-bottom: 25px;
-    padding-top: 20px;
-}
-#recRating {
 
+.recTitleRating {
+  width: 230px;
+  text-align: center;
 }
+
+#recTitle {
+  font-size: 30px;
+  padding-bottom: 25px;
+  padding-top: 20px;
+}
+
+#recRating {}
+
 .recFaces {
   font-size: 40px;
   margin-top: 7px;
 }
+
 .recInput {
   display: flex;
   justify-content: space-between;
   width: 100%;
   margin-top: 15px;
-
   input {
     width: 80%;
     height: 30px;
     background-color: black;
     border: 1px solid gray;
   }
-
   button {
     height: 30px;
     border: 1px solid gray;
-
-
   }
 }
+
 .feedActivityContainer {
   width: 80%;
   margin: 199px 60px 0;
 }
+
 .activityCards {
   width: 581px;
-  background-color: black;
+  background-color: rgba(10, 10, 10, 0.48);
   color: white;
   box-shadow: $main-box-shaddow;
   border: 1px solid gray;
   padding: 10px;
-  
 }
+
 .userDidSomething {
   display: flex;
   padding: 10px 20px 0;
-  
-  p{
-     margin: 30px 8px;
+
+}
+  .userDidName{
+
+  color: $yellow-from-logo;
+  font-weight: 500;
   }
+
+.userDidWhat{
+  margin: 2px 0 0 10px;
+  color: grey;
+  font-size: 25px;
 }
 
-.picName{
+.picName {
   display: flex;
   align-items: center;
-    width: 141px;
-    height: 74px;
-    justify-content: center;
-    font-size: 34px;
-
-  h2 {
-    padding-left: 15px;
-  }
-
+  width: 500px;
+  height: 74px;
+  /* justify-content: center; */
+  font-size: 34px;
+  color: whitesmoke;
 }
+
 .userCardPic {
   width: 70px;
-    height: 70px;
-    background-size: cover;
-    border-radius: 50%;
-
+  height: 70px;
+  background-size: cover;
+  border-radius: 50%;
+  margin-right: 10px
 }
+
 .activityMoviePic {
   width: 120px;
-
   img {
     margin: 21px;
     border-radius: 3px;
   }
-
 }
 
-.activityMovieContainer{
+.activityMovieContainer {
   text-align: center;
   display: flex;
-
-  img{
+  img {
     width: 150px;
     height: 225px;
   }
 }
 
-.activityMovieWords{
-    margin-top: 56px;
-    width: 297px;
+.activityMovieWords {
+  margin-top: 56px;
+  width: 297px;
 }
 
-.activityMovieTitle{
-      font-size: 36px;
-    font-family: oswald;
-}
-.activityMovieDescription{
-    overflow: scroll;
-    height: 100px;
-    width: 327px;
-    padding: 20px 0;
-    margin-left: 83px;
-    margin-top: 14px;
-    text-align: justify;
+.activityMovieTitle {
+  font-size: 36px;
+  font-family: oswald;
 }
 
-@media(min-width: 650px){
+.activityMovieDescription {
+  overflow: auto;
+  height: 72px;
+  text-align: left;
+  margin: 25px 0 0 80px;
+  width: 300px;
+  color: grey;
+}
 
-  .feedLeftSide{
+// .movieDescFade {
+//   content: '';
+//   margin-top: 11px;
+//   height: 40px;
+//   background: linear-gradient(to top, black 0%, rgba(251, 251, 251, 0) 100%);
+//   position: relative;
+//   text-align: left;
+//   margin-left: 81px;
+//   width: 295px;
+//   line-height: 19px;
+// }
+@media(min-width: 650px) {
+  .feedLeftSide {
     width: 450px;
     height: 100vh;
-    background-color: $main-background-color;
+    
   }
-
-  .feedSidebarContainer{
+  .feedSidebarContainer {
     display: block;
     width: 250px;
     height: 70vh;
@@ -284,82 +314,62 @@ $yellow-search-text: #CE9C29;
     justify-content: space-between;
     position: fixed;
     box-shadow: $main-box-shaddow;
-
   }
-
-
-  .feedProfilePicContainer{
+  .feedProfilePicContainer {
     height: 200px;
     width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
-
-  .feedLinksContainer{
-    height: 272px; 
+  .feedLinksContainer {
+    height: 272px;
     width: 200px;
-   border-top: 1px solid grey;
-   border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
   }
-
-  .feedLinks{
+  .feedLinks {
     list-style: none;
     line-height: 40px;
     color: grey;
     font-size: 15px;
-
-    li:hover{
+    li:hover {
       color: $yellow-search-text;
-
     }
   }
-
-  .feedProfilePic{
+  .feedProfilePic {
     height: 110px;
     width: 110px;
     border-radius: 50%;
     background-size: cover;
     background-position: center;
   }
-
-
-    
-
 }
 
-@media(min-width: 974px){
-  
-  .postData{
+@media(min-width: 974px) {
+  .postData {
     font-size: 25px;
     height: 150px;
     padding: 23px 0 32px 0;
     margin-left: 36px;
-    p{
+    p {
       margin-bottom: 20px;
     }
-
-    input{
+    input {
       height: 40px;
       width: 359px;
-      
     }
-
-    
-
-    button{
+    button {
       height: 40px;
       width: 57px;
       font-size: 20px;
     }
   }
-
-  .recPostSearchContainer{
+  .recPostSearchContainer {
     align-items: center;
     width: 447px;
   }
