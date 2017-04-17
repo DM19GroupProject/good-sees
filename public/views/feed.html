@@ -1,10 +1,6 @@
 
 <div class="background">
 
-
-
-
-
   <div class="feedContainer" >
     <div class="feedLeftSide">
 
@@ -16,7 +12,7 @@
         <div class="feedLinksContainer">
           <ul class="feedLinks">
             <li ui-sref = 'main.user-profile' id="feedListLink">PROFILE</li>
-            <li id="feedListLink">FRIENDS</li>
+            <li ui-sref = 'main.friends' id="feedListLink">FRIENDS</li>
             <li id="feedListLink">MOVIES YOU'VE SEEN</li>
             <li id="feedListLink">MOVIES YOU WANT TO SEE</li>
             <li id="feedListLink">YOUR FAVORITE MOVIES</li>
@@ -32,8 +28,10 @@
       <div class="postData">
         <p>MAKE A MOVIE RECOMMENDATION</p>
         <div class="recPostSearchContainer">
-          <input ng-model="movieTitle" ng-keypress="searchMovieByTitle($event, movieTitle)" type()="text" name="recSearch" placeholder="Movie Title"></input>
-          <button type="submit" value="Search!">FIND</button>
+          <form ng-submit="searchMovieByTitle(movieTitle)">
+            <input ng-model="movieTitle" type()="text" name="recSearch" placeholder="Movie Title"></input>
+            <button id = "feed-search-btn" type="submit" value="Search!">FIND</button>
+          </form>
         </div>
       </div>
       <div class="recCard">
@@ -56,18 +54,43 @@
             <button>POST</button>
           </div>
       </div>
-      <div class="feedSearchResults">
-        <div header-controls class="feedSearchSelection" ng-repeat="movie in feedMovieInfo" ng-click="selectMovie(movie)">
-          <div class="feedSearchResultsMovie">
-            <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}" />
-            <p>{{movie.title}}</p>
-            <p>{{movie.release_date}}</p>
+      <div class="feedSearchResultsContainer">
+        <div class="feedSearchResults">
+          <div header-controls class="feedSearchSelection" ng-repeat="movie in feedMovieInfo" ng-click="selectMovie(movie)">
+            <div class="feedSearchResultsMovie">
+              <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}" />
+              <p>{{movie.title}}</p>
+              <p>{{movie.release_date}}</p>
+              <p style="color: white">Hello</p>
+            </div>
           </div>
         </div>
       </div>
       <div class="feedActivityContainer">
         <div ng-repeat="activity in activities track by $index" class="activityCards">
           <div class="recFeedCard" ng-if="activity.feedData[$index].recommends">
+            <div class="userDidSomething">
+              <div class="picName">
+                <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                <h2>{{activity.feedData[$index].first_name}}</h2>
+              </div>
+              <p>recommends</p>
+            </div>
+            <div class="activityMovieContainer">
+              <div class="activityMoviePic">
+                <img src="{{activity.imageUrl}}">
+              </div>
+              <div class="activityMovieWords">
+                <div class="activityMovieTitle">{{activity.title}}</div>
+                <div class="activityMovieDescription">{{activity.overview}}</div>
+              </div>
+            </div>
+            <div class="activityComment">
+              <div class="userSays">{{activity.feedData[$index].first_name}} says</div>
+              <div class="userComment">{{activity.feedData[$index].comment_title}}</div>
+            </div>
+          </div>
+          <div class="recFeedCard" ng-if="activity.feedData[$index].seen">
             <div class="userDidSomething">
               <div class="picName">
                 <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>

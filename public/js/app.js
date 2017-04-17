@@ -48,6 +48,26 @@ angular.module('goodSees', ['ui.router'])
                 templateUrl: './views/categories.html',
                 controller: 'categoriesCtrl'
             })
+            .state('main.friends', {
+                url: 'friends/:id',
+                templateUrl: './views/friends.html',
+                controller: 'friendsCtrl'
+            })
+            .state('main.favorites', {
+                url: 'favorites/:id',
+                templateUrl: './views/favorites.html',
+                controller: 'favoritesCtrl'
+            })
+            .state('main.seen', {
+                url: 'seen/:id',
+                templateUrl: './views/seen.html',
+                controller: 'seenCtrl'
+            })
+            .state('main.toSee', {
+                url: 'to-see/:id',
+                templateUrl: './views/toSee.html',
+                controller: 'toSeeCtrl'
+            })
     })
     .filter('slice', function () {
         return function (arr, start, end) {
