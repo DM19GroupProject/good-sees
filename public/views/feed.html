@@ -1,7 +1,6 @@
-
 <div class="background">
 
-  <div class="feedContainer" >
+  <div class="feedContainer">
     <div class="feedLeftSide">
 
       <div class="feedSidebarContainer">
@@ -11,11 +10,11 @@
 
         <div class="feedLinksContainer">
           <ul class="feedLinks">
-            <li ui-sref = 'main.user-profile' id="feedListLink">PROFILE</li>
-            <li ui-sref = 'main.friends' id="feedListLink">FRIENDS</li>
-            <li id="feedListLink">MOVIES YOU'VE SEEN</li>
-            <li id="feedListLink">MOVIES YOU WANT TO SEE</li>
-            <li id="feedListLink">YOUR FAVORITE MOVIES</li>
+            <li ui-sref='main.user-profile' id="feedListLink">PROFILE</li>
+            <li ui-sref='main.friends' id="feedListLink">FRIENDS</li>
+            <li ui-sref = 'main.seen' id="feedListLink">MOVIES YOU'VE SEEN</li>
+            <li ui-sref = 'main.toSee' id="feedListLink">MOVIES YOU WANT TO SEE</li>
+            <li ui-sref = 'main.favorites' id="feedListLink">YOUR FAVORITE MOVIES</li>
 
           </ul>
         </div>
@@ -30,7 +29,7 @@
         <div class="recPostSearchContainer">
           <form ng-submit="searchMovieByTitle(movieTitle)">
             <input ng-model="movieTitle" type()="text" name="recSearch" placeholder="Movie Title"></input>
-            <button id = "feed-search-btn" type="submit" value="Search!">FIND</button>
+            <button id="feed-search-btn" type="submit" value="Search!">FIND</button>
           </form>
         </div>
       </div>
@@ -49,10 +48,10 @@
             </div>
           </div>
         </div>
-          <div class="recInput">
-            <input type="" name="" value="">
-            <button>POST</button>
-          </div>
+        <div class="recInput">
+          <input type="" name="" value="">
+          <button>POST</button>
+        </div>
       </div>
       <div class="feedSearchResultsContainer">
         <div class="feedSearchResults">
@@ -67,49 +66,92 @@
         </div>
       </div>
       <div class="feedActivityContainer">
-        <div ng-repeat="activity in activities track by $index" class="activityCards">
-          <div class="recFeedCard" ng-if="activity.feedData[$index].recommends">
-            <div class="userDidSomething">
-              <div class="picName">
-                <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
-                <h2>{{activity.feedData[$index].first_name}}</h2>
+        <div ng-repeat="activity in activities track by $index">
+
+            <div class="recFeedCard" ng-if="activity.feedData[$index].recommends">
+          <div class="activityCards">
+              <div class="userDidSomething">
+                <div class="picName">
+                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
+                <p class="userDidWhat">recommends</p>
+                </div>
               </div>
-              <p>recommends</p>
-            </div>
-            <div class="activityMovieContainer">
-              <div class="activityMoviePic">
-                <img src="{{activity.imageUrl}}">
+              <div class="activityMovieContainer">
+                <div class="activityMoviePic">
+                  <img src="{{activity.imageUrl}}">
+                </div>
+                <div class="activityMovieWords">
+                  <div class="activityMovieTitle">{{activity.title}}</div>
+                  <div class="movieDescFade">
+                    <div class="activityMovieDescription">{{activity.overview}}</div>
+                  </div>
+                </div>
               </div>
-              <div class="activityMovieWords">
-                <div class="activityMovieTitle">{{activity.title}}</div>
-                <div class="activityMovieDescription">{{activity.overview}}</div>
+              <div class="activityComment">
+                <div class="userSays">{{activity.feedData[$index].first_name}} says</div>
+                <div class="userComment">{{activity.feedData[$index].comment_title}}</div>
               </div>
-            </div>
-            <div class="activityComment">
-              <div class="userSays">{{activity.feedData[$index].first_name}} says</div>
-              <div class="userComment">{{activity.feedData[$index].comment_title}}</div>
             </div>
           </div>
-          <div class="recFeedCard" ng-if="activity.feedData[$index].seen">
-            <div class="userDidSomething">
-              <div class="picName">
-                <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
-                <h2>{{activity.feedData[$index].first_name}}</h2>
+            <div class="seenFeedCard" ng-if="activity.feedData[$index].seen">
+          <div class="activityCards">
+              <div class="userDidSomething">
+                <div class="picName">
+                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
+                <p class="userDidWhat">saw</p>
+                </div>
               </div>
-              <p>recommends</p>
+              <div class="activityMovieContainer">
+                <div class="activityMoviePic">
+                  <img src="{{activity.imageUrl}}">
+                </div>
+                <div class="activityMovieWords">
+                  <div class="activityMovieTitle">{{activity.title}}</div>
+                  <div class="activityMovieDescription">{{activity.overview}}</div>
+                </div>
+              </div>
             </div>
-            <div class="activityMovieContainer">
-              <div class="activityMoviePic">
-                <img src="{{activity.imageUrl}}">
+          </div>
+            <div class="wantFeedCard" ng-if="activity.feedData[$index].to_see">
+          <div class="activityCards">
+              <div class="userDidSomething">
+                <div class="picName">
+                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
+                <p class="userDidWhat">wants to see</p>
+                </div>
               </div>
-              <div class="activityMovieWords">
-                <div class="activityMovieTitle">{{activity.title}}</div>
-                <div class="activityMovieDescription">{{activity.overview}}</div>
+              <div class="activityMovieContainer">
+                <div class="activityMoviePic">
+                  <img src="{{activity.imageUrl}}">
+                </div>
+                <div class="activityMovieWords">
+                  <div class="activityMovieTitle">{{activity.title}}</div>
+                  <div class="activityMovieDescription">{{activity.overview}}</div>
+                </div>
               </div>
             </div>
-            <div class="activityComment">
-              <div class="userSays">{{activity.feedData[$index].first_name}} says</div>
-              <div class="userComment">{{activity.feedData[$index].comment_title}}</div>
+          </div>
+            <div class="favFeedCard" ng-if="activity.feedData[$index].fav">
+          <div class="activityCards">
+              <div class="userDidSomething">
+                <div class="picName">
+                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
+                <p class="userDidWhat">added a new favorite</p>
+                </div>
+              </div>
+              <div class="activityMovieContainer">
+                <div class="activityMoviePic">
+                  <img src="{{activity.imageUrl}}">
+                </div>
+                <div class="activityMovieWords">
+                  <div class="activityMovieTitle">{{activity.title}}</div>
+                  <div class="activityMovieDescription">{{activity.overview}}</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,8 +1,19 @@
 angular.module('goodSees')
-    .controller('searchCtrl', function ($scope, tmdbService, $state) {
+    .controller('searchCtrl', function ($scope, tmdbService, $state, userService, mainService) {
 
         var titlePage = 1;
         $scope.apiSearchTerm = $scope.searchTerm;
+
+        userService.getUserId()
+        .then( response => {
+            return response
+        })
+        .then(response => {
+            mainService.getUserData(response)
+            .then(function(response){
+                $scope.userData = response[0];
+            })
+        })
 
         /*--------------------------------------------------------------------*
                          Event Handlers
@@ -56,7 +67,17 @@ angular.module('goodSees')
 
                     });
             }
+        }
 
+        ///////////add to lists functions////////////
+        $scope.addToFavs = (userId, movieId) =>{
+            mainService.addToFavs(userId, movieId)
+        }
+        $scope.addToSeen = (userId, movieId) => {
+            mainService.addToSeen(userId, movieId)
+        }
+        $scope.addToSee = (userId, movieId) => {
+            mainService.addToSee(userId, movieId)
         }
 
     });
