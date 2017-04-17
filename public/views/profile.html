@@ -19,6 +19,14 @@
         <h1 class="seenLabel" style="text-transform: uppercase">MOVIES {{userData.first_name}} HAS SEEN</h1>
         <div class="profileSeenLink">
           <div ng-repeat='movies in seenMovies' ui-sref="main.movie-profile({id: movies.id})">
+
+
+    <div class='category-overlay'>
+      <h2>{{movie.title}}</h2>
+      <h4>{{movie.release_date |date: 'yyyy' }}</h4>
+    </div>
+
+
             <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
           </div>
         </div>

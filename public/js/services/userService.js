@@ -8,6 +8,8 @@ angular.module('goodSees')
     
     function getUserId() {
       return $http.get(`/auth/me`).then(res => {
+        console.log('I ran',res.status)
+        // if(res.status !== 200) {$state.go('login')}
         userId = res.data
         return res.data
       })

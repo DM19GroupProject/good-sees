@@ -70,16 +70,6 @@ db.schema(function (err, data) {
                                 AUTH
 *--------------------------------------------------------------------*/
 
-
-
-
-
-
-
-
-
-
-
 passport.use(new FacebookStrategy({
   clientID: config.facebook.clientID,
   clientSecret: config.facebook.clientSecret,
@@ -90,12 +80,12 @@ passport.use(new FacebookStrategy({
     db.login.get_user([profile.id], function (err, user) {
       // console.log('checking user out')
       // user = user[0];
-      console.log('this is the user: ',user,'with this id',profile.id )
+      // console.log('this is the user: ',user,'with this id',profile.id )
       // console.log(profile._json.first_name, profile._json.last_name, profile._json.id, profile._json.picture.data.url)
       if (!user[0]) {
         console.log('CREATING USER');
         for (let i = 0; i < profile._json.friends.data.length; i++){
-          console.log(profile.id, profile._json.friends.data[i].id)
+          // console.log(profile.id, profile._json.friends.data[i].id)
           db.profile.post_new_friend([profile.id, profile._json.friends.data[i].id], function () {
           console.log('ADDING FRIEND', profile._json.friends.data[i].name)
           })
@@ -107,7 +97,12 @@ passport.use(new FacebookStrategy({
           return cb(err, user);
         })
       } else {
-
+        for (let i = 0; i < profile._json.friends.data.length; i++) {
+          console.log(profile.id, profile._json.friends.data[i].id)
+          db.profile.post_new_friend([profile.id, profile._json.friends.data[i].id], function () {
+            console.log('MAKING SURE YOU HAVE THIS FRIEND', profile._json.friends.data[i].name)
+          })
+        }
         //should update user info every time.
 
         // userService.user = profile._json.id;
