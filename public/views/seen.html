@@ -1,0 +1,18 @@
+<div class = 'categories-wrapper'>
+    <h1 class = 'cat-heading'>Movies I've Seen</h1>
+    <div class = 'category-results-wrapper'>
+        <div class = 'category-results-movie' ng-repeat="movie in seenMovies" header-controls>
+            <img ng-src="{{movie.imageUrl}}"/>
+            <div class = 'category-overlay'>
+                <div class="overlayMovieInfo" ui-sref="main.movie-profile({id: movie.id})">
+                    <h2>{{movie.title}}</h2>
+                    <h4>{{movie.year |date: 'yyyy' }}</h4>
+                </div>
+                <div class="addTo-Overlay">
+                    <p ng-click="deleteSeen(userId, movie.id)" class="overlayFav"><i class="fa fa-times" aria-hidden="true"></i> remove from seen list</p>
+                    <p ng-click="addToFavs(userId, movie.id)" class="overlayFav"><i class="fa fa-star" aria-hidden="true"></i> add to favorites</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
