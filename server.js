@@ -70,38 +70,40 @@ db.schema(function (err, data) {
                                 AUTH
 *--------------------------------------------------------------------*/
 
-
-
-
-
-
-
-
-
-
-
 passport.use(new FacebookStrategy({
   clientID: config.facebook.clientID,
   clientSecret: config.facebook.clientSecret,
   callbackURL: "http://localhost:8080/auth/facebook/callback",
-  profileFields: ['id', 'displayName', 'first_name', 'last_name', 'picture']
+  profileFields: ['id', 'displayName', 'first_name', 'last_name', 'picture', 'friends']
 },
   function (accessToken, refreshToken, profile, cb) {
     db.login.get_user([profile.id], function (err, user) {
       // console.log('checking user out')
       // user = user[0];
-      console.log('this is the user: ',user,'with this id',profile.id )
+      // console.log('this is the user: ',user,'with this id',profile.id )
       // console.log(profile._json.first_name, profile._json.last_name, profile._json.id, profile._json.picture.data.url)
-
       if (!user[0]) {
         console.log('CREATING USER');
-        db.login.post_new_user_info([profile._json.id, profile._json.first_name, profile._json.last_name,  profile._json.picture.data.url], function (err, user) {
+        for (let i = 0; i < profile._json.friends.data.length; i++){
+          // console.log(profile.id, profile._json.friends.data[i].id)
+          db.profile.post_new_friend([profile.id, profile._json.friends.data[i].id], function () {
+          console.log('ADDING FRIEND', profile._json.friends.data[i].name)
+          })
+        }
+        db.login.post_new_user_info([profile._json.id, profile._json.first_name, profile._json.last_name, 'https://graph.facebook.com/' + profile._json.id + '/picture?width=9999'], function (err, user) {
           console.log('USER CREATED', profile._json.first_name, profile._json.last_name);
           // userService.user = profile._json.id;
           // console.log(userService.user);
           return cb(err, user);
         })
       } else {
+        for (let i = 0; i < profile._json.friends.data.length; i++) {
+          console.log(profile.id, profile._json.friends.data[i].id)
+          db.profile.post_new_friend([profile.id, profile._json.friends.data[i].id], function () {
+            console.log('MAKING SURE YOU HAVE THIS FRIEND', profile._json.friends.data[i].name)
+          })
+        }
+        //should update user info every time.
 
         // userService.user = profile._json.id;
         // console.log(userService.user);
