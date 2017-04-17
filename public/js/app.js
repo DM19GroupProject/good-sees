@@ -1,5 +1,5 @@
 angular.module('goodSees', ['ui.router'])
-    .config(function($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/login');
         $urlRouterProvider.when('/', '/feed');
         $stateProvider
@@ -11,7 +11,17 @@ angular.module('goodSees', ['ui.router'])
             .state('main', {
                 url: '/',
                 templateUrl: './views/main.html',
-                controller: 'mainCtrl'
+                controller: 'mainCtrl',
+                resolve: {
+                    messages: function ($http, userService, $state) {
+                        $http.get(`/auth/me`).then(res => {
+                            console.log('HAI', res.status)
+                            if (res.status !== 200) {
+                                $state.go('login')
+                            }
+                        })
+                    }
+                }
             })
             .state('main.feed', {
                 url: 'feed',
@@ -59,8 +69,8 @@ angular.module('goodSees', ['ui.router'])
                 controller: 'toSeeCtrl'
             })
     })
-    .filter('slice', function() {
-        return function(arr, start, end) {
+    .filter('slice', function () {
+        return function (arr, start, end) {
             return arr.slice(start, end);
         };
     });
