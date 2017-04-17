@@ -72,7 +72,7 @@
           <div class="activityCards">
               <div class="userDidSomething">
                 <div class="picName">
-                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")' ui-sref="main.friendProfile({id: activity.feedData[$index].friend_id})"></div>
                   <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
                 <p class="userDidWhat">recommends</p>
                 </div>
@@ -98,7 +98,7 @@
           <div class="activityCards">
               <div class="userDidSomething">
                 <div class="picName">
-                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <div class="userCardPic" ui-sref="main.friendProfile({id: activity.feedData[$index].friend_id})"style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
                   <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
                 <p class="userDidWhat">saw</p>
                 </div>
@@ -118,7 +118,7 @@
           <div class="activityCards">
               <div class="userDidSomething">
                 <div class="picName">
-                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <div class="userCardPic" ui-sref="main.friendProfile({id: activity.feedData[$index].friend_id})"style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
                   <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
                 <p class="userDidWhat">wants to see</p>
                 </div>
@@ -138,7 +138,7 @@
           <div class="activityCards">
               <div class="userDidSomething">
                 <div class="picName">
-                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <div class="userCardPic" ui-sref="main.friendProfile({id: activity.feedData[$index].friend_id})"style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
                   <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
                 <p class="userDidWhat">added a new favorite</p>
                 </div>
