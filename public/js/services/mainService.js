@@ -97,6 +97,14 @@ angular.module('goodSees')
             })
         }
 
+        this.getFriends = function(id){
+            return $http.get('/getFriends/' + id)
+            .then(function(response){
+                console.log("friends", response.data);
+                return response.data;
+            })
+        }
+
 
         this.addToFavs = (userId, movieId) => {
             return $http.post(`/postFav/${userId}/${movieId}`)
