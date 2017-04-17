@@ -203,7 +203,7 @@ app.post('/postFriendRank/:id/:friendId/:rank', endpointCtrl.postFriendRank);
 //----DELETE----*
 
 app.post('/deleteFriend/:id/:friendId', endpointCtrl.deleteFriend);
-app.post('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
+app.delete('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
 app.post('/deleteRecommendation/:id/:movieId', endpointCtrl.deleteRecommendation);
 app.post('/deleteReview/:id/:movieId', endpointCtrl.deleteReview);
 app.delete('/deleteSeen/:id/:movieId', endpointCtrl.deleteSeen);
