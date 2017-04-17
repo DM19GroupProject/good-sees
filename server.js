@@ -207,7 +207,7 @@ app.delete('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
 app.post('/deleteRecommendation/:id/:movieId', endpointCtrl.deleteRecommendation);
 app.post('/deleteReview/:id/:movieId', endpointCtrl.deleteReview);
 app.delete('/deleteSeen/:id/:movieId', endpointCtrl.deleteSeen);
-app.post('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
+app.delete('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
 
 
 // app.get('/login',

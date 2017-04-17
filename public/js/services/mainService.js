@@ -77,7 +77,7 @@ angular.module('goodSees')
 
                                     wantToSee.push({
                                         imageUrl: baseUrl + response.data.poster_path,
-                                        title: response.data.original_title
+                                        title: response.data.original_title, id: response.data.id, year: response.data.release_date
                                     })
                                 })
                         }
@@ -137,6 +137,9 @@ angular.module('goodSees')
         }
         this.deleteFav = (userId, movieId) => {
             return $http.delete(`/deleteFav/${userId}/${movieId}`)
+        }
+        this.deleteToSee = (userId, movieId) => {
+            return $http.delete(`/deleteToSee/${userId}/${movieId}`)
         }
 
 
