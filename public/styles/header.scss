@@ -132,11 +132,10 @@ $yellow: #e7bc2a;
     margin: 10px auto 20px auto;
 }
 .dropdown-link-container{
-    display: none;
+    display: flex;
     flex-direction: column;  
 }
 .lists-links{
-    display: flex;
     flex-direction: column;
     align-items: center;
     border-top: 1px solid;

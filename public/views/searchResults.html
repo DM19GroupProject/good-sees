@@ -8,11 +8,18 @@
 
 		<!--searching by movie title-->
 		<div ng-show="resultFlag" ng-hide="hideFlag" class='category-results-wrapper'>
-			<div class='category-results-movie' ui-sref="main.movie-profile({id: movie.id})" ng-repeat="movie in movieInfo" header-controls>
+			<div class='category-results-movie' ng-repeat="movie in movieInfo" header-controls>
 				<img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}" />
-				<div class='category-overlay'>
-					<h2>{{movie.title}}</h2>
-					<h4>{{movie.release_date |date: 'yyyy' }}</h4>
+				<div class = 'category-overlay'>
+					<div class="overlayMovieInfo" ui-sref="main.movie-profile({id: movie.id})">
+						<h2>{{movie.title}}</h2>
+						<h4>{{movie.release_date |date: 'yyyy' }}</h4>
+					</div>
+					<div class="addTo-Overlay">
+						<p ng-click="addToFavs(userData.fb_id, movie.id)" class="overlayFav"><i class="fa fa-star" aria-hidden="true"></i> add to favorites</p>
+						<p ng-click="addToSeen(userData.fb_id, movie.id)" class="overlaySeen"><i class="fa fa-check " aria-hidden="true"></i> add to seen</p>
+						<p ng-click="addToSee(userData.fb_id, movie.id)" class="overlayList"><i class="fa fa-list-ul" aria-hidden="true"></i> add to to-see</p>
+					</div>
 				</div>
 			</div>
 		</div>
