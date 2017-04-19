@@ -1,0 +1,39 @@
+.all-friends-wrapper{
+    padding-top: 100px;
+    color: white;
+}
+.friends-page-title{
+    font-size: 75px;
+    padding-bottom: 15px;
+}
+.friends-wrapper{
+    display:flex;
+    flex-wrap: wrap;
+}
+.name-text{
+   font-size: 4vw;
+   padding-bottom: 20px;
+}
+.friend-friendpage img{
+    width: 100%;
+}
+.friend-friendpage{
+    width: 50%;
+    padding: 0 2px;
+    margin-bottom: 20px;
+    box-shadow: 9px 0px 95px black;
+    cursor: pointer;
+    }
+@media (min-width: 750px){
+    .friend-friendpage{
+    width: 33%;
+    padding: 0 3px;
+    margin-bottom: 60px;
+    }
+}
+@media (min-width: 950px){
+.friend-friendpage{
+    width: 25%;
+    padding: 0 3px;
+}
+}
