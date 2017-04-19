@@ -109,6 +109,7 @@ angular.module('goodSees')
                     $('.postData').hide();
                     $('.recCard').show();
                     $('.feedSearchResults').hide();
+                   
                 })
                 $('#feed-search-btn').click(function(){
                     $('.feedSearchResultsContainer').css('display', 'flex');
