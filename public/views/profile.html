@@ -34,17 +34,39 @@
     </div>
     <div ng-switch-when="want">
       <h1 class="seenLabel" style="text-transform: uppercase">MOVIES {{userData.first_name}} WANTS TO SEE</h1>
-      <div class="profileSeenLink" ui-sref="main.movie-profile({id: movies.id})">
+      <div class="profileSeenLink" >
         <div ng-repeat='movies in wantToSee'>
-          <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
+          <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')">
+            <div class='category-overlay'>
+              <div class="overlayMovieInfo" ui-sref="main.movie-profile({id: movies.id})" header-controls>
+                <h2>{{movies.title}}</h2>
+                <h4>{{movies.year |date: 'yyyy' }}</h4>
+              </div>
+              <div class="addTo-Overlay">
+                <p ng-click="deleteToSee(userId, movies.id)" class="overlayFav"><i class="fa fa-times" aria-hidden="true"></i> remove</p>
+                <p ng-click="addToFavs(userId, movies.id)" class="overlayFav"><i class="fa fa-star" aria-hidden="true"></i> add to favorites</p>
+                <p ng-click="addToSeen(userId, movies.id)" class="overlayFav"><i class="fa fa-check" aria-hidden="true"></i> add to seen list</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div ng-switch-when="fav">
       <h1 class="seenLabel" style="text-transform: uppercase">{{userData.first_name}}'S FAVORITE MOVIES</h1>
-      <div class="profileSeenLink" ui-sref="main.movie-profile({id: movies.id})">
+      <div class="profileSeenLink" >
         <div ng-repeat='movies in favMovies'>
-          <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
+          <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')" header-controls>
+            <div class='category-overlay'>
+              <div class="overlayMovieInfo" ui-sref="main.movie-profile({id: movies.id})">
+                <h2>{{movies.title}}</h2>
+                <h4>{{movies.year |date: 'yyyy' }}</h4>
+              </div>
+              <div class="addTo-Overlay">
+                <p ng-click="deleteFav(userId, movies.id)" class="overlayFav"><i class="fa fa-times" aria-hidden="true"></i> remove</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

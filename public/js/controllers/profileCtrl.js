@@ -26,15 +26,21 @@ angular.module('goodSees')
            
         })
 
-        mainService.getSeenMovies(response)
-        .then(function(response){
+        $scope.getSeenMovies = function(){
+            mainService.getSeenMovies(response)
+            .then(function(response){
             $scope.seenMovies = response;
-        })
+             })
+        }
+        $scope.getSeenMovies();
 
-        mainService.getWantToSee(response)
-        .then(function(response){
-            $scope.wantToSee = response;
-        })
+        $scope.getWantToSee = function(){
+            mainService.getWantToSee(response)
+            .then(function(response){
+                $scope.wantToSee = response;
+            })
+        }
+        $scope.getWantToSee();
 
         $scope.getFavMovies = function(){
             mainService.getFavMovies(response)
@@ -48,10 +54,32 @@ angular.module('goodSees')
     
     $scope.addToFavs = (userId, movieId) =>{
         mainService.addToFavs(userId, movieId)
+        .then(function(response){
         $scope.getFavMovies();        
+        })
     }
     $scope.deleteSeen = (userId, movieId) => {
         mainService.deleteSeen(userId, movieId)
         $scope.getSeenMovies();
     }
+    $scope.deleteFav = (userId, movieId) => {
+        mainService.deleteFav(userId, movieId)
+        .then(function(response){
+        $scope.getFavMovies();
+        })
+    }
+    $scope.deleteToSee = (userId, movieId) => {
+        mainService.deleteToSee(userId, movieId)
+        .then(function(response){
+        $scope.getWantToSee();
+        })
+        
+    }
+    $scope.addToSeen = (userId, movieId) =>{
+        mainService.addToSeen(userId, movieId);
+        $scope.deleteToSee(userId, movieId);
+    }
+
+
+
 });
