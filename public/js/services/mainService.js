@@ -110,13 +110,13 @@ angular.module('goodSees')
                 })
         }
 
-        this.getFriends = function(id){
-            return $http.get('/getFriends/' + id)
-            .then(function(response){
-                console.log("friends", response);
-                return response.data;
-            })
-        }
+        // this.getFriends = function(id){
+        //     return $http.get('/getFriends/' + id)
+        //     .then(function(response){
+        //         console.log("friends", response);
+        //         return response.data;
+        //     })
+        // }
 
 
         this.addToFavs = (userId, movieId) => {
