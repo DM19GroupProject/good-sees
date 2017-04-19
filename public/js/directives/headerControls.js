@@ -23,10 +23,10 @@ angular.module('goodSees')
 
                 /////////adding overlay to movie thumbnails/////
                 if($(window).width() >= 750) {
-                    $('.category-results-movie, .actor-results-movie').mouseenter(function(){
+                    $('.category-results-movie, .actor-results-movie, .profileMoviesSeen').mouseenter(function(){
                         $(this).children('.category-overlay').css('display', 'flex');
                     })
-                    $('.category-results-movie, .actor-results-movie').mouseleave(function(){
+                    $('.category-results-movie, .actor-results-movie, .profileMoviesSeen').mouseleave(function(){
                         $(this).children('.category-overlay').css('display', 'none');
                     })
                     $('.overlayFav').click(function(){
