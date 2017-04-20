@@ -95,7 +95,7 @@ angular.module('goodSees')
                         if (response.data[i].fav) {
                             $http.get('/getMovieById/' + response.data[i].movie_id)
                                 .then(function (response) {
-                                    console.log(response.data)
+                                    // console.log(response.data)
 
                                     favMovies.push({
                                         imageUrl: baseUrl + response.data.poster_path,
@@ -105,10 +105,18 @@ angular.module('goodSees')
                                 })
                         }
                     }
-                    console.log("favMovies:", favMovies);
+                    // console.log("favMovies:", favMovies);
                     return favMovies;
                 })
         }
+
+        // this.getFriends = function(id){
+        //     return $http.get('/getFriends/' + id)
+        //     .then(function(response){
+        //         console.log("friends", response);
+        //         return response.data;
+        //     })
+        // }
 
 
         this.addToFavs = (userId, movieId) => {
@@ -167,7 +175,7 @@ angular.module('goodSees')
                                 })
                         }
                     }
-                    console.log("movies:", moviesForFeed)
+                    // console.log("movies:", moviesForFeed)
                     return moviesForFeed;
                 })
         }

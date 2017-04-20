@@ -21,8 +21,8 @@ $yellow-search-text: #CE9C29;
     align-items: center;
 
     h1{
-      margin-left: 20px;
-      margin-top: 18px;
+      margin-left: 25px;
+      margin-top: 25px;
       font-size: 40px;
       color: white;
       font-weight: 500;
@@ -36,7 +36,7 @@ $yellow-search-text: #CE9C29;
   height: 100px;
   border-radius: 50%;
   background-color: grey;
-  margin: 30px 0 15px 30px;
+  margin: 45px 0 15px 38px;
   box-shadow: 4px 2px 10px black;
   text-align: center;
   background-size: cover;
@@ -88,12 +88,11 @@ $yellow-search-text: #CE9C29;
 
 .profileLabel{
  @extend .seenLabel;
-//  padding: 15px 15px 10px 5px;
+ font-size: 18px;
+ padding: 10px 0 10px 19px;
 }
 
 .topFriends{
-  display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   margin: 10px 10px 20px;
  
@@ -132,7 +131,7 @@ $yellow-search-text: #CE9C29;
   font-family: $main-font;
   font-weight: 500;
   color: white;
-  padding: 10px;
+  padding: 13px 0 10px 23px;
   font-size: 17px;
 }
 
@@ -159,9 +158,9 @@ $yellow-search-text: #CE9C29;
     font-family: $main-font;
     font-size:17px;
     color: white;
-    padding: 10px;
+    
     font-weight: 400;
-    padding-top: 13px;
+    padding: 17px 0 0 17px;
 }
 .profileSeenLink{
   width: 100%;

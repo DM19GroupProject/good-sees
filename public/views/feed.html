@@ -40,7 +40,7 @@
           </div>
           <div class="recTitleRating">
             <p id="recTitle">{{recSelection.title}}</p>
-            <p id="recRating">Your rating</p>
+            <p id="recRating">How do you rate this movie?</p>
             <div class="recFaces">
               <i class="fa fa-smile-o" aria-hidden="true"></i>
               <i class="fa fa-meh-o" aria-hidden="true"></i>
@@ -58,9 +58,9 @@
           <div header-controls class="feedSearchSelection" ng-repeat="movie in feedMovieInfo" ng-click="selectMovie(movie)">
             <div class="feedSearchResultsMovie">
               <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}" />
-              <p>{{movie.title}}</p>
-              <p>{{movie.release_date}}</p>
-              <p style="color: white">Hello</p>
+              <p style="color: white">{{movie.title}}</p>
+              <p style="color: white">{{movie.release_date}}</p>
+              <!--<p style="color: white"></p>-->
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@
           <div class="activityCards">
               <div class="userDidSomething">
                 <div class="picName">
-                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")' ui-sref="main.friendProfile({id: activity.feedData[$index].friend_id})"></div>
                   <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
                 <p class="userDidWhat">recommends</p>
                 </div>
@@ -89,8 +89,15 @@
                 </div>
               </div>
               <div class="activityComment">
-                <div class="userSays">{{activity.feedData[$index].first_name}} says</div>
-                <div class="userComment">{{activity.feedData[$index].comment_title}}</div>
+                <div class="userSays">{{activity.feedData[$index].first_name}} says:</div>
+                <div class="usersCommentContainer">
+
+                  <i class="fa fa-quote-left" aria-hidden="true"></i>
+
+                  <div class="userComment">{{activity.feedData[$index].comment_title}}</div>
+
+                  <i class="fa fa-quote-right" aria-hidden="true"></i>
+                </div>
               </div>
             </div>
           </div>
@@ -98,7 +105,7 @@
           <div class="activityCards">
               <div class="userDidSomething">
                 <div class="picName">
-                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <div class="userCardPic" ui-sref="main.friendProfile({id: activity.feedData[$index].friend_id})"style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
                   <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
                 <p class="userDidWhat">saw</p>
                 </div>
@@ -118,7 +125,7 @@
           <div class="activityCards">
               <div class="userDidSomething">
                 <div class="picName">
-                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <div class="userCardPic" ui-sref="main.friendProfile({id: activity.feedData[$index].friend_id})"style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
                   <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
                 <p class="userDidWhat">wants to see</p>
                 </div>
@@ -138,7 +145,7 @@
           <div class="activityCards">
               <div class="userDidSomething">
                 <div class="picName">
-                  <div class="userCardPic" style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
+                  <div class="userCardPic" ui-sref="main.friendProfile({id: activity.feedData[$index].friend_id})"style='background-image: url("{{activity.feedData[$index].picture_url}}")'></div>
                   <p class="userDidName">{{activity.feedData[$index].first_name}}</p>
                 <p class="userDidWhat">added a new favorite</p>
                 </div>
