@@ -25,7 +25,7 @@ $yellow-search-text: #CE9C29;
 }
 
 .postContainer {
-  width: 100%;
+  width: 70%;
   // height: 100vh;
  
 }
@@ -42,7 +42,7 @@ $yellow-search-text: #CE9C29;
   align-items: center;
   color: white;
   padding: 15px 0 25px 0;
-  border: 1px solid $header-text;
+  
   position: fixed;
   input {
     width: 128%;
@@ -84,12 +84,14 @@ $yellow-search-text: #CE9C29;
 
 .feedSearchResults {
   width: 80%;
-  background-color: lightgray;
+  background-color: rgba(10, 10, 10, 0.68);
   color: black; // overflow: scroll;
   display: flex;
   flex-wrap: wrap;
-  margin: 146px 0;
+  margin: 177px 0 0 44px;
   box-shadow: $main-box-shaddow;
+  justify-content: space-around;
+  padding-top: 10px;
 }
 
 .feedSearchResultsMovie {
@@ -117,12 +119,13 @@ $yellow-search-text: #CE9C29;
 }
 
 .recCard {
-  width: 340px;
-  border: 1px solid gray;
-  background: black;
-  color: white;
-  padding: 15px;
-  display: none;
+    width: 670px;
+    background: rgba(5, 5, 5, 0.85);
+    color: white;
+    padding: 30px 0 0 18px;
+    display: none;
+    margin-top: 34px;
+    height: 286px;
 }
 
 .seenCard {
@@ -154,48 +157,65 @@ $yellow-search-text: #CE9C29;
 
 .recMovieInfo {
   display: flex;
-  justify-content: space-between;
+  margin-left: 30px;
 }
 
 .recImage {
   width: 100px;
   img {
     width: 100%;
+    border-radius: 2pt;
+    box-shadow: $main-box-shaddow;
+    // border: 1px solid grey;
   }
 }
 
 .recTitleRating {
   width: 230px;
   text-align: center;
+  padding-right: 6px;
 }
 
 #recTitle {
   font-size: 30px;
-  padding-bottom: 25px;
-  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-top: 14px;
+  padding-left: 30px;
+  width: 400px;
+  text-align: left;
 }
-
-#recRating {}
+#recRating{
+  width: 299px;
+  color: grey;
+}
 
 .recFaces {
   font-size: 40px;
-  margin-top: 7px;
+  margin: 11px 0 6px 65px;
+  color: grey;
 }
 
 .recInput {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 15px;
+  justify-content: space-around;
+  width: 83%;
+  margin: 20px 5px 15px 60px;
   input {
-    width: 80%;
+    width: 70%;
     height: 30px;
-    background-color: black;
+    background-color: rgba(10, 10, 10, 0.9);
     border: 1px solid gray;
   }
   button {
-    height: 30px;
-    border: 1px solid gray;
+    height: 29px;
+    width: 60px;
+    font-size: 20px;
+    text-align: center;
+    background: none;
+    color: $yellow-from-logo;
+    border: none;
+    font-family: raleway;
+    font-weight: 600;
   }
 }
 
@@ -204,13 +224,19 @@ $yellow-search-text: #CE9C29;
   margin: 199px 60px 0;
 }
 
+.feedActivityAfter {
+  width: 80%;
+  margin: 10px 60px 0;
+}
+
 .activityCards {
-  width: 581px;
-  background-color: rgba(10, 10, 10, 0.48);
-  color: white;
-  box-shadow: $main-box-shaddow;
-  border: 1px solid gray;
-  padding: 10px;
+    width: 581px;
+    background-color: rgba(20, 20, 20, 0.68);
+    color: white;
+    box-shadow: 9px 0px 95px black;
+    /* border: 1px solid gray; */
+    padding: 10px;
+    margin-bottom: 31px;
 }
 
 .userDidSomething {
@@ -277,10 +303,10 @@ $yellow-search-text: #CE9C29;
 
 .activityMovieDescription {
   overflow: auto;
-  height: 72px;
+  height: 104px;
   text-align: left;
   margin: 25px 0 0 80px;
-  width: 300px;
+  width: 318px;
   color: grey;
 }
 
@@ -299,6 +325,7 @@ $yellow-search-text: #CE9C29;
   .feedLeftSide {
     width: 450px;
     height: 100vh;
+    padding: 28px 0 28px 30px;
     
   }
   .feedSidebarContainer {
@@ -373,4 +400,22 @@ $yellow-search-text: #CE9C29;
     align-items: center;
     width: 447px;
   }
+}
+
+.userSays{
+  font-family: raleway;
+  font-size: 20px;
+  font-weight: 500;
+  color: $yellow-from-logo;
+}
+
+.usersCommentContainer{
+  display: flex;
+  margin: 10px 0 10px 27px;
+
+}
+
+.userComment{
+      font-size: 20px;
+    padding: 5px 5px;
 }

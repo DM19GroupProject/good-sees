@@ -67,6 +67,12 @@ angular.module('goodSees', ['ui.router'])
                 templateUrl: './views/toSee.html',
                 controller: 'toSeeCtrl'
             })
+
+            .state('main.friendProfile', {
+                url: 'friend-profile/:id',
+                templateUrl: './views/friendsProfile.html',
+                controller: "friendsProfileCtrl"
+            })
     })
     .filter('slice', function () {
         return function (arr, start, end) {

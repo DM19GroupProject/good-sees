@@ -26,6 +26,12 @@ angular.module('goodSees')
            
         })
 
+
+        mainService.getFriends(response)
+        .then(function(response){
+            $scope.friendList = response;
+        })
+
         $scope.getSeenMovies = function(){
             mainService.getSeenMovies(response)
             .then(function(response){
@@ -67,6 +73,7 @@ angular.module('goodSees')
         .then(function(response){
         $scope.getFavMovies();
         })
+
     }
     $scope.deleteToSee = (userId, movieId) => {
         mainService.deleteToSee(userId, movieId)
@@ -79,7 +86,5 @@ angular.module('goodSees')
         mainService.addToSeen(userId, movieId);
         $scope.deleteToSee(userId, movieId);
     }
-
-
 
 });
