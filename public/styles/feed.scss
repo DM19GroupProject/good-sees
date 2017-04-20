@@ -277,10 +277,10 @@ $yellow-search-text: #CE9C29;
 
 .activityMovieDescription {
   overflow: auto;
-  height: 72px;
+  height: 104px;
   text-align: left;
   margin: 25px 0 0 80px;
-  width: 300px;
+  width: 318px;
   color: grey;
 }
 
@@ -373,4 +373,9 @@ $yellow-search-text: #CE9C29;
     align-items: center;
     width: 447px;
   }
+}
+
+.userSays{
+  font-family: raleway;
+  font-size: 20px;
 }

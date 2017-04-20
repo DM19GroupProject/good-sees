@@ -16,6 +16,8 @@
 
           <button class="afterClick" ng-click="link='profile'" id="profileTab">PROFILE</button>
 
+          <button class="beforeClick" ng-click="link='friends'" id="friendsTab">FRIENDS</button>
+
           <button class="beforeClick" ng-click="link='seen'" id="seenTab">SEEN</button>
 
           <button class="beforeClick" ng-click="link='want'" id="wantToSeeTab">WANT TO SEE</button>
@@ -27,6 +29,19 @@
 
 
     <div ng-switch on="link">
+
+      <!--***************-->
+      <!--**FRIENDS TAB**-->
+      <!--***************-->
+
+      <div ng-switch-when="friends">
+        <h1 class="seenLabel" style="text-transform: uppercase">ALL OF {{userData.first_name}}'S FRIENDS</h1>
+        <div class="profileSeenLink">
+          <div ng-repeat="friend in friendList">
+            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
+          </div>
+        </div>
+      </div>
 
       <!--************-->
       <!--**SEEN TAB**-->
@@ -85,6 +100,14 @@
                 <h1 class="favFriendName">
                   {{friend.first_name}} {{friend.last_name}}
                 </h1>
+              </div>
+              <div class="topFriend" style="background-image: url('{{friend.picture_url}}')">
+              </div>
+
+              <div class="topFriend" style="background-image: url('{{friend.picture_url}}')">
+              </div>
+
+              <div class="topFriend" style="background-image: url('{{friend.picture_url}}')">
               </div>
               <!--<div class="topFriend">4</div>
               <div class="topFriend">5</div>-->
