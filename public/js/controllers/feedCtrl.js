@@ -8,7 +8,6 @@ angular.module('goodSees')
             mainService.getUserData(response)
             .then( response => {
                 $scope.currentUserData = response[0]
-                console.log($scope.currentUserData)
             })
         })
         $scope.baseUrl = mainService.baseUrl;

@@ -13,9 +13,11 @@ angular.module('goodSees')
                 $('.dropdown-profile-info').click(function(){
                     $('.dropdown-link-container').toggleClass('display-flex');
                 })
-                $('.list-link').click(function(e){
-                    e.preventDefault();
+                $('.list-link').click(function(){             
                     $('.lists-links').toggleClass('display-flex');
+                })
+                $('.close-ham').click(function(){
+                    $('.lists-links').removeClass('display-flex');
                 })
 
 
@@ -44,14 +46,13 @@ angular.module('goodSees')
                               Desktop Dropdown Controls
                 *--------------------------------------------------------------------*/ 
                 $('#wide-menu-ham').click(function(){ 
-                    $('.dropdown-link-container').addClass('display-flex')
+                    // $('.dropdown-link-container').addClass('display-flex')
                     $('.desktop-profile-dropdown').addClass('display-block');
                 })
-                $(document).click(function(e) {
-                    if( e.target.id != 'wide-menu-ham') {
+                $('#cat-btn, #search-btn, .feedContainer, .mobile-search-btn, .categories-wrapper, .profilePicContainer, .results-search-container, .close-ham').click(function() {
+                    
                         $(".desktop-profile-dropdown").removeClass('display-block');
-                        $('.dropdown-link-container').removeClass('display-flex')
-                    }
+                        // $('.dropdown-link-container').removeClass('display-flex')
                 });
                 //////////////Search///////////////                
                 $('#search-btn').click(function(){
@@ -108,6 +109,7 @@ angular.module('goodSees')
                     $('.postData').hide();
                     $('.recCard').show();
                     $('.feedSearchResults').hide();
+                   
                 })
                 $('#feed-search-btn').click(function(){
                     $('.feedSearchResultsContainer').css('display', 'flex');

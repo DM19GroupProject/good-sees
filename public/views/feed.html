@@ -13,8 +13,8 @@
             <li ui-sref='main.user-profile' id="feedListLink">PROFILE</li>
             <li ui-sref='main.friends' id="feedListLink">FRIENDS</li>
             <li ui-sref = 'main.seen' id="feedListLink">MOVIES YOU'VE SEEN</li>
-            <li id="feedListLink">MOVIES YOU WANT TO SEE</li>
-            <li id="feedListLink">YOUR FAVORITE MOVIES</li>
+            <li ui-sref = 'main.toSee' id="feedListLink">MOVIES YOU WANT TO SEE</li>
+            <li ui-sref = 'main.favorites' id="feedListLink">YOUR FAVORITE MOVIES</li>
 
           </ul>
         </div>
@@ -40,7 +40,7 @@
           </div>
           <div class="recTitleRating">
             <p id="recTitle">{{recSelection.title}}</p>
-            <p id="recRating">Your rating</p>
+            <p id="recRating">How do you rate this movie?</p>
             <div class="recFaces">
               <i class="fa fa-smile-o" aria-hidden="true"></i>
               <i class="fa fa-meh-o" aria-hidden="true"></i>
@@ -58,9 +58,9 @@
           <div header-controls class="feedSearchSelection" ng-repeat="movie in feedMovieInfo" ng-click="selectMovie(movie)">
             <div class="feedSearchResultsMovie">
               <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}" />
-              <p>{{movie.title}}</p>
-              <p>{{movie.release_date}}</p>
-              <p style="color: white">Hello</p>
+              <p style="color: white">{{movie.title}}</p>
+              <p style="color: white">{{movie.release_date}}</p>
+              <!--<p style="color: white"></p>-->
             </div>
           </div>
         </div>

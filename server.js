@@ -185,7 +185,7 @@ app.get('/getMoviesByGenre/:id/:page', endpointCtrl.getMoviesByGenre);
 app.get('/searchMovieByTitle/:movieTitle/:page', endpointCtrl.searchMovieByTitle);
 app.get('/searchMovieByCastMember/:castMember', endpointCtrl.searchMovieByCastMember);
 app.get('/getMovieById/:id', endpointCtrl.getMovieById);
-
+app.get('/getFriends/:id', endpointCtrl.getFriends)
 //----POST------*
 
 app.post('/postNewUserInfo/:id/:first/:last/:picture', endpointCtrl.postNewUserInfo);
@@ -203,11 +203,11 @@ app.post('/postFriendRank/:id/:friendId/:rank', endpointCtrl.postFriendRank);
 //----DELETE----*
 
 app.post('/deleteFriend/:id/:friendId', endpointCtrl.deleteFriend);
-app.post('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
+app.delete('/deleteFav/:id/:movieId', endpointCtrl.deleteFav);
 app.post('/deleteRecommendation/:id/:movieId', endpointCtrl.deleteRecommendation);
 app.post('/deleteReview/:id/:movieId', endpointCtrl.deleteReview);
 app.delete('/deleteSeen/:id/:movieId', endpointCtrl.deleteSeen);
-app.post('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
+app.delete('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
 
 
 // app.get('/login',
