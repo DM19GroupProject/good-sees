@@ -42,7 +42,7 @@ $yellow-search-text: #CE9C29;
   align-items: center;
   color: white;
   padding: 15px 0 25px 0;
-  border: 1px solid $header-text;
+  
   position: fixed;
   input {
     width: 128%;
@@ -119,13 +119,13 @@ $yellow-search-text: #CE9C29;
 }
 
 .recCard {
-  width: 670px;
-  border: 1px solid gray;
-  background: black;
-  color: white;
-  padding: 15px;
-  display: none;
-  margin-top: 34px;
+    width: 670px;
+    background: rgba(5, 5, 5, 0.85);
+    color: white;
+    padding: 30px 0 0 18px;
+    display: none;
+    margin-top: 34px;
+    height: 286px;
 }
 
 .seenCard {
@@ -165,7 +165,8 @@ $yellow-search-text: #CE9C29;
   img {
     width: 100%;
     border-radius: 2pt;
-    border: 1px solid grey;
+    box-shadow: $main-box-shaddow;
+    // border: 1px solid grey;
   }
 }
 
@@ -206,13 +207,15 @@ $yellow-search-text: #CE9C29;
     border: 1px solid gray;
   }
   button {
-    height: 40px;
-    width: 57px;
+    height: 29px;
+    width: 60px;
     font-size: 20px;
     text-align: center;
     background: none;
     color: $yellow-from-logo;
     border: none;
+    font-family: raleway;
+    font-weight: 600;
   }
 }
 
@@ -227,12 +230,13 @@ $yellow-search-text: #CE9C29;
 }
 
 .activityCards {
-  width: 581px;
-  background-color: rgba(10, 10, 10, 0.48);
-  color: white;
-  box-shadow: $main-box-shaddow;
-  border: 1px solid gray;
-  padding: 10px;
+    width: 581px;
+    background-color: rgba(20, 20, 20, 0.68);
+    color: white;
+    box-shadow: 9px 0px 95px black;
+    /* border: 1px solid gray; */
+    padding: 10px;
+    margin-bottom: 31px;
 }
 
 .userDidSomething {
@@ -401,4 +405,17 @@ $yellow-search-text: #CE9C29;
 .userSays{
   font-family: raleway;
   font-size: 20px;
+  font-weight: 500;
+  color: $yellow-from-logo;
+}
+
+.usersCommentContainer{
+  display: flex;
+  margin: 10px 0 10px 27px;
+
+}
+
+.userComment{
+      font-size: 20px;
+    padding: 5px 5px;
 }
