@@ -1,137 +1,106 @@
 <profile-controls></profile-controls>
-<div class="background">
-  <div class="profileHeader">
-    <div class="profilePicContainer">
-      <div class="profilePic" style="background-image: url('{{userData.picture_url}}')"></div>
-      <h1>{{userData.first_name}} {{userData.last_name}}</h1>
-    </div>
 
-    <div class="profileTabList">
-      <button class="afterClick" ng-click="link='profile'" id="profileTab">PROFILE</button>
-      <button class="beforeClick" ng-click="link='friends'" id="friendsTab">FRIENDS</button>
-      <!--ui-sref="main.friendProfile"-->
-      <button class="beforeClick" ng-click="link='seen'" id="seenTab">SEEN</button>
-      <button class="beforeClick" ng-click="link='want'" id="wantToSeeTab">WANT TO SEE</button>
-      <button class="beforeClick" ng-click="link='fav'" id="favoritesTab">FAVORITES</button>
-    </div>
-  </div>
-  <div ng-switch on="link">
-
-    <div ng-switch-when="friends">
-      <h1 class="seenLabel" style="text-transform: uppercase">ALL OF {{userData.first_name}}'S FRIENDS</h1>
-      <div class="profileSeenLink">
-        <div ng-repeat="friend in friendList">
-          <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
-        </div>
-      </div>
-    </div>
-    <div ng-switch-when="seen">
-      <h1 class="seenLabel" style="text-transform: uppercase">MOVIES {{userData.first_name}} HAS SEEN</h1>
-      <div class="profileSeenLink">
-        <div ng-repeat='movies in seenMovies' ui-sref="main.movie-profile({id: movies.id})">
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="background">
-    <div class="profileHeader">
-      <div class="profilePicContainer">
-        <div class="profilePic" style="background-image: url('{{userData.picture_url}}')"></div>
-        <h1>{{userData.first_name}} {{userData.last_name}}</h1>
+      <div class="profileHeader">
+        <div class="profilePicContainer">
+          <div class="profilePic" style="background-image: url('{{userData.picture_url}}')"></div>
+          <h1>{{userData.first_name}} {{userData.last_name}}</h1>
+        </div>
+
+        <div class="profileTabList">
+          <button class="afterClick" ng-click="link='profile'" id="profileTab">PROFILE</button>
+          <button class="beforeClick" ng-click="link='friends'" id="friendsTab">FRIENDS</button>
+          <!--ui-sref="main.friendProfile"-->
+          <button class="beforeClick" ng-click="link='seen'" id="seenTab">SEEN</button>
+          <button class="beforeClick" ng-click="link='want'" id="wantToSeeTab">WANT TO SEE</button>
+          <button class="beforeClick" ng-click="link='fav'" id="favoritesTab">FAVORITES</button>
+        </div>
       </div>
-      <div class="profileTabList">
-        <button class="afterClick" ng-click="link='profile'" id="profileTab">PROFILE</button>
-        <button class="beforeClick" ng-click="link='seen'" id="seenTab">SEEN</button>
-        <button class="beforeClick" ng-click="link='want'" id="wantToSeeTab">WANT TO SEE</button>
-        <button class="beforeClick" ng-click="link='fav'" id="favoritesTab">FAVORITES</button>
-      </div>
-    </div>
     <div ng-switch on="link">
+
+      <div ng-switch-when="friends">
+        <h1 class="seenLabel" style="text-transform: uppercase">ALL OF {{userData.first_name}}'S FRIENDS</h1>
+        <div class="profileSeenLink">
+          <div ng-repeat="friend in friendList">
+            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
+          </div>
+        </div>
+      </div>
       <div ng-switch-when="seen">
         <h1 class="seenLabel" style="text-transform: uppercase">MOVIES {{userData.first_name}} HAS SEEN</h1>
         <div class="profileSeenLink">
-          <div ng-repeat='movies in seenMovies' class="profile-movies">
-            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')" header-controls>
-              <div class='category-overlay'>
-                <div class="overlayMovieInfo" ui-sref="main.movie-profile({id: movies.id})">
-                  <h2>{{movies.title}}</h2>
-                  <h4>{{movies.year |date: 'yyyy' }}</h4>
-                </div>
-                <div class="addTo-Overlay">
-                  <p ng-click="deleteSeen(userId, movies.id)" class="overlayFav"><i class="fa fa-times" aria-hidden="true"></i> remove</p>
-                  <p ng-click="addToFavs(userId, movies.id)" class="overlayFav"><i class="fa fa-star" aria-hidden="true"></i> add to favorites</p>
-                </div>
+          <div ng-repeat='movies in seenMovies' ui-sref="main.movie-profile({id: movies.id})">
+            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-switch-when="want">
+      <h1 class="seenLabel" style="text-transform: uppercase">MOVIES {{userData.first_name}} WANTS TO SEE</h1>
+      <div class="profileSeenLink" >
+        <div ng-repeat='movies in wantToSee'>
+          <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')">
+            <div class='category-overlay'>
+              <div class="overlayMovieInfo" ui-sref="main.movie-profile({id: movies.id})" header-controls>
+                <h2>{{movies.title}}</h2>
+                <h4>{{movies.year |date: 'yyyy' }}</h4>
+              </div>
+              <div class="addTo-Overlay">
+                <p ng-click="deleteToSee(userId, movies.id)" class="overlayFav"><i class="fa fa-times" aria-hidden="true"></i> remove</p>
+                <p ng-click="addToFavs(userId, movies.id)" class="overlayFav"><i class="fa fa-star" aria-hidden="true"></i> add to favorites</p>
+                <p ng-click="addToSeen(userId, movies.id)" class="overlayFav"><i class="fa fa-check" aria-hidden="true"></i> add to seen list</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div ng-switch-when="want">
-        <h1 class="seenLabel" style="text-transform: uppercase">MOVIES {{userData.first_name}} WANTS TO SEE</h1>
-        <div class="profileSeenLink">
-          <div ng-repeat='movies in wantToSee'>
-            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')">
-              <div class='category-overlay'>
-                <div class="overlayMovieInfo" ui-sref="main.movie-profile({id: movies.id})" header-controls>
-                  <h2>{{movies.title}}</h2>
-                  <h4>{{movies.year |date: 'yyyy' }}</h4>
-                </div>
-                <div class="addTo-Overlay">
-                  <p ng-click="deleteToSee(userId, movies.id)" class="overlayFav"><i class="fa fa-times" aria-hidden="true"></i> remove</p>
-                  <p ng-click="addToFavs(userId, movies.id)" class="overlayFav"><i class="fa fa-star" aria-hidden="true"></i> add to favorites</p>
-                  <p ng-click="addToSeen(userId, movies.id)" class="overlayFav"><i class="fa fa-check" aria-hidden="true"></i> add to seen list</p>
-                </div>
+    </div>
+    <div ng-switch-when="fav">
+      <h1 class="seenLabel" style="text-transform: uppercase">{{userData.first_name}}'S FAVORITE MOVIES</h1>
+      <div class="profileSeenLink" >
+        <div ng-repeat='movies in favMovies'>
+          <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')" header-controls>
+            <div class='category-overlay'>
+              <div class="overlayMovieInfo" ui-sref="main.movie-profile({id: movies.id})">
+                <h2>{{movies.title}}</h2>
+                <h4>{{movies.year |date: 'yyyy' }}</h4>
+              </div>
+              <div class="addTo-Overlay">
+                <p ng-click="deleteFav(userId, movies.id)" class="overlayFav"><i class="fa fa-times" aria-hidden="true"></i> remove</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div ng-switch-when="fav">
-        <h1 class="seenLabel" style="text-transform: uppercase">{{userData.first_name}}'S FAVORITE MOVIES</h1>
-        <div class="profileSeenLink">
-          <div ng-repeat='movies in favMovies'>
-            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')" header-controls>
-              <div class='category-overlay'>
-                <div class="overlayMovieInfo" ui-sref="main.movie-profile({id: movies.id})">
-                  <h2>{{movies.title}}</h2>
-                  <h4>{{movies.year |date: 'yyyy' }}</h4>
-                </div>
-                <div class="addTo-Overlay">
-                  <p ng-click="deleteFav(userId, movies.id)" class="overlayFav"><i class="fa fa-times" aria-hidden="true"></i> remove</p>
-                </div>
+    </div>
+    <div ng-switch-default>
+      <div class="profileTopFriendsContainer">
+        <div class="profileLabel" style="text-transform: uppercase">{{userData.first_name}}'s TOP FRIENDS</div>
+        <div class="topFriends">
+          <div class="topFriendCarousel">
+            <div ng-repeat="friend in friends">
+              <div class="topFriend" style="background-image: url('{{friend.picture_url}}')">
               </div>
+              <h1 class="favFriendName">
+                {{friend.first_name}} {{friend.last_name}}
+              </h1>
             </div>
-          </div>
-        </div>
-      </div>
-      <div ng-switch-default>
-        <div class="profileTopFriendsContainer">
-          <div class="profileLabel" style="text-transform: uppercase">{{userData.first_name}}'s TOP FRIENDS</div>
-          <div class="topFriends">
-            <div class="topFriendCarousel">
-              <div ng-repeat="friend in friends">
-                <div class="topFriend" style="background-image: url('{{friend.picture_url}}')">
-                </div>
-                <h1 class="favFriendName">
-                  {{friend.first_name}} {{friend.last_name}}
-                </h1>
-              </div>
-              <!--<div class="topFriend">4</div>
+            <!--<div class="topFriend">4</div>
               <div class="topFriend">5</div>-->
-            </div>
           </div>
         </div>
-        <div class="recommendationLabel" style="text-transform: uppercase">MOVIES RECOMMENDED BY {{userData.first_name}}</div>
-        <div class="profileRecCarousel">
-          <div ng-repeat="movies in recMovies" ui-sref="main.movie-profile({id: movies.id})">
-            <div class="profileRecMovies" style="background-image: url('{{movies.imageUrl}}')"></div>
-          </div>
-          <!--<div class="profileRecMovies"></div>
+      </div>
+      <div class="recommendationLabel" style="text-transform: uppercase">MOVIES RECOMMENDED BY {{userData.first_name}}</div>
+      <div class="profileRecCarousel">
+        <div ng-repeat="movies in recMovies" ui-sref="main.movie-profile({id: movies.id})">
+          <div class="profileRecMovies" style="background-image: url('{{movies.imageUrl}}')"></div>
+        </div>
+        <!--<div class="profileRecMovies"></div>
           <div class="profileRecMovies"></div>
           <div class="profileRecMovies"></div>
           <div class="profileRecMovies"></div>
           <div class="profileRecMovies"></div>-->
-        </div>
       </div>
     </div>
   </div>
+</div>
