@@ -185,7 +185,7 @@ app.get('/getMoviesByGenre/:id/:page', endpointCtrl.getMoviesByGenre);
 app.get('/searchMovieByTitle/:movieTitle/:page', endpointCtrl.searchMovieByTitle);
 app.get('/searchMovieByCastMember/:castMember', endpointCtrl.searchMovieByCastMember);
 app.get('/getMovieById/:id', endpointCtrl.getMovieById);
-
+app.get('/getFriends/:id', endpointCtrl.getFriends)
 //----POST------*
 
 app.post('/postNewUserInfo/:id/:first/:last/:picture', endpointCtrl.postNewUserInfo);

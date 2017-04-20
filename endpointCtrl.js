@@ -248,6 +248,7 @@ module.exports = {
       if (err) console.log('get friends endpoint error: ', err)
       else {
         res.send(result)
+        console.log(result)
       }
     })
   },
