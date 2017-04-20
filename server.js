@@ -48,23 +48,23 @@ app.get('/auth/me', (req, res) => {
 *--------------------------------------------------------------------*/
 
 
-let db = massive.connectSync({ connectionString: config.dbString })
+let db = massive.connectSync({ connectionString: config.elephantsql })
 
 //endpoints for sql
-db.schema(function (err, data) {
-  if (err) console.log(err);
-  else console.log("All tables successfully reset")
-})
+// db.schema(function (err, data) {
+//   if (err) console.log(err);
+//   else console.log("All tables successfully reset")
+// })
 
 app.set('db', db);
 db = app.get('db');
 
 const endpointCtrl = require('./endpointCtrl.js')
 
-db.schema(function (err, data) {
-  if (err) console.log("hello", err);
-  else console.log('db created')
-})
+// db.schema(function (err, data) {
+//   if (err) console.log("hello", err);
+//   else console.log('db created')
+// })
 
 /*--------------------------------------------------------------------*
                                 AUTH
