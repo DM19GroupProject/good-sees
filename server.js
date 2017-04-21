@@ -174,7 +174,7 @@ passport.deserializeUser(function (obj, cb) {
 
 //----GET---------*
 
-app.get('/getNewFeed/:id', endpointCtrl.getNewFeed);
+app.get('/getNewFeed/:id/:pageNum', endpointCtrl.getNewFeed);
 app.get('/getIfUserExists/:id', endpointCtrl.getIfUserExists);
 app.get('/getReviews/:id', endpointCtrl.getReviews);
 app.get('/getStats/:id', endpointCtrl.getStats);
