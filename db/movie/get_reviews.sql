@@ -22,4 +22,4 @@ FROM movie_rating
   ON movie_rating.user_id = users.fb_id
 WHERE movie_rating.movie_id = $1
   AND movie_rating.comment IS NOT NULL
-ORDER BY movie_rating.date_created;
+ORDER BY movie_rating.date_created DESC;

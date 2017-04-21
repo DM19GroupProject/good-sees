@@ -16,4 +16,4 @@ SELECT DISTINCT
   movie_rating.to_see
 FROM movie_rating
 WHERE movie_rating.user_id = $1
-ORDER BY movie_rating.date_created;
+ORDER BY movie_rating.date_created DESC;
