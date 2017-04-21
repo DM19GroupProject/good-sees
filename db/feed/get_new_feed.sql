@@ -25,5 +25,6 @@ FROM users
   JOIN movie_rating
   ON movie_rating.user_id = friends.friend_id
 WHERE friends.user_id = $1
+OR movie_rating.user_id = $1
 ORDER BY movie_rating.date_created
-LIMIT 10 OFFSET $2 * 10;;
+LIMIT 10 OFFSET $2 * 10;
