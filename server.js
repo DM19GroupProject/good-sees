@@ -43,6 +43,10 @@ app.get('/auth/me', (req, res) => {
   res.status(200).send(req.user[0].fb_id);
 })
 
+app.get('/auth/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+})
 /*--------------------------------------------------------------------*
                               DATABASE
 *--------------------------------------------------------------------*/
@@ -219,5 +223,3 @@ app.delete('/deleteToSee/:id/:movieId', endpointCtrl.deleteToSee);
 app.listen(8080, function () {
   console.log('Connected on 8080')
 })
-
-

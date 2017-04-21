@@ -81,9 +81,9 @@ angular.module('goodSees')
         $scope.resultFlag = true;
         $scope.hideFlag = false;
         $scope.searchCategory = 'title'
-        
+
         /*--------------------------------------------------------------------*
-                                    Event Handlers 
+                                    Event Handlers
         *--------------------------------------------------------------------*/
         userService.getUserId().then(response => {
             return response
@@ -91,10 +91,11 @@ angular.module('goodSees')
             mainService.getUserData(response)
             .then( response => {
                 $scope.currentUserData = response[0]
-            
+
             })
         })
 
+        $scope.logout = userService.logout;
 
         $scope.titleClicked = function(){
             $scope.searchCategory = 'title';
