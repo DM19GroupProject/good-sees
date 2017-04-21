@@ -4,4 +4,8 @@ angular.module('goodSees').directive('profileLinksDir', function(){
         templateUrl: './views/directives/profileLinksDir.html',
         controller: 'mainCtrl'
     }
+    
+
+
+
 })
