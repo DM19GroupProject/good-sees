@@ -55,7 +55,9 @@ angular.module('goodSees')
 
                                     seenMovies.push({
                                         imageUrl: baseUrl + response.data.poster_path,
-                                        title: response.data.original_title, id: response.data.id, year: response.data.release_date
+                                        title: response.data.original_title,
+                                        id: response.data.id,
+                                        year: response.data.release_date
                                     })
                                 })
                         }
@@ -77,7 +79,9 @@ angular.module('goodSees')
 
                                     wantToSee.push({
                                         imageUrl: baseUrl + response.data.poster_path,
-                                        title: response.data.original_title, id: response.data.id, year: response.data.release_date
+                                        title: response.data.original_title,
+                                        id: response.data.id,
+                                        year: response.data.release_date
                                     })
                                 })
                         }
@@ -100,7 +104,8 @@ angular.module('goodSees')
                                     favMovies.push({
                                         imageUrl: baseUrl + response.data.poster_path,
                                         title: response.data.original_title,
-                                        id: response.data.id, year: response.data.release_date
+                                        id: response.data.id,
+                                        year: response.data.release_date
                                     })
                                 })
                         }
@@ -160,23 +165,39 @@ angular.module('goodSees')
                 .then(function (response) {
                     var moviesForFeed = [];
                     var feedData = response.data;
-                    for (var i = 0; i < response.data.length; i++) {
-                        if (response.data[i].movie_id) {
-                            $http.get('/getMovieById/' + response.data[i].movie_id)
-                                .then(function (response) {
+                    console.log(feedData)
+
+                    var a = feedData.map((obj) => {
+                        $http.get('/getMovieById/' + obj.movie_id)
+                            .then(function (response) {
+                                obj.imageUrl = baseUrl + response.data.poster_path;
+                                obj.title = response.data.original_title;
+                                obj.overview = response.data.overview;
+
+                                return obj;
+                            })
+                    })
+                    return feedData;
 
 
-                                    moviesForFeed.push({
-                                        feedData: feedData,
-                                        imageUrl: baseUrl + response.data.poster_path,
-                                        title: response.data.original_title,
-                                        overview: response.data.overview
-                                    })
-                                })
-                        }
-                    }
+                    // for (var i = 0; i < feedData.length; i++) {
+                    //     if (feedData[i].movie_id) {
+                    //         console.log(i)
+                    //         $http.get('/getMovieById/' + feedData[i].movie_id)
+                    //             .then(function (response) {
+                    //                     console.log('halasdas',feedData[i])
+                    //                     console.log('this is here' ,feedData)
+                    //                 feedData[i].imageUrl = baseUrl + response.data.poster_path;
+                    //                 feedData[i].title = response.data.original_title;
+                    //                 feedData[i].overview =  response.data.overview;
+
+                    //             })
+                    //     }
+                    // }
+
                     // console.log("movies:", moviesForFeed)
-                    return moviesForFeed;
+
+
                 })
         }
 
@@ -187,6 +208,3 @@ angular.module('goodSees')
             return $http.post(`/postReview/${userId}/${movieId}/${commentTitle}/:${comment}`)
         }
     });
-
-
-    
