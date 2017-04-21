@@ -49,7 +49,7 @@ angular.module('goodSees')
                     // $('.dropdown-link-container').addClass('display-flex')
                     $('.desktop-profile-dropdown').addClass('display-block');
                 })
-                $('#cat-btn, #search-btn, .feedContainer, .mobile-search-btn, .categories-wrapper, .profilePicContainer, .results-search-container, .close-ham').click(function() {
+                $('#cat-btn, #search-btn, .feedContainer, .mobile-search-btn, .categories-wrapper, .profilePicContainer, .results-search-container, .close-ham, .movie-flex-box').click(function() {
                     
                         $(".desktop-profile-dropdown").removeClass('display-block');
                         // $('.dropdown-link-container').removeClass('display-flex')
@@ -58,7 +58,7 @@ angular.module('goodSees')
                 $('#search-btn').click(function(){
                     $('.desktop-search-dropdown').addClass('display-block')
                 })
-                $('#cat-btn, #wide-menu-ham, .feedContainer, .mobile-search-btn, .categories-wrapper, .profilePicContainer, .results-search-container').click(function(){
+                $('#cat-btn, #wide-menu-ham, .feedContainer, .mobile-search-btn, .categories-wrapper, .profilePicContainer, .results-search-container, .movie-flex-box').click(function(){
                     $('.desktop-search-dropdown').removeClass('display-block');
                 })
                 
