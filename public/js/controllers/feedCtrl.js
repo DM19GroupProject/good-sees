@@ -3,7 +3,7 @@ angular.module('goodSees')
 
         $scope.baseUrl = mainService.baseUrl;
         // var id = 2197287247035846;
-        $scope.pageNum = 1;
+        $scope.pageNum = 0;
         console.log('page: ')
         
 
