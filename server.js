@@ -48,9 +48,12 @@ app.get('/auth/me', (req, res) => {
 *--------------------------------------------------------------------*/
 
 
+
+// let db = massive.connectSync({ connectionString: config.dbString })
 let db = massive.connectSync({ connectionString: config.elephantsql })
 
-//endpoints for sql
+// endpoints for sql
+
 // db.schema(function (err, data) {
 //   if (err) console.log(err);
 //   else console.log("All tables successfully reset")

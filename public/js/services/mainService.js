@@ -155,8 +155,8 @@ angular.module('goodSees')
                               Feed Endpoints
         *--------------------------------------------------------------------*/
 
-        this.getMovieForFeed = function (id) {
-            return $http.get('/getNewFeed/' + id)
+        this.getMovieForFeed = function (id, pageNum) {
+            return $http.get(`/getNewFeed/${id}/${pageNum}`)
                 .then(function (response) {
                     var moviesForFeed = [];
                     var feedData = response.data;
@@ -179,6 +179,14 @@ angular.module('goodSees')
                     return moviesForFeed;
                 })
         }
+
+        this.postRec = (userId, movieId) => {
+            return $http.post(`/postRecommendation/${userId}/${movieId}`)
+        }
+        this.postReview = (movieId, commentTitle, comment, userId) => {
+            return $http.post(`/postReview/${userId}/${movieId}/${commentTitle}/:${comment}`)
+        }
     });
+
 
     
