@@ -2,10 +2,11 @@ $main-background-color: #1A1A1A;
 $red-from-logo:  #9B0606;
 $yellow-search-text: #CE9C29;
 .movie-info-container{
+    
     width: 100%;
     height: 100%;
-    padding-top: 100px;
-    padding-bottom: 30px;
+    padding: 133px 30px 30px 43px;
+   
 }
 .movie-background{
     background-color: #1A1A1A;
@@ -13,13 +14,15 @@ $yellow-search-text: #CE9C29;
     width: 100%;
 }
 .movie-text{
-    color: white
+    color: white;
+    font-size: 20px;
 }
 .movie-title-text{
     display:none
 }
 .movie-img{
     padding-bottom:30px;
+   
 }
 .movie-overview{
     padding-bottom: 20px;
@@ -65,11 +68,18 @@ background: linear-gradient(to left, #9B0606 50%, #CE9C29 50%);
   white-space: nowrap;
 }
 .movie-recommend-button{
-    background: grey;
-     width: 140px;
+    background: rgba(10, 10, 10, 0.68);
+    width: 235px;
     margin-bottom: 10px;
     border: none;
-    cursor: pointer;
+    height: 69px;
+    font-size: 17px;
+    font-family: raleway;
+    text-transform: uppercase;
+    font-weight: 400;
+    border-radius: 2pt;
+    color: white;
+    box-shadow: 9px 0px 95px black;
 }
 .recommend-review{
     display: flex;
@@ -77,6 +87,7 @@ background: linear-gradient(to left, #9B0606 50%, #CE9C29 50%);
     align-items: center;
     width: 100%;
     justify-content: center;
+    
 }
 .movie-button-container{
     padding-bottom: 15px;
@@ -84,7 +95,8 @@ background: linear-gradient(to left, #9B0606 50%, #CE9C29 50%);
     justify-content: space-around;
 }
 .add-to{
-    color: $yellow-search-text
+    color: $yellow-search-text;
+    font-size: 20px;
 }
 .movie-review{
     color: $yellow-search-text
@@ -138,6 +150,7 @@ background: linear-gradient(to left, #9B0606 50%, #CE9C29 50%);
     display: block;
     font-size: 35px;
     padding: 0px 10px 85px 15px;
+    
 }
 .fa-rotate-90{
     .fa-rotate-45 {
@@ -161,11 +174,12 @@ background: linear-gradient(to left, #9B0606 50%, #CE9C29 50%);
     flex-direction: inherit;
 }
 .movie-title-text{
+    padding-top: 25px;
     display: flex;
     width: 100%;
     justify-content: center;
     font-size: 50px;
-    padding-bottom: 80px
+    padding-bottom: 45px;
 }
 .movie-overview{
     font-size: 31px;
@@ -176,8 +190,11 @@ background: linear-gradient(to left, #9B0606 50%, #CE9C29 50%);
 display: flex;
 flex-direction: column;
 width: 300px;
+font-family: raleway;
 
 }
+
+
 .movie-buttons{
     margin: 50px 20px 0px 58px;
     width: 150px;
@@ -194,14 +211,19 @@ width: 300px;
 }
 
 .add-to{
-    font-size: 30px;
+       font-size: 20px;
+    padding-left: 20px;
+    font-weight: 500;
 }
 .movie-img {
     width: 100%;
 
 }
 .movie-text-container{
-    width: 75%
+    width: 75%;
+    font-family: raleway;
+    text-align: center;
+    font-weight: 400;
 }
 .movie-img-container{
     width: 25%
@@ -224,7 +246,12 @@ width: 300px;
 @media (min-width: 900px){
 
     .movie-overview{
-        font-size: 40px;
+            font-size: 25px;
+    margin: auto;
+    width: 643px;
+    color: grey;
+    font-weight: 300;
+    line-height: 29px;
     }
     .movie-recommend-button{
     background: grey;
@@ -235,7 +262,9 @@ width: 300px;
     font-size: 20px;
     }
     .movie-review{
-        font-size: 45px;
+            font-size: 45px;
+    font-weight: 300;
+    margin-top: 33px;
     }
     .movie-thumbs{
         font-size: 10em;

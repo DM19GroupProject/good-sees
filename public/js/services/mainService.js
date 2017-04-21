@@ -43,7 +43,7 @@ angular.module('goodSees')
         }
 
         this.getSeenMovies = function (id) {
-            return $http.get('/getUserActivity/' + id)
+            return $http.get(`/getUserActivity/${id}`)
                 .then(function (response) {
                     var seenMovies = [];
 

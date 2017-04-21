@@ -35,7 +35,7 @@ $yellow-search-text: #CE9C29;
   width: 623px;
   height: 100px;
   margin-top: 25px;
-  background-color: black;
+  background-color: rgba(5, 5, 5, 0.85);
   box-shadow: $main-box-shaddow;
   display: flex;
   justify-content: space-between;
@@ -119,13 +119,14 @@ $yellow-search-text: #CE9C29;
 }
 
 .recCard {
-    width: 670px;
+    width: 777px;
     background: rgba(5, 5, 5, 0.85);
     color: white;
     padding: 30px 0 0 18px;
     display: none;
     margin-top: 34px;
     height: 286px;
+    margin-left: 20px;
 }
 
 .seenCard {
@@ -257,13 +258,15 @@ $yellow-search-text: #CE9C29;
 }
 
 .picName {
-  display: flex;
-  align-items: center;
-  width: 500px;
-  height: 74px;
-  /* justify-content: center; */
-  font-size: 34px;
-  color: whitesmoke;
+      display: flex;
+    align-items: center;
+    width: 500px;
+    height: 74px;
+    /* justify-content: center; */
+    font-size: 34px;
+    color: whitesmoke;
+    margin-left: 15px;
+    margin-top: 10px;
 }
 
 .userCardPic {
@@ -281,7 +284,9 @@ $yellow-search-text: #CE9C29;
     border-radius: 3px;
   }
 }
-
+.activityComment{
+  margin-left: 61px;
+}
 .activityMovieContainer {
   text-align: center;
   display: flex;
@@ -299,6 +304,9 @@ $yellow-search-text: #CE9C29;
 .activityMovieTitle {
   font-size: 36px;
   font-family: oswald;
+      text-align: left;
+    margin-left: 80px;
+    width: 400px;
 }
 
 .activityMovieDescription {
@@ -336,7 +344,7 @@ $yellow-search-text: #CE9C29;
     display: block;
     width: 250px;
     height: 70vh;
-    background-color: black;
+    background-color: rgba(5, 5, 5, 0.85);
     margin-left: 30px;
     margin-top: 25px;
     display: flex;
@@ -388,6 +396,7 @@ $yellow-search-text: #CE9C29;
     height: 150px;
     padding: 23px 0 32px 0;
     margin-left: 36px;
+    width: 764px;
     p {
       margin-bottom: 20px;
     }
@@ -423,4 +432,16 @@ $yellow-search-text: #CE9C29;
 .userComment{
       font-size: 20px;
     padding: 5px 5px;
+}
+.activityCards{
+  width: 706px;
+}
+.activityMovieDescription{
+    overflow: auto;
+    height: 91px;
+    text-align: left;
+    margin: 25px 0 0 80px;
+    width: 430px;
+    color: grey;
+
 }
