@@ -3,6 +3,9 @@ angular.module('goodSees')
 
         $scope.baseUrl = mainService.baseUrl;
         // var id = 2197287247035846;
+        $scope.pageNum = 1;
+        console.log('page: ')
+        
 
 
         /*--------------------------------------------------------------------*
@@ -23,7 +26,7 @@ angular.module('goodSees')
 
 
                     $scope.getMovieForFeed = function () {
-                        mainService.getMovieForFeed(id)
+                        mainService.getMovieForFeed(id, $scope.pageNum)
                             .then(function (response) {
                                 console.log(response)
                                 $scope.activities = response;

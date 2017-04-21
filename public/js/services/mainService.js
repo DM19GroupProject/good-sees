@@ -155,8 +155,8 @@ angular.module('goodSees')
                               Feed Endpoints
         *--------------------------------------------------------------------*/
 
-        this.getMovieForFeed = function (id) {
-            return $http.get('/getNewFeed/' + id)
+        this.getMovieForFeed = function (id, pageNum) {
+            return $http.get(`/getNewFeed/${id}/${pageNum}`)
                 .then(function (response) {
                     var moviesForFeed = [];
                     var feedData = response.data;
