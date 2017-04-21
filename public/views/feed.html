@@ -49,8 +49,10 @@
           </div>
         </div>
         <div class="recInput">
-          <input ng-model="feedComment" type="" name="" value="">
+
+          <input class="recCommentText" ng-model="feedComment" type="" name="" value="">
           <button  ng-click="postRec(currentUserData.fb_id, recSelection.id); postReview(recSelection.id, null, feedComment, currentUserData.fb_id)"  >POST</button>
+
         </div>
       </div>
       <div class="feedSearchResultsContainer">

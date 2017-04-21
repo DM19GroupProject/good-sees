@@ -32,6 +32,34 @@ angular.module('goodSees')
                     $scope.friendList = response;
                 })
 
+
+            $scope.getFavMovies = function(){
+                mainService.getFavMovies(response)
+                .then(function(response){
+                $scope.favMovies = response;
+            
+                })
+            }
+            $scope.getFavMovies();
+    
+            $scope.addToFavs = (userId, movieId) =>{
+                mainService.addToFavs(userId, movieId)
+                    .then(function(response){
+                    $scope.getFavMovies();        
+                })
+            }
+
+            $scope.deleteSeen = (userId, movieId) => {
+                mainService.deleteSeen(userId, movieId)
+                    $scope.getSeenMovies();
+            }
+
+            $scope.deleteFav = (userId, movieId) => {
+                mainService.deleteFav(userId, movieId)
+                    .then(function(response){
+                    $scope.getFavMovies();
+                })
+            }
             $scope.getSeenMovies = function () {
                 mainService.getSeenMovies(response)
                     .then(function (response) {
@@ -40,6 +68,7 @@ angular.module('goodSees')
             }
             $scope.getSeenMovies();
 
+
             $scope.getWantToSee = function () {
                 mainService.getWantToSee(response)
                     .then(function (response) {
@@ -47,6 +76,7 @@ angular.module('goodSees')
                     })
             }
             $scope.getWantToSee();
+
 
             $scope.getFavMovies = function () {
                 mainService.getFavMovies(response)
@@ -88,3 +118,4 @@ angular.module('goodSees')
             }
         })
     });
+
