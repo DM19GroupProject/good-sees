@@ -174,7 +174,7 @@ module.exports = {
   },
   thumbDown: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
-    
+    console.log('sad face')
     db.movie.post_thumb_down([
       req.params.id,
       req.params.movieId
@@ -185,7 +185,7 @@ module.exports = {
   },
   thumbSide: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
-    
+    console.log('mehhh face')
     db.movie.post_thumb_side([
       req.params.id,
       req.params.movieId
@@ -196,7 +196,7 @@ module.exports = {
   },
   thumbUp: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
-  
+    console.log('smiley face')
     db.movie.post_thumb_up([
       req.params.id,
       req.params.movieId

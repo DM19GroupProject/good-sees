@@ -47,33 +47,33 @@ CREATE UNIQUE INDEX movie_index ON movie_rating(movie_id, user_id);
 
 ---------------      DUMMY DATA      ---------------
 
--- INSERT INTO users
---     (fb_id, first_name, last_name, picture_url, google_id)
--- VALUES(1197287247035846, 'Joe', 'Dirt', 'http://bit.ly/2nbmoL6', null),
---     (2197287247035846, 'Stevey', 'Wonder', 'http://bit.ly/2nbmoL6', null),
---     (3197287247035846, 'Louie', 'King', 'http://bit.ly/2nbmoL6', null),
---     (4197287247035846, 'Pouie', 'Doo', 'http://bit.ly/2nbmoL6', null);
+INSERT INTO users
+    (fb_id, first_name, last_name, picture_url, google_id)
+VALUES(1197287247035846, 'Joe', 'Dirt', 'http://bit.ly/2nbmoL6', null),
+    (2197287247035846, 'Stevey', 'Wonder', 'http://bit.ly/2nbmoL6', null),
+    (3197287247035846, 'Louie', 'King', 'http://bit.ly/2nbmoL6', null),
+    (4197287247035846, 'Pouie', 'Doo', 'http://bit.ly/2nbmoL6', null);
 
--- INSERT INTO friends
---     (user_id, friend_id, rank)
--- VALUES(1197287247035846, 2197287247035846, 1),
---     (1197287247035846, 3197287247035846, 2),
---     (1197287247035846, 4197287247035846, 3),
---     (2197287247035846, 4197287247035846, 1),
---     (2197287247035846, 3197287247035846, 2),
---     (2197287247035846, 1197287247035846, 3),
---     (3197287247035846, 1197287247035846, 1),
---     (4197287247035846, 1197287247035846, null),
---     (4197287247035846, 3197287247035846, 1);
+INSERT INTO friends
+    (user_id, friend_id, rank)
+VALUES(1197287247035846, 2197287247035846, 1),
+    (1197287247035846, 3197287247035846, 2),
+    (1197287247035846, 4197287247035846, 3),
+    (2197287247035846, 4197287247035846, 1),
+    (2197287247035846, 3197287247035846, 2),
+    (2197287247035846, 1197287247035846, 3),
+    (3197287247035846, 1197287247035846, 1),
+    (4197287247035846, 1197287247035846, null),
+    (4197287247035846, 3197287247035846, 1);
 
--- INSERT INTO movie_rating
---     (movie_id, user_id, recommends, thumb_up, thumb_sideways, thumb_down, to_see, seen, fav, comment_title, comment)
--- VALUES
---     (4523, 1197287247035846, true, false, false, true, false, true, false, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd'),
---     (4523, 4197287247035846, true, true, false, false, true, true, true, 'changed my life', 'I literally cannot express how much this movie changed my life. Incredible. It is like I''m suddenly a princess!!'),
---     (4523, 3197287247035846, false, false, false, true, false, false, false, 'I don''t have time for titles', 'I was told this movie sucked. So I came here to tell everyone. Trollalala  -lallalala-lala-la.'),
---     (4523, 2197287247035846, true, false, true, false, false, true, false, 'ehh', 'the songs are ok. everything else is not'),
---     (69531, 2197287247035846, true, false, false, false, true, false, true, 'i don''t even know', 'i think i want to see this movie'),
---     (920, 2197287247035846, true, true, false, false, true, true, true, 'cars!', 'kids movies are my favorite movies.'),
---     (10195, 2197287247035846, false, true, false, false, false, true, true, 'that hammer tho', 'i like thor. his hair made me too jealous to finish watching. :('),
---     (10020, 2197287247035846, true, true, false, false, true, true, true, 'teapots', 'singing teapots make my day. everyday.');
+INSERT INTO movie_rating
+    (movie_id, user_id, recommends, thumb_up, thumb_sideways, thumb_down, to_see, seen, fav, comment_title, comment)
+VALUES
+    (4523, 1197287247035846, true, false, false, true, false, true, false, 'wonderful movie', 'just kidding. not worth the plastic to make this dvd'),
+    (4523, 4197287247035846, true, true, false, false, true, true, true, 'changed my life', 'I literally cannot express how much this movie changed my life. Incredible. It is like I''m suddenly a princess!!'),
+    (4523, 3197287247035846, false, false, false, true, false, false, false, 'I don''t have time for titles', 'I was told this movie sucked. So I came here to tell everyone. Trollalala  -lallalala-lala-la.'),
+    (4523, 2197287247035846, true, false, true, false, false, true, false, 'ehh', 'the songs are ok. everything else is not'),
+    (69531, 2197287247035846, true, false, false, false, true, false, true, 'i don''t even know', 'i think i want to see this movie'),
+    (920, 2197287247035846, true, true, false, false, true, true, true, 'cars!', 'kids movies are my favorite movies.'),
+    (10195, 2197287247035846, false, true, false, false, false, true, true, 'that hammer tho', 'i like thor. his hair made me too jealous to finish watching. :('),
+    (10020, 2197287247035846, true, true, false, false, true, true, true, 'teapots', 'singing teapots make my day. everyday.');

@@ -179,6 +179,14 @@ angular.module('goodSees')
                     return moviesForFeed;
                 })
         }
+
+        this.postRec = (userId, movieId) => {
+            return $http.post(`/postRecommendation/${userId}/${movieId}`)
+        }
+        this.postReview = (movieId, commentTitle, comment, userId) => {
+            return $http.post(`/postReview/${userId}/${movieId}/${commentTitle}/:${comment}`)
+        }
     });
+
 
     
