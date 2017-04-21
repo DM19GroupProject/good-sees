@@ -1,9 +1,9 @@
-<div class="all-friends-wrapper">
+    <div class="all-friends-wrapper">
     <h1 class="friends-page-title">{{currentUserData.first_name}}'s Friends</h1>
     <div class="friends-wrapper">
         <div class="friend-friendpage" ng-repeat="user in userFriends">
             <h1 class="name-text">{{user.first_name}} {{user.last_name}}</h1>
-           
+           <!--<div style="background-image: url('{{user.picture_url}}'); background-size: cover no-repeat"></div>-->
             <img src="{{user.picture_url}}">
         </div>
     </div>

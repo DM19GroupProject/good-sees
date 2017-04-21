@@ -1,5 +1,6 @@
 -- takes in user id
 -- $1 user id
+-- $2 page number (counts by 10)
 -- returns friends activity time sorted with first and last name, picture url, id, movie id, comment title, date of last activity with that movie, if thumb up, if thumb sideways, if thumb down, if recommended, if fav, if seen, and if to see.
 
 SELECT DISTINCT
@@ -24,4 +25,6 @@ FROM users
   JOIN movie_rating
   ON movie_rating.user_id = friends.friend_id
 WHERE friends.user_id = $1
-ORDER BY movie_rating.date_created;
+OR movie_rating.user_id = $1
+ORDER BY movie_rating.date_created DESC
+LIMIT 10 OFFSET $2 * 10;

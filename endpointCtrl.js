@@ -6,7 +6,7 @@ let db;
 
 setImmediate(() => {
   db = app.get('db');
- 
+
 })
 
 
@@ -28,7 +28,10 @@ module.exports = {
 
   getNewFeed: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
-    db.feed.get_new_feed([req.params.id], (err, result) => {
+    db.feed.get_new_feed([
+      req.params.id,
+      req.params.pageNum
+    ], (err, result) => {
       if (err) console.log('get new feed endpoint error: ', err)
       else {
         res.send(result)
@@ -174,7 +177,9 @@ module.exports = {
   },
   thumbDown: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
-    
+
+    console.log('sad face')
+
     db.movie.post_thumb_down([
       req.params.id,
       req.params.movieId
@@ -185,7 +190,9 @@ module.exports = {
   },
   thumbSide: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
-    
+
+    console.log('mehhh face')
+
     db.movie.post_thumb_side([
       req.params.id,
       req.params.movieId
@@ -196,7 +203,9 @@ module.exports = {
   },
   thumbUp: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
-  
+
+    console.log('smiley face')
+
     db.movie.post_thumb_up([
       req.params.id,
       req.params.movieId
@@ -294,39 +303,39 @@ module.exports = {
     res.end()
   },
 
-getMoviesByGenre: (req, res, next) => {
+  getMoviesByGenre: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
-  axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc&page=${req.params.page}`)
-    .then(response => {
-      return res.send(response.data)
-    })
-    .catch(err => next(err))
-},
+    axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc&page=${req.params.page}`)
+      .then(response => {
+        return res.send(response.data)
+      })
+      .catch(err => next(err))
+  },
 
-searchMovieByTitle: (req, res) => {
-  axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=${req.params.page}`)
-    .then(response => res.send(response.data.results))
-    .catch(err => next(err))
-},
+  searchMovieByTitle: (req, res) => {
+    axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=${req.params.page}`)
+      .then(response => res.send(response.data.results))
+      .catch(err => next(err))
+  },
 
-searchMovieByCastMember:(req, res) => {
-  axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
-    .then(response => {
+  searchMovieByCastMember: (req, res) => {
+    axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
+      .then(response => {
 
-      return res.send(response.data.results)
+        return res.send(response.data.results)
 
-    })
-    .catch(err => next(err))
-},
+      })
+      .catch(err => next(err))
+  },
 
-getMovieById: (req, res, next) => {
-  axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
-   .then(response => {
+  getMovieById: (req, res, next) => {
+    axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
+      .then(response => {
 
-    return res.send(response.data)
-  })
-  .catch(err => next(err))
-}
+        return res.send(response.data)
+      })
+      .catch(err => next(err))
+  }
 
 
 }//end of module

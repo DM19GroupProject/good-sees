@@ -42,15 +42,17 @@
             <p id="recTitle">{{recSelection.title}}</p>
             <p id="recRating">How do you rate this movie?</p>
             <div class="recFaces">
-              <i class="fa fa-smile-o" aria-hidden="true"></i>
-              <i class="fa fa-meh-o" aria-hidden="true"></i>
-              <i class="fa fa-frown-o" aria-hidden="true"></i>
+              <i ng-click="thumbUp(currentUserData.fb_id, recSelection.id)"  class="fa fa-smile-o" aria-hidden="true"></i>
+              <i ng-click="thumbSide(currentUserData.fb_id, recSelection.id)" class="fa fa-meh-o" aria-hidden="true"></i>
+              <i ng-click="thumbDown(currentUserData.fb_id, recSelection.id)"  class="fa fa-frown-o" aria-hidden="true"></i>
             </div>
           </div>
         </div>
         <div class="recInput">
-          <input class="recCommentText" type="" name="" value="">
-          <button>POST</button>
+
+          <input class="recCommentText" ng-model="feedComment" type="" name="" value="">
+          <button  ng-click="postRec(currentUserData.fb_id, recSelection.id); postReview(recSelection.id, null, feedComment, currentUserData.fb_id)"  >POST</button>
+
         </div>
       </div>
       <div class="feedSearchResultsContainer">

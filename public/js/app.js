@@ -14,7 +14,8 @@ angular.module('goodSees', ['ui.router'])
                 controller: 'mainCtrl',
                 resolve: {
                     messages: function ($http, userService, $state) {
-                        $http.get(`/auth/me`).then(res => {
+                        return $http.get(`/auth/me`).then(res => {
+                            console.log('hoping for a 200...', res.status)
                             if (res.status !== 200) {
                                 $state.go('login')
                             }

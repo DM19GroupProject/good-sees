@@ -48,9 +48,11 @@ app.get('/auth/me', (req, res) => {
 *--------------------------------------------------------------------*/
 
 
+
+// let db = massive.connectSync({ connectionString: config.dbString })
 let db = massive.connectSync({ connectionString: config.elephantsql })
 
-//endpoints for sql
+// endpoints for sql
 // db.schema(function (err, data) {
 //   if (err) console.log(err);
 //   else console.log("All tables successfully reset")
@@ -174,7 +176,7 @@ passport.deserializeUser(function (obj, cb) {
 
 //----GET---------*
 
-app.get('/getNewFeed/:id', endpointCtrl.getNewFeed);
+app.get('/getNewFeed/:id/:pageNum', endpointCtrl.getNewFeed);
 app.get('/getIfUserExists/:id', endpointCtrl.getIfUserExists);
 app.get('/getReviews/:id', endpointCtrl.getReviews);
 app.get('/getStats/:id', endpointCtrl.getStats);
