@@ -11,6 +11,8 @@ $yellow-search-text: #CE9C29;
   width: 100%;
 }
 
+
+
 .feedContainer {
   background-image: url('../assets/moviePosters.jpg');
   background-repeat: repeat-y;
@@ -27,7 +29,7 @@ $yellow-search-text: #CE9C29;
 .postContainer {
   width: 70%;
   // height: 100vh;
- 
+
 }
 
 .postData {
@@ -42,7 +44,7 @@ $yellow-search-text: #CE9C29;
   align-items: center;
   color: white;
   padding: 15px 0 25px 0;
-  
+
   position: fixed;
   input {
     width: 128%;
@@ -67,6 +69,7 @@ $yellow-search-text: #CE9C29;
     border: none;
     border-radius: 1pt;
     margin-left: 20px;
+    cursor: pointer;
   }
   button:hover {
     background-color: $yellow-from-logo;
@@ -338,7 +341,6 @@ $yellow-search-text: #CE9C29;
     width: 450px;
     height: 100vh;
     padding: 28px 0 28px 30px;
-    
   }
   .feedSidebarContainer {
     display: block;
@@ -370,6 +372,7 @@ $yellow-search-text: #CE9C29;
     justify-content: center;
     align-items: center;
     text-align: center;
+    cursor: pointer;
   }
   .feedLinks {
     list-style: none;
@@ -433,6 +436,7 @@ $yellow-search-text: #CE9C29;
       font-size: 20px;
     padding: 5px 5px;
 }
+
 .activityCards{
   width: 706px;
 }
@@ -445,3 +449,4 @@ $yellow-search-text: #CE9C29;
     color: grey;
 
 }
+
