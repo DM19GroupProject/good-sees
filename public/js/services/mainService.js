@@ -34,6 +34,129 @@ angular.module('goodSees').service('mainService', function($http) {
                 if (response.data[i].recommends) {
                     $http.get("/getMovieById/" + response.data[i].movie_id).then(function(response) {
 
+
+                })
+            }
+            }
+        })
+    }
+
+        this.getSeenMovies = function (id) {
+            return $http.get(`/getUserActivity/${id}`)
+                .then(function (response) {
+                    var seenMovies = [];
+
+                    for (var i = 0; i < response.data.length; i++) {
+                        if (response.data[i].seen) {
+                            $http.get('/getMovieById/' + response.data[i].movie_id)
+                                .then(function (response) {
+
+
+                                    seenMovies.push({
+                                        imageUrl: baseUrl + response.data.poster_path,
+                                        title: response.data.original_title,
+                                        id: response.data.id,
+                                        year: response.data.release_date
+                                    })
+                                })
+                        }
+                    }
+
+                    return seenMovies;
+                })
+        }
+        this.getWantToSee = function (id) {
+            return $http.get('/getUserActivity/' + id)
+                .then(function (response) {
+                    var wantToSee = [];
+
+                    for (var i = 0; i < response.data.length; i++) {
+                        if (response.data[i].to_see) {
+                            $http.get('/getMovieById/' + response.data[i].movie_id)
+                                .then(function (response) {
+
+
+                                    wantToSee.push({
+                                        imageUrl: baseUrl + response.data.poster_path,
+                                        title: response.data.original_title,
+                                        id: response.data.id,
+                                        year: response.data.release_date
+                                    })
+                                })
+                        }
+                    }
+
+                    return wantToSee;
+                })
+        }
+        this.getFavMovies = function (id) {
+            return $http.get('/getUserActivity/' + id)
+                .then(function (response) {
+                    var favMovies = [];
+
+                    for (var i = 0; i < response.data.length; i++) {
+                        if (response.data[i].fav) {
+                            $http.get('/getMovieById/' + response.data[i].movie_id)
+                                .then(function (response) {
+                                    // console.log(response.data)
+
+                                    favMovies.push({
+                                        imageUrl: baseUrl + response.data.poster_path,
+                                        title: response.data.original_title,
+                                        id: response.data.id,
+                                        year: response.data.release_date
+                                    })
+                                })
+                        }
+                    }
+                    // console.log("favMovies:", favMovies);
+                    return favMovies;
+                })
+        }
+
+        // this.getFriends = function(id){
+        //     return $http.get('/getFriends/' + id)
+        //     .then(function(response){
+        //         console.log("friends", response);
+        //         return response.data;
+        //     })
+        // }
+
+
+        this.addToFavs = (userId, movieId) => {
+            return $http.post(`/postFav/${userId}/${movieId}`)
+        }
+        this.addToSeen = (userId, movieId) => {
+            return $http.post(`/postSeen/${userId}/${movieId}`)
+        }
+        this.addToSee = (userId, movieId) => {
+            return $http.post(`/postToSee/${userId}/${movieId}`)
+        }
+        this.postRecommendation = (userId, movieId) => {
+            return $http.post(`/postRecommendation/${userId}/${movieId}`)
+        }
+        this.thumbUp = (userId, movieId) => {
+            return $http.post(`/thumbUp/${userId}/${movieId}`)
+        }
+        this.thumbSide = (userId, movieId) => {
+            return $http.post(`/thumbSide/${userId}/${movieId}`)
+        }
+        this.thumbDown = (userId, movieId) => {
+            return $http.post(`/thumbDown/${userId}/${movieId}`)
+        }
+        this.deleteSeen = (userId, movieId) => {
+            return $http.delete(`/deleteSeen/${userId}/${movieId}`)
+        }
+        this.deleteFav = (userId, movieId) => {
+            return $http.delete(`/deleteFav/${userId}/${movieId}`)
+        }
+        this.deleteToSee = (userId, movieId) => {
+            return $http.delete(`/deleteToSee/${userId}/${movieId}`)
+        }
+
+
+        /*--------------------------------------------------------------------*
+=======
                         recommendedMovies.push({
                             imageUrl: baseUrl + response.data.poster_path,
                             title: response.data.original_title
@@ -151,6 +274,7 @@ angular.module('goodSees').service('mainService', function($http) {
     }
 
     /*--------------------------------------------------------------------*
+>>>>>>> master
                               Feed Endpoints
         *--------------------------------------------------------------------*/
 

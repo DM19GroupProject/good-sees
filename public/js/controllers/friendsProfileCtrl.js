@@ -21,22 +21,26 @@ angular.module('goodSees').controller('friendsProfileCtrl', function ($scope, ma
 
     mainService.getRecommendedMovies($scope.friendId)
         .then(function (response) {
+            console.log("friends rec movies", response)
             $scope.recMovies = response;
 
         })
 
     mainService.getSeenMovies($scope.friendId)
         .then(function (response) {
+            console.log("friends seen movies", response)
             $scope.seenMovies = response;
         })
 
     mainService.getWantToSee($scope.friendId)
         .then(function (response) {
+            console.log("friends want to see movies", response)
             $scope.wantToSee = response;
         })
 
     mainService.getFavMovies($scope.friendId)
         .then(function (response) {
+            console.log("friends fav movies", response)
             $scope.favMovies = response;
         })
 

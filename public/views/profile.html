@@ -15,7 +15,6 @@
 
           <button class="afterClick" ng-click="link='profile'" id="profileTab">PROFILE</button>
 
-          <button class="beforeClick" ng-click="link='friends'" id="friendsTab">FRIENDS</button>
 
           <button class="beforeClick" ng-click="link='seen'" id="seenTab">SEEN</button>
 
@@ -29,18 +28,6 @@
 
     <div ng-switch on="link">
 
-      <!--***************-->
-      <!--**FRIENDS TAB**-->
-      <!--***************-->
-
-      <div ng-switch-when="friends">
-        <h1 class="seenLabel" style="text-transform: uppercase">ALL OF {{userData.first_name}}'S FRIENDS</h1>
-        <div class="profileSeenLink">
-          <div ng-repeat="friend in friendList">
-            <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
-          </div>
-        </div>
-      </div>
 
       <!--************-->
       <!--**SEEN TAB**-->
@@ -53,6 +40,11 @@
             <div class="profileMoviesSeen" style="background-image: url('{{movies.imageUrl}}')"></div>
           </div>
         </div>
+
+        <!--<div header-controls class = 'pagination-btns'>
+            <p class = 'scroll-up' ng-click="prevPage()"><i class="fa fa-angle-left" aria-hidden="true"></i> PREVIOUS</p>
+            <p class = 'scroll-up' ng-click="nextPage()">NEXT <i class="fa fa-angle-right" aria-hidden="true"></i></p>
+        </div>-->
       </div>
 
       <!--************-->
@@ -87,27 +79,20 @@
 
       <div ng-switch-default>
         <div class="profileTopFriendsContainer">
-          <div class="profileLabel" style="text-transform: uppercase">{{userData.first_name}}'s TOP FRIENDS</div>
+          <div class="profileLabel" style="text-transform: uppercase">{{userData.first_name}}'S FRIENDS</div>
           <div class="topFriends">
             
 
             <div class="topFriendCarousel">
               <div ng-repeat="friend in friends">
-                <div class="topFriend" style="background-image: url('{{friend.picture_url}}')">
+                <div class="topFriend" ui-sref="main.friendProfile({id: friend.fb_i})"style="background-image: url('{{friend.picture_url}}')">
                 </div>
 
-                <h1 class="favFriendName">
+                <h1 class="favFriendName" >
                   {{friend.first_name}} {{friend.last_name}}
                 </h1>
               </div>
-              <div class="topFriend" style="background-image: url('{{friend.picture_url}}')">
-              </div>
-
-              <div class="topFriend" style="background-image: url('{{friend.picture_url}}')">
-              </div>
-
-              <div class="topFriend" style="background-image: url('{{friend.picture_url}}')">
-              </div>
+              
               <!--<div class="topFriend">4</div>
               <div class="topFriend">5</div>-->
             </div>

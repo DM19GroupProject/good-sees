@@ -17,6 +17,7 @@ angular.module('goodSees')
                 })
             mainService.getTopFriends(response)
                 .then(function (response) {
+                    console.log("friends", response)
                     $scope.friends = response;
                 })
 
@@ -27,10 +28,10 @@ angular.module('goodSees')
                 })
 
 
-            mainService.getFriends(response)
-                .then(function (response) {
-                    $scope.friendList = response;
-                })
+            // mainService.getFriends(response)
+            //     .then(function (response) {
+            //         $scope.friendList = response;
+            //     })
 
 
             $scope.getFavMovies = function(){
@@ -63,29 +64,32 @@ angular.module('goodSees')
             $scope.getSeenMovies = function () {
                 mainService.getSeenMovies(response)
                     .then(function (response) {
+                        console.log("get seen", response)
                         $scope.seenMovies = response;
                     })
             }
+
             $scope.getSeenMovies();
 
 
             $scope.getWantToSee = function () {
                 mainService.getWantToSee(response)
                     .then(function (response) {
+                        console.log("want to see", response)
                         $scope.wantToSee = response;
                     })
-            }
+                }
             $scope.getWantToSee();
+            // $scope.test = "YAY"
 
+            // $scope.getFavMovies = function () {
+            //     mainService.getFavMovies(response)
+            //         .then(function (response) {
+            //             $scope.favMovies = response;
 
-            $scope.getFavMovies = function () {
-                mainService.getFavMovies(response)
-                    .then(function (response) {
-                        $scope.favMovies = response;
-
-                    })
-            }
-            $scope.getFavMovies();
+            //         })
+            // }
+            // $scope.getFavMovies();
 
 
             $scope.addToFavs = (userId, movieId) => {
@@ -116,6 +120,30 @@ angular.module('goodSees')
                 mainService.addToSeen(userId, movieId);
                 $scope.deleteToSee(userId, movieId);
             }
+
+        //      var seenPage = 1;
+
+        //     $scope.getSeenMovies = function(){
+        //         mainService.getSeenMovies($state.params.id, seenPage)
+        //         .then(response => {
+        //         console.log('get seen', response.data)
+        //         $scope.seenMovies = response.data.results;
+        //         })
+        //     };
+
+        // $scope.getSeenMovies();
+
+        // $scope.nextPage = function() {
+        //     seenPage++;
+        //     $scope.getSeenMovies();
+        // }
+        // $scope.prevPage = function (){
+        //     if(seenPage > 1){
+        //         seenPage--;
+        //     $scope.getSeenMovies();    
+        //     }
+        
+        // }
         })
     });
 
