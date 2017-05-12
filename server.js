@@ -76,7 +76,7 @@ const endpointCtrl = require('./endpointCtrl.js')
 passport.use(new FacebookStrategy({
   clientID: process.env.client_id,
   clientSecret: process.env.client_secret,
-  callbackURL: "http://localhost:8080/auth/facebook/callback",
+  callbackURL: "/auth/facebook/callback",
   profileFields: ['id', 'displayName', 'first_name', 'last_name', 'picture', 'friends']
 },
   function (accessToken, refreshToken, profile, cb) {
