@@ -5,7 +5,6 @@ const express = require('express'),
   passport = require('passport'),
   // LocalStrategy = require('passport-local').Strategy,
   FacebookStrategy = require('passport-facebook').Strategy,
-  config = require('./config.js'),
   // userService = require('./public/js/services/userService.js'),
   axios = require('axios'),
   cors = require('cors');
@@ -52,9 +51,7 @@ app.get('/auth/logout', function(req, res) {
 *--------------------------------------------------------------------*/
 
 
-
-// let db = massive.connectSync({ connectionString: config.dbString })
-let db = massive.connectSync({ connectionString: config.elephantsql })
+let db = massive.connectSync({ connectionString: process.env.elephantsql })
 
 // endpoints for sql
 // db.schema(function (err, data) {
@@ -77,8 +74,8 @@ const endpointCtrl = require('./endpointCtrl.js')
 *--------------------------------------------------------------------*/
 
 passport.use(new FacebookStrategy({
-  clientID: config.facebook.clientID,
-  clientSecret: config.facebook.clientSecret,
+  clientID: process.env.client_id,
+  clientSecret: process.env.client_secret,
   callbackURL: "http://localhost:8080/auth/facebook/callback",
   profileFields: ['id', 'displayName', 'first_name', 'last_name', 'picture', 'friends']
 },

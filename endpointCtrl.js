@@ -1,5 +1,4 @@
 let app = require('./server.js');
-let config = require('./config.js');
 let passport = require('passport');
 const axios = require('axios');
 let db;
@@ -305,7 +304,7 @@ module.exports = {
 
   getMoviesByGenre: (req, res, next) => {
     // passport.authenticate('facebook', { failureRedirect: '/#/login' })
-    axios.get(`${baseUrl}genre/${req.params.id}/movies${config.key}&language=en-US&include_adult=false&sort_by=created_at.asc&page=${req.params.page}`)
+    axios.get(`${baseUrl}genre/${req.params.id}/movies${process.env.key}&language=en-US&include_adult=false&sort_by=created_at.asc&page=${req.params.page}`)
       .then(response => {
         return res.send(response.data)
       })
@@ -313,13 +312,13 @@ module.exports = {
   },
 
   searchMovieByTitle: (req, res) => {
-    axios.get(`${baseUrl}search/movie${config.key}&language=en-US&query=${req.params.movieTitle}&page=${req.params.page}`)
+    axios.get(`${baseUrl}search/movie${process.env.key}&language=en-US&query=${req.params.movieTitle}&page=${req.params.page}`)
       .then(response => res.send(response.data.results))
       .catch(err => next(err))
   },
 
   searchMovieByCastMember: (req, res) => {
-    axios.get(`${baseUrl}search/person${config.key}&language=en-US&query=${req.params.castMember}&page=1`)
+    axios.get(`${baseUrl}search/person${process.env.key}&language=en-US&query=${req.params.castMember}&page=1`)
       .then(response => {
 
         return res.send(response.data.results)
@@ -329,7 +328,7 @@ module.exports = {
   },
 
   getMovieById: (req, res, next) => {
-    axios.get(`${baseUrl}movie/${req.params.id}${config.key}&language=en-US`)
+    axios.get(`${baseUrl}movie/${req.params.id}${process.env.key}&language=en-US`)
       .then(response => {
 
         return res.send(response.data)
