@@ -30,6 +30,7 @@ angular.module('goodSees')
                             .then(function (response) {
                                 console.log(response)
                                 $scope.activities = response;
+                                console.log($scope.activities)
                             })
                     }
 
@@ -59,6 +60,8 @@ angular.module('goodSees')
         $scope.postReview = (movieId, commentTitle, comment, userId) => {
             mainService.postReview(movieId, commentTitle, comment, userId).then(function () {
                 $scope.getMovieForFeed();
+                console.log('got movies for feed');
+                console.log('feedComment: ', $scope.feedComment);
             })
         }
 

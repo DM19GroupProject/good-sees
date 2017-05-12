@@ -114,6 +114,10 @@ angular.module('goodSees')
                 $('#feed-search-btn').click(function(){
                     $('.feedSearchResultsContainer').css('display', 'flex');
                 })
+                $('#postRecBtn').click(function(){
+                    $('.recCard').hide();
+                    $('.postData').show();
+                })
             });
         }
     }
