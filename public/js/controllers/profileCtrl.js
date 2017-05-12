@@ -24,6 +24,7 @@ angular.module('goodSees')
             mainService.getRecommendedMovies(response)
                 .then(function (response) {
                     $scope.recMovies = response;
+                    console.log('recMovies: ', response)
 
                 })
 

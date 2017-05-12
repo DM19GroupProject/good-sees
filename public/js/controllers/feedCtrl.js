@@ -29,8 +29,12 @@ angular.module('goodSees')
                         mainService.getMovieForFeed(id, $scope.pageNum)
                             .then(function (response) {
                                 console.log(response)
+                                for(let i = 0; i < response.length; i++){
+                                    if (response[i]['comment']){
+                                        response[i]['comment'] = response[i]['comment'].substr(1);
+                                    }
+                                }
                                 $scope.activities = response;
-                                console.log($scope.activities)
                             })
                     }
 
