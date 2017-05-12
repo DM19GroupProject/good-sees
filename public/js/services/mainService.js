@@ -34,10 +34,14 @@ angular.module('goodSees').service('mainService', function($http) {
                 if (response.data[i].recommends) {
                     $http.get("/getMovieById/" + response.data[i].movie_id).then(function(response) {
 
-
-                })
+                        recommendedMovies.push({
+                            imageUrl: baseUrl + response.data.poster_path,
+                            title: response.data.original_title
+                        })
+                    })
+                }
             }
-            }
+            return recommendedMovies;
         })
     }
 

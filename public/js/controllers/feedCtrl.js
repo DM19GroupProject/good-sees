@@ -29,6 +29,11 @@ angular.module('goodSees')
                         mainService.getMovieForFeed(id, $scope.pageNum)
                             .then(function (response) {
                                 console.log(response)
+                                for(let i = 0; i < response.length; i++){
+                                    if (response[i]['comment']){
+                                        response[i]['comment'] = response[i]['comment'].substr(1);
+                                    }
+                                }
                                 $scope.activities = response;
                             })
                     }
@@ -59,6 +64,8 @@ angular.module('goodSees')
         $scope.postReview = (movieId, commentTitle, comment, userId) => {
             mainService.postReview(movieId, commentTitle, comment, userId).then(function () {
                 $scope.getMovieForFeed();
+                console.log('got movies for feed');
+                console.log('feedComment: ', $scope.feedComment);
             })
         }
 
